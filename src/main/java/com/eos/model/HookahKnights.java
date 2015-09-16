@@ -1,4 +1,4 @@
-package com.eos.model;
+package main.java.com.eos.model;
 
 public class HookahKnights {
 

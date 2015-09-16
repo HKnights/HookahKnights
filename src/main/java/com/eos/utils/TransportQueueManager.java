@@ -1,4 +1,4 @@
-package com.eos.utils;
+package main.java.com.eos.utils;
 
 import java.io.InputStream;
 import java.io.PrintWriter;

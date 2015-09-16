@@ -1,4 +1,4 @@
-package com.eos.utils;
+package main.java.com.eos.utils;
 
 public class AccountException extends Exception {
 	private static final long serialVersionUID = 1L;

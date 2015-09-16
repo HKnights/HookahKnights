@@ -1,4 +1,4 @@
-package com.eos.HookahKnights;
+package main.java.com.eos.HookahKnights;
 
 public class HookahNavigationConstantBean {
 

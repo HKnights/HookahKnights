@@ -1,4 +1,4 @@
-package com.eos.utils;
+package main.java.com.eos.utils;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.eos.accounts.User;
-import com.eos.cart.ShoppingCart;
-import com.eos.utils.TransportQueueManager.TransportMessage;
+import main.java.com.eos.accounts.User;
+import main.java.com.eos.cart.ShoppingCart;
+import main.java.com.eos.utils.TransportQueueManager.TransportMessage;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;

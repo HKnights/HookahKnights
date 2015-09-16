@@ -1,4 +1,4 @@
-package com.eos.accounts;
+package main.java.com.eos.accounts;
 
 import java.util.Date;
 import java.util.Random;

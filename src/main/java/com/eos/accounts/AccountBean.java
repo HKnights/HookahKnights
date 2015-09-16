@@ -1,4 +1,4 @@
-package com.eos.accounts;
+package main.java.com.eos.accounts;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package com.eos.HookahKnights;
+package main.java.com.eos.HookahKnights;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.eos.utils.SessionManager;
+import main.java.com.eos.utils.SessionManager;
 
 @SuppressWarnings("serial")
 public class HookahKnightsServlet extends HttpServlet {

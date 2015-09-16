@@ -1,5 +1,5 @@
-<%@page import="com.eos.accounts.User"%>
-<%@page import="com.eos.utils.SessionManager"%>
+<%@page import="main.java.com.eos.accounts.User"%>
+<%@page import="main.java.com.eos.utils.SessionManager"%>
 <%@page import="javax.mail.Session"%>
 <%@page import="java.net.CookieStore"%>
 <%@page import="sun.net.www.http.HttpClient"%>

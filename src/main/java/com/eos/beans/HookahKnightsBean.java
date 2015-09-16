@@ -1,4 +1,4 @@
-package com.eos.beans;
+package main.java.com.eos.beans;
 
 import javax.servlet.http.HttpServletRequest;
 

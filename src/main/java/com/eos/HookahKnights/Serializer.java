@@ -1,4 +1,4 @@
-package com.eos.HookahKnights;
+package main.java.com.eos.HookahKnights;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
-import com.eos.cart.ShoppingCart;
+import main.java.com.eos.cart.ShoppingCart;
 
 public final class Serializer {
 	/**

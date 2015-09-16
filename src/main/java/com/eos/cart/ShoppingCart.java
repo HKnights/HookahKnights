@@ -1,8 +1,8 @@
-package com.eos.cart;
+package main.java.com.eos.cart;
 
 import java.io.Serializable;
 
-import com.eos.HookahKnights.Serializer;
+import main.java.com.eos.HookahKnights.Serializer;
 
 public class ShoppingCart implements Serializable {
 

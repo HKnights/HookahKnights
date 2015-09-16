@@ -1,6 +1,6 @@
-package com.eos.demo;
+package main.java.com.eos.demo;
 
-import com.eos.model.HookahKnights;
+import main.java.com.eos.model.HookahKnights;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
