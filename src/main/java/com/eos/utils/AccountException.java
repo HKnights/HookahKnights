@@ -2,14 +2,11 @@ package main.java.com.eos.utils;
 
 public class AccountException extends Exception {
 	private static final long serialVersionUID = 1L;
-	public static final int INVALID_USER = 1;
-	public static final int USER_ALREADY_REGISTERED = 2;
-	public static final int INVALID_USER_CREDENTIALS = 3;
+	public static final String INVALID_USER = "No User Found";
+	public static final String USER_ALREADY_REGISTERED = "Already a user";
+	public static final String INVALID_USER_CREDENTIALS = "User password does not matched";
 
-	public int code;
-
-	public AccountException(int code, String message) {
+	public AccountException(String message) {
 		super(message);
-		this.code = code;
 	}
 }

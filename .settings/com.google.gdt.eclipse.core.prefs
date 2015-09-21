@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
 jarsExcludedFromWebInfLib=
-lastWarOutDir=/Users/aman/Documents/test/hknights/src/webapp
-warSrcDir=target
+lastWarOutDir=/Users/aman/Documents/test/hknights/target/hknights-1
+warSrcDir=target/hknights-1
 warSrcDirIsOutput=true

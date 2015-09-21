@@ -12,7 +12,6 @@ main/java/com/eos/dao/HookahKnightsDAO.class
 main/java/com/eos/demo/HookahData.class
 main/java/com/eos/HookahKnights/HookahKnightsServlet.class
 main/java/com/eos/HookahKnights/HookahNavigationConstantBean.class
-main/java/com/eos/utils/TransportQueueManager$2.class
 main/java/com/eos/utils/FullOnSMS.class
 main/java/com/eos/accounts/User.class
 main/java/com/eos/utils/SessionManager.class

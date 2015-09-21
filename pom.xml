@@ -34,6 +34,18 @@
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
+       <dependency>
+        <groupId>javax.mail</groupId>
+        <artifactId>mail</artifactId>
+        <version>1.4.7</version>
+    </dependency>
+    <dependency>
+	<groupId>javax.mail</groupId>
+	<artifactId>javax.mail-api</artifactId>
+	<version>1.5.2</version>
+</dependency>
+
+   
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
@@ -58,6 +70,7 @@
     <build>
         <!-- for hot reload of the web application-->
         <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
+
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>

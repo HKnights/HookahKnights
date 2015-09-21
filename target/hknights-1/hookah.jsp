@@ -50,10 +50,18 @@ function MyCtrl($scope, $timeout) {
 	</style>
 <body data-spy="scroll" data-target="#my-navbar">
 <form action="hookahknights" method="POST" name="mainForm" >
-  <input type="hidden" name="user_name" value="">
+<input type="hidden" name="user_name" value="">
+  <input type="hidden" name="user_pass" value="">
+  <input type="hidden" name="user_signup" value="false">
+  <input type="hidden" name="user_login" value="false">
   <input type="hidden" name="user_id" value="">
+  <input type="hidden" name="user_email" value="">
   <input type="hidden" name="user_image" value="">
-  <input type="hidden" name="action1" value="" />
+<input type="hidden" name="action1" value="" />
+<input type="hidden" name="selected_item" value="" />
+<input type="hidden" name="prod_1" id="prod_id_1" value="orderId_1" />
+<input type="hidden" name="prod_2" id="prod_id_2" value="orderId_2" />
+<input type="hidden" name="prod_3" id="prod_id_3" value="orderId_3" />
   <!-- Navbar -->
   	<nav class="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
   		<div class="container">

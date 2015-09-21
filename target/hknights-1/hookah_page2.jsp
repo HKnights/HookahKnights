@@ -35,7 +35,7 @@
  <input type="hidden" name="user_name" value="">
   <input type="hidden" name="user_pass" value="">
   <input type="hidden" name="user_signup" value="false">
-  <input type="hidden" name="user_login" value="">
+  <input type="hidden" name="user_login" value="false">
   <input type="hidden" name="user_id" value="">
   <input type="hidden" name="user_email" value="">
   <input type="hidden" name="user_image" value="">

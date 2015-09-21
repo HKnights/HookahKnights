@@ -1,7 +1,6 @@
 package main.java.com.eos.utils;
 
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.util.Properties;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -16,12 +15,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import com.google.appengine.api.ThreadManager;
-import com.google.appengine.api.log.LogQuery;
-import com.google.appengine.api.log.LogService;
-import com.google.appengine.api.log.LogServiceFactory;
-import com.google.apphosting.api.logservice.LogServicePb.LogServiceError;
-
-import sun.util.logging.resources.logging;
 
 /**
  * @author Aman Gupta
@@ -75,35 +68,64 @@ public class TransportQueueManager {
 	}
 
 	public static void sendMail(String mailTo, String content, String sub) {
+		Properties mailServerProperties = new Properties();
+		Session getMailSession;
+		MimeMessage generateMailMessage;
 		try {
-			Properties props = new Properties();
-			props.put("mail.smtp.host", "smtp.gmail.com");
-			props.setProperty("mail.transport.protocol", "smtp");
-			props.setProperty("mail.host", "smtp.gmail.com");
-			props.put("mail.smtp.auth", "true");
-			props.put("mail.smtp.port", "465");
-			props.put("mail.debug", "true");
-			props.put("mail.smtp.socketFactory.port", "465");
-			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-			props.put("mail.smtp.socketFactory.fallback", "false");
-			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication(username, password);
-				}
-			});
-
-			Transport transport = session.getTransport();
-			InternetAddress addressFrom = new InternetAddress(username);
-
-			MimeMessage message = new MimeMessage(session);
-			message.setSender(addressFrom);
-			message.setSubject(sub);
-			message.setContent(content, "text/plain");
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(mailTo));
-
-			transport.connect();
-			Transport.send(message);
+			System.out.println("\n 1st ===> setup Mail Server Properties..");
+			mailServerProperties = System.getProperties();
+			mailServerProperties.put("mail.smtp.port", "587");
+			mailServerProperties.put("mail.smtp.auth", "true");
+			mailServerProperties.put("mail.smtp.starttls.enable", "true");
+			System.out.println("Mail Server Properties have been setup successfully..");
+	 
+			// Step2
+			System.out.println("\n\n 2nd ===> get Mail Session..");
+			getMailSession = Session.getDefaultInstance(mailServerProperties, null);
+			generateMailMessage = new MimeMessage(getMailSession);
+			generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(mailTo));
+			generateMailMessage.setSubject(sub);
+			generateMailMessage.setContent(content, "text/html");
+			System.out.println("Mail Session has been created successfully..");
+	 
+			// Step3
+			System.out.println("\n\n 3rd ===> Get Session and Send mail");
+			Transport transport = getMailSession.getTransport("smtp");
+	 
+			// Enter your correct gmail UserID and Password
+			// if you have 2FA enabled then provide App Specific Password
+			transport.connect("smtp.gmail.com", username, password);
+			transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
 			transport.close();
+			
+//			Properties props = new Properties();
+//			props.put("mail.smtp.host", "smtp.gmail.com");
+//			props.setProperty("mail.transport.protocol", "smtp");
+//			props.setProperty("mail.host", "smtp.gmail.com");
+//			props.put("mail.smtp.auth", "true");
+//			props.put("mail.smtp.port", "465");
+//			props.put("mail.debug", "true");
+//			props.put("mail.smtp.socketFactory.port", "465");
+//			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+//			props.put("mail.smtp.socketFactory.fallback", "false");
+//			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+//				protected PasswordAuthentication getPasswordAuthentication() {
+//					return new PasswordAuthentication(username, password);
+//				}
+//			});
+//
+//			Transport transport = session.getTransport();
+//			InternetAddress addressFrom = new InternetAddress(username);
+//
+//			MimeMessage message = new MimeMessage(session);
+//			message.setSender(addressFrom);
+//			message.setSubject(sub);
+//			message.setContent(content, "text/plain");
+//			message.addRecipient(Message.RecipientType.TO, new InternetAddress("aman.ishu.virgo@gmail.com"));
+//
+//			transport.connect();
+//			Transport.send(message);
+//			transport.close();
 		} catch (Exception e) {
 			log.log(Level.SEVERE, "cannot send  email for id :" + mailTo, e);
 		}

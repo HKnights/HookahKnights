@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import main.java.com.eos.accounts.User;
 import main.java.com.eos.cart.ShoppingCart;
-import main.java.com.eos.utils.TransportQueueManager.TransportMessage;
+import main.java.com.eos.utils.TransportQueueManager;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -61,7 +61,7 @@ public class SessionManager {
 		if (isSignUp) {
 			userId = userEmail;
 			if (user != null) {
-				throw new AccountException(2,"Already a user");
+				throw new AccountException(AccountException.USER_ALREADY_REGISTERED);
 			}
 			user = new User();
 			TransportQueueManager.s_transportQueue.add(new TransportQueueManager().new TransportMessage(userEmail,
@@ -75,12 +75,12 @@ public class SessionManager {
 				userImage = user.m_profilePicUrl;
 				userEmail = user.m_email;
 				if (isUserLogin && !user.m_password.equals(userPass)) {
-					throw new AccountException(3, "User password does not matched");
+					throw new AccountException(AccountException.INVALID_USER_CREDENTIALS);
 				}
 			} else if (userId != null && !userId.isEmpty()) {
 				createUser(userId, name, userEmail, userImage, userPass);
 			} else {
-				throw new AccountException(1, "No User Found");
+				throw new AccountException(AccountException.INVALID_USER);
 			}
 		}
 		user.m_userId = userId;
