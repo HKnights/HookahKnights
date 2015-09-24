@@ -1,20 +1,35 @@
 package main.java.com.eos.utils;
 
-import java.io.InputStream;
-import java.util.Properties;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.google.appengine.api.ThreadManager;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.QueryResultIterable;
+import com.google.appengine.api.datastore.QueryResultList;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
+
+import main.java.com.eos.accounts.User;
+import sun.security.pkcs11.Secmod.DbMode;
 
 /**
  * @author Aman Gupta
@@ -22,26 +37,30 @@ import com.google.appengine.api.ThreadManager;
  *         TransportQueueManager manages Messages to be dispatched.
  */
 
-public class TransportQueueManager {
-	public static BlockingQueue<TransportMessage> s_transportQueue = new LinkedBlockingQueue<TransportMessage>();
+public class TransportQueueManager extends HttpServlet {
+	public static BlockingQueue<TransportMessage> s_transportQueue;
 	static Thread s_processTransportQueueThread;
-	protected static String JAVAMAIL_PROPERTIES = "javamail.properties";
 	static Logger log = Logger.getLogger(TransportQueueManager.class.getName());
 
-	private static String username = "";
-	private static String password = "";
-
-	static {
+	@Override
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		log.warning("Backend started!");
 		startProcessingTransportQueue();
-		initCredentials();
+		log.log(Level.WARNING, "Backend terminating!");
 	}
 
-	public static synchronized void startProcessingTransportQueue() {
+	public static void addTransportQueueThread(TransportMessage transportMessage) {
+		s_transportQueue.add(transportMessage);
+	}
+
+	public void startProcessingTransportQueue() {
+		s_transportQueue = new LinkedBlockingQueue<TransportMessage>();
 		if (s_processTransportQueueThread == null) {
 			s_processTransportQueueThread = ThreadManager.createBackgroundThread(new Runnable() {
 				public void run() {
 					while (true) {
 						try {
+							getQueuedMessenger();
 							if (!s_transportQueue.isEmpty())
 								s_transportQueue.take().run();
 						} catch (InterruptedException e) {
@@ -54,96 +73,64 @@ public class TransportQueueManager {
 		}
 	}
 
-	private static void initCredentials() {
-		InputStream is = null;
-		try {
-			is = TransportQueueManager.class.getClassLoader().getResourceAsStream(JAVAMAIL_PROPERTIES);
-			Properties prop = new Properties();
-			prop.load(is);
-			username = prop.getProperty("email_id");
-			password = prop.getProperty("pass");
-		} catch (Exception e) {
-		}
-
-	}
-
-	public static void sendMail(String mailTo, String content, String sub) {
-		Properties mailServerProperties = new Properties();
-		Session getMailSession;
-		MimeMessage generateMailMessage;
-		try {
-			System.out.println("\n 1st ===> setup Mail Server Properties..");
-			mailServerProperties = System.getProperties();
-			mailServerProperties.put("mail.smtp.port", "587");
-			mailServerProperties.put("mail.smtp.auth", "true");
-			mailServerProperties.put("mail.smtp.starttls.enable", "true");
-			System.out.println("Mail Server Properties have been setup successfully..");
-	 
-			// Step2
-			System.out.println("\n\n 2nd ===> get Mail Session..");
-			getMailSession = Session.getDefaultInstance(mailServerProperties, null);
-			generateMailMessage = new MimeMessage(getMailSession);
-			generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(mailTo));
-			generateMailMessage.setSubject(sub);
-			generateMailMessage.setContent(content, "text/html");
-			System.out.println("Mail Session has been created successfully..");
-	 
-			// Step3
-			System.out.println("\n\n 3rd ===> Get Session and Send mail");
-			Transport transport = getMailSession.getTransport("smtp");
-	 
-			// Enter your correct gmail UserID and Password
-			// if you have 2FA enabled then provide App Specific Password
-			transport.connect("smtp.gmail.com", username, password);
-			transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
-			transport.close();
-			
-//			Properties props = new Properties();
-//			props.put("mail.smtp.host", "smtp.gmail.com");
-//			props.setProperty("mail.transport.protocol", "smtp");
-//			props.setProperty("mail.host", "smtp.gmail.com");
-//			props.put("mail.smtp.auth", "true");
-//			props.put("mail.smtp.port", "465");
-//			props.put("mail.debug", "true");
-//			props.put("mail.smtp.socketFactory.port", "465");
-//			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-//			props.put("mail.smtp.socketFactory.fallback", "false");
-//			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-//				protected PasswordAuthentication getPasswordAuthentication() {
-//					return new PasswordAuthentication(username, password);
-//				}
-//			});
-//
-//			Transport transport = session.getTransport();
-//			InternetAddress addressFrom = new InternetAddress(username);
-//
-//			MimeMessage message = new MimeMessage(session);
-//			message.setSender(addressFrom);
-//			message.setSubject(sub);
-//			message.setContent(content, "text/plain");
-//			message.addRecipient(Message.RecipientType.TO, new InternetAddress("aman.ishu.virgo@gmail.com"));
-//
-//			transport.connect();
-//			Transport.send(message);
-//			transport.close();
-		} catch (Exception e) {
-			log.log(Level.SEVERE, "cannot send  email for id :" + mailTo, e);
-		}
-	}
-
 	public class TransportMessage implements Runnable {
-		String mailTo = "";
-		String content = "";
-		String sub = "";
+		Messenger messenger;
 
-		public TransportMessage(String mailTo, String content, String sub) {
-			this.mailTo = mailTo;
-			this.content = content;
-			this.sub = sub;
+		public TransportMessage(Messenger messenger) {
+			this.messenger = messenger;
 		}
 
 		public void run() {
-			sendMail(mailTo, content, sub);
+			log.log(Level.INFO, "processing message");
+			messenger.sendMessage();
+			updateProssedMessage(messenger.key);
 		}
 	}
+
+	public static void insertMessenger(Messenger messengerObject) {
+		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+		Entity e = null;
+		e = new Entity("transportqueue", messengerObject.hashCode());
+		e.setProperty("mess_obj", messengerObject.serialize());
+		e.setProperty("obj_class", messengerObject.getClass().getName());
+		e.setProperty("status", "I");
+		// e.setProperty("user_id", name);
+		// e.setProperty("content", userEmail);
+		// e.setProperty("subject", userImage);
+		ds.put(e);
+	}
+
+	public static void getQueuedMessenger() {
+		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+		Filter filter = new FilterPredicate("status", FilterOperator.EQUAL, "I");
+		Query q = new Query("transportqueue").setFilter(filter);
+		PreparedQuery pq = ds.prepare(q);
+		for (Entity entity : pq.asIterable()) {
+			// Entity entity=results.next();
+			String[] messData = ((String) entity.getProperty("mess_obj")).split("_");
+			Messenger messenger = new Email(messData[0], messData[1], messData[2]);
+			messenger.key=entity.getKey().getId()+"";
+			try {
+				s_transportQueue.put(new TransportQueueManager().new TransportMessage(messenger));
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public static void updateProssedMessage(String key) {
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		Entity entity;
+		try {
+			entity = datastore.get(KeyFactory.createKey("transportqueue", Integer.parseInt(key)));
+			entity.setProperty("status", "D");
+			datastore.put(entity);
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 }

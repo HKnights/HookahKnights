@@ -11,5 +11,13 @@
 	<welcome-file-list>
 		<welcome-file>hookah.jsp</welcome-file>
 	</welcome-file-list>
+	<servlet>
+        <servlet-name>backend_test</servlet-name>
+        <servlet-class>main.java.com.eos.utils.TransportQueueManager</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>backend_test</servlet-name>
+        <url-pattern>/_ah/start</url-pattern>
+    </servlet-mapping>
 
 </web-app>

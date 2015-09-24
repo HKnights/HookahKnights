@@ -1,12 +1,14 @@
 /Users/aman/Documents/test/hknights/src/main/java/com/eos/beans/HookahKnightsBean.java
+/Users/aman/Documents/test/hknights/src/main/java/com/eos/utils/SMS.java
 /Users/aman/Documents/test/hknights/src/main/java/com/eos/accounts/Order.java
 /Users/aman/Documents/test/hknights/src/main/java/com/eos/accounts/User.java
 /Users/aman/Documents/test/hknights/src/main/java/com/eos/model/HookahKnights.java
-/Users/aman/Documents/test/hknights/src/main/java/com/eos/utils/FullOnSMS.java
+/Users/aman/Documents/test/hknights/src/main/java/com/eos/utils/Email.java
 /Users/aman/Documents/test/hknights/src/main/java/com/eos/dao/HookahKnightsDAO.java
 /Users/aman/Documents/test/hknights/src/main/java/com/eos/HookahKnights/Serializer.java
 /Users/aman/Documents/test/hknights/src/main/java/com/eos/utils/AccountException.java
 /Users/aman/Documents/test/hknights/src/main/java/com/eos/cart/ShoppingCart.java
+/Users/aman/Documents/test/hknights/src/main/java/com/eos/utils/Messenger.java
 /Users/aman/Documents/test/hknights/src/main/java/com/eos/accounts/AccountBean.java
 /Users/aman/Documents/test/hknights/src/main/java/com/eos/HookahKnights/HookahKnightsServlet.java
 /Users/aman/Documents/test/hknights/src/main/java/com/eos/utils/TransportQueueManager.java

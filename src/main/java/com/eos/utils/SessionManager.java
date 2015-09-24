@@ -49,54 +49,63 @@ public class SessionManager {
 		String userEmail = request.getParameter("user_email") != null ? request.getParameter("user_email") : "";
 		Boolean isSignUp = Boolean.parseBoolean(request.getParameter("user_signup"));
 		Boolean isUserLogin = Boolean.parseBoolean(request.getParameter("user_login"));
-		try{
-		if (userId == null || userId.isEmpty()) {
-			user = User.getUserDataFromEmailandId(userEmail);
-		} else {
-			user = User.getUserDataFromEmailandId(userId);
-		}
-		if (session == null || session.getAttribute("user_id") == null) {
-			session = request.getSession();
-		}
-		if (isSignUp) {
-			userId = userEmail;
-			if (user != null) {
-				throw new AccountException(AccountException.USER_ALREADY_REGISTERED);
+		try {
+			if (userId == null || userId.isEmpty()) {
+				user = User.getUserDataFromEmailandId(userEmail);
+			} else {
+				user = User.getUserDataFromEmailandId(userId);
 			}
-			user = new User();
-			TransportQueueManager.s_transportQueue.add(new TransportQueueManager().new TransportMessage(userEmail,
-					"Mail from HookahKnights, You have Successfully Signed Up with us.",
-					"HookahKnights Welcomes you !!!"));
-			createUser(userId, name, userEmail, userImage, userPass);
-		} else {
-			if (user != null) {
-				userId = user.m_userId;
-				name = user.m_name;
-				userImage = user.m_profilePicUrl;
-				userEmail = user.m_email;
-				if (isUserLogin && !user.m_password.equals(userPass)) {
-					throw new AccountException(AccountException.INVALID_USER_CREDENTIALS);
+			if (session == null || session.getAttribute("user_id") == null) {
+				session = request.getSession();
+			}
+			if (isSignUp) {
+				userId = userEmail;
+				if (user != null) {
+					throw new AccountException(AccountException.USER_ALREADY_REGISTERED);
 				}
-			} else if (userId != null && !userId.isEmpty()) {
+				user = new User();
+				// TransportQueueManager.s_transportQueue.add(new
+				// TransportQueueManager().new TransportMessage(userEmail,
+				// "Mail from HookahKnights, You have Successfully Signed Up
+				// with us.",
+				// "HookahKnights Welcomes you !!!"));
+				Messenger messenger = new Email(userEmail,
+						"Mail from HookahKnights, You have Successfully Signed Up with us.",
+						"HookahKnights Welcomes you !!!");
+				TransportQueueManager.insertMessenger(messenger);
+				// TransportQueueManager
+				// .addTransportQueueThread(new TransportQueueManager().new
+				// TransportMessage(messenger));
 				createUser(userId, name, userEmail, userImage, userPass);
 			} else {
-				throw new AccountException(AccountException.INVALID_USER);
+				if (user != null) {
+					userId = user.m_userId;
+					name = user.m_name;
+					userImage = user.m_profilePicUrl;
+					userEmail = user.m_email;
+					if (isUserLogin && !user.m_password.equals(userPass)) {
+						throw new AccountException(AccountException.INVALID_USER_CREDENTIALS);
+					}
+				} else if (userId != null && !userId.isEmpty()) {
+					createUser(userId, name, userEmail, userImage, userPass);
+				} else {
+					throw new AccountException(AccountException.INVALID_USER);
+				}
 			}
-		}
-		user.m_userId = userId;
-		user.m_name = name;
-		user.m_profilePicUrl = userImage;
-		user.m_email = userEmail;
-		// setUser(user, request);
-		session.setAttribute("user_id", userId);
-		session.setAttribute("user_name", name);
-		session.setAttribute("user_image", userImage);
-		session.setAttribute("user_email", userEmail);
-		session.setMaxInactiveInterval(5 * 60);
-		Cookie userName = new Cookie("userId", userId);
-		userName.setMaxAge(100 * 30);
-		response.addCookie(userName);
-		}catch(Exception e){
+			user.m_userId = userId;
+			user.m_name = name;
+			user.m_profilePicUrl = userImage;
+			user.m_email = userEmail;
+			// setUser(user, request);
+			session.setAttribute("user_id", userId);
+			session.setAttribute("user_name", name);
+			session.setAttribute("user_image", userImage);
+			session.setAttribute("user_email", userEmail);
+			session.setMaxInactiveInterval(5 * 60);
+			Cookie userName = new Cookie("userId", userId);
+			userName.setMaxAge(100 * 30);
+			response.addCookie(userName);
+		} catch (Exception e) {
 			session.setAttribute("error", e.getMessage());
 			session.removeAttribute("user_name");
 			session.removeAttribute("user_id");
