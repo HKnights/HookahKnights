@@ -47,16 +47,17 @@ function MyCtrl($scope, $timeout) {
 	margin-top: 7px !important;
 	 margin-bottom: 3px !important;
 	 }
+	 img {
+    max-width: 100%;
+    width: auto\9;
+    /* height: auto; */
+    /* vertical-align: middle; */
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+}
 	</style>
 <body data-spy="scroll" data-target="#my-navbar">
 <form action="hookahknights" method="POST" name="mainForm" >
-<input type="hidden" name="user_name" value="">
-  <input type="hidden" name="user_pass" value="">
-  <input type="hidden" name="user_signup" value="false">
-  <input type="hidden" name="user_login" value="false">
-  <input type="hidden" name="user_id" value="">
-  <input type="hidden" name="user_email" value="">
-  <input type="hidden" name="user_image" value="">
 <input type="hidden" name="action1" value="" />
 <input type="hidden" name="selected_item" value="" />
 <input type="hidden" name="prod_1" id="prod_id_1" value="orderId_1" />
@@ -76,10 +77,7 @@ function MyCtrl($scope, $timeout) {
   				<a href="" class="navbar-brand">HookahKnights</a>
   			</div><!-- Navbar Header-->
   			<div class="collapse navbar-collapse" id="navbar-collapse">
-  			<div id="SIN" onclick="openLoginPage();" href="#DemoModal2" class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right" data-toggle="modal">Login</div>
-  			<div id="LGO" onclick="logout();" style="display:none;"class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right" data-toggle="modal">Log Out</div>
-  			 <div id="LGOFB" onclick="fbLogout();" style="display:none;"class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right" data-toggle="modal">Log Out</div>
-			<div id="LGOGM" onclick="gmSignOut();" style="display:none;"class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right" data-toggle="modal">Log Out</div> 
+  			<%@include file="/common_header.jsp" %>
   				<ul class="nav navbar-nav">
   					<li><a href="#home">Home</a> 
   					<li><a href="#gallery">Gallery</a> 
@@ -87,9 +85,7 @@ function MyCtrl($scope, $timeout) {
   					<li><a href="#contact">ContactUs</a> 
   				</ul>
   			</div>
-			<div><div id="status" style="float: right;margin-top: -36px;margin-right: 130px;font-size: smaller;color: white;"></div>
-			<span><img id="user_profile_pic"  src=""  height="25" width="25" style=" display :none;  border-radius: 10px;float: right;margin-top: -36px;margin-right: 101px;"></span></div>
-  		</div><!-- End Container-->
+			</div><!-- End Container-->
   	</nav><!-- End navbar -->
   	<!-- jumbotron-->
   	<div class="jumbotron">

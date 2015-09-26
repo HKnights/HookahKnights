@@ -1,7 +1,0 @@
-<cronentries>
-<cron>
-    <url>/longtimeworkingprocesshandler</url>
-    <schedule>every 12 hours</schedule>
-    <target>longtimeworker</target>
-</cron>
-</cronentries>

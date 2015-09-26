@@ -14,7 +14,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
 </head>
-
 	<style>
 	body{
 		padding-top: 40px;
@@ -27,6 +26,32 @@
 	 .col-sm-8{
 	 margin-left:0px;
 	 }
+	 .shopping-cart {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    float:right;
+    margin: 0 10px 0 0;
+}
+.cd-customization .add-to-cart {
+    color: #ffffff;
+    background-color: #46b29d;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+customization .add-to-cart {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 34px;
+     	border: none;
+}
+cart {
+    height: 34px;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+}
 	</style>
 
 <body data-spy="scroll" data-target="#my-navbar">
@@ -85,8 +110,11 @@
   				</button>
 
   				<a href="" class="navbar-brand">HookahKnights</a>
+  				
+  				
   			</div><!-- Navbar Header-->
   			<div class="collapse navbar-collapse" id="navbar-collapse">
+  					 <div id="cart_div"><span><i class="shopping-cart"><img src="white-shopping-cart-png.png" style="margin-left: 10px;margin-top: 10px;"/></i></span><span id="cart_value" style="float: right;margin-right: -46px;line-height: 18px;margin-top: 1px;background-color: #46b29d;color: #ffffff;font-size: 1rem;font-weight: bold;text-align: center;border-radius: 50%;transition: transform 0.2s 0s;height: 18px;width: 18px;">0</span></div>
   			<div id="SIN" onclick="openLoginPage();" href="#DemoModal2" class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right" data-toggle="modal">Login</div>
   			<div id="LGO" onclick="logout();" style="display:none;"class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right" data-toggle="modal">Log Out</div>
   			 	<ul class="nav navbar-nav">
@@ -96,8 +124,8 @@
   					<li><a href="#contact">ContactUs</a> 
   				</ul>
   			</div>
-		<div><div id="status" style="float: right;margin-top: -36px;margin-right: 130px;font-size: smaller;color: white;"></div>
-			<span><img id="user_profile_pic"  src=""  height="25" width="25" style=" display :none;  border-radius: 10px;float: right;margin-top: -36px;margin-right: 101px;"></span></div>
+		<div><div id="status" style="float: right;margin-top: -36px;margin-right: 176px;font-size: smaller;color: white;"></div>
+			<span><img id="user_profile_pic"  src=""  height="25" width="25" style=" display :none;  border-radius: 10px;float: right;margin-top: -36px;margin-right: 138px;"></span></div>
   		</div><!-- End Container-->
   	</nav><!-- End navbar -->
   	<!-- jumbotron-->
@@ -172,12 +200,29 @@
 					</tr>
   					<tr><td style="width: 400px; "><h2 style="font-size: 16px;">2 in 1 Flavours</h2></td><td> Not Available </td></tr>
   					<tr><td style="width: 400px; "><h2 style="font-size: 16px;">Security</h2></td><td> Rs 500 </td>
-  					<td><input type="button" onclick="ajaxAddToCart(1)" style="margin-right: -14px;margin-bottom: -3px; width:100px" class="btn btn-warning navbar-btn navbar-right" value="Add" /></td></tr>
+  					<!-- <td><input type="button" onclick="ajaxAddToCart(1)" style="margin-right: -14px;margin-bottom: -3px; width:100px" class="btn btn-warning navbar-btn navbar-right" value="Add" /></td></tr> -->
   					</table>
   					</div>
   				</div>
   				<div class="col-sm-4">
-  					<img src="small_sized_.jpg" class="img-responsive" alt="image" style = "height: 287px;float: right;">
+  				<div class="wrapper">
+     <h1></h1>
+    <div class="clear"></div>
+    <!-- items -->
+    <div class="items">
+        <!-- single item -->
+        <div class="item">
+            <img src="hookah14.jpg" alt="item" />
+             <h2>Hukkah Small</h2>
+            </p>
+            <button style=" color: #ffffff;width: 117px;background-color: #46b29d;height: 34px;border-radius: 4px;position: relative;overflow: hidden;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale; font-weight: 900;text-transform: uppercase;line-height: 30px;border: none;" class="add-to-cart" type="button">Add to cart</button>
+        </div>
+        <!--/ single item -->
+        <!-- single item -->
+     
+    <!--/ items -->
+</div>
+  					
   				</div>
   			</td>
   			</tr>
@@ -242,7 +287,19 @@
   					</div>
   				</div>
   				<div class="col-sm-4">
-  					<img src="small_sized_.jpg" class="img-responsive" alt="image" style = "height: 369px;float: right; background-color:black;">
+  					<div class="items">
+        <!-- single item -->
+        <div class="item">
+            <img src="hookah14.jpg" alt="item" />
+             <h2>Hukkah Medium</h2>
+            </p>
+            <button style=" color: #ffffff;width: 117px;background-color: #46b29d;height: 34px;border-radius: 4px;position: relative;overflow: hidden;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale; font-weight: 900;text-transform: uppercase;line-height: 30px;border: none;" class="add-to-cart" type="button">Add to cart</button>
+        </div>
+        <!--/ single item -->
+        <!-- single item -->
+     
+    <!--/ items -->
+</div>
   				</div>
   			</div>
   			</td>
@@ -310,7 +367,19 @@
   					</div>
   				</div>
   				<div class="col-sm-4">
-  					<img src="small_sized_.jpg" class="img-responsive" alt="image" style = "height: 369px;float: right;">
+  					<div class="items">
+        <!-- single item -->
+        <div class="item">
+            <img src="hookah14.jpg" alt="item" />
+             <h2>Hukkah Large</h2>
+            </p>
+            <button style=" color: #ffffff;width: 117px;background-color: #46b29d;height: 34px;border-radius: 4px;position: relative;overflow: hidden;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale; font-weight: 900;text-transform: uppercase;line-height: 30px;border: none;" class="add-to-cart" type="button">Add to cart</button>
+        </div>
+        <!--/ single item -->
+        <!-- single item -->
+     
+    <!--/ items -->
+</div>
   				</div>
   			</div>
   			</td>
@@ -383,7 +452,8 @@
     </section>
   </div>
   </form>
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
    <script>
    
    function ajaxAddToCart(value){
@@ -413,6 +483,53 @@
 		   
 	   		});
    }
+   function updateCart() {
+		//show counter if this is the first item added to the cart
+			var cartItems =  $('#cart_value');
+			var value = parseInt(cartItems.text()) + 1;
+		 	cartItems.text(value);
+	}
+   $('.add-to-cart').on('click', function () {
+       var cart = $('.shopping-cart');
+       var imgtodrag = $(this).parent('.item').find("img").eq(0);
+       if (imgtodrag) {
+           var imgclone = imgtodrag.clone()
+               .offset({
+               top: imgtodrag.offset().top,
+               left: imgtodrag.offset().left
+           })
+               .css({
+               'opacity': '0.5',
+                   'position': 'absolute',
+                   'height': '150px',
+                   'width': '150px',
+                   'z-index': '100'
+           })
+               .appendTo($('body'))
+               .animate({
+               'top': cart.offset().top + 10,
+                   'left': cart.offset().left + 10,
+                   'width': 75,
+                   'height': 75
+           }, 1000, 'easeInOutExpo');
+          
+           
+           setTimeout(function () {
+               cart.effect("shake", {
+                   times: 2
+               }, 200);
+           }, 1500);
+
+           imgclone.animate({
+               'width': 0,
+                   'height': 0
+           }, function () {
+               $(this).detach()
+               updateCart();
+           });
+       }
+      // updateCart();
+   });
    </script>
 
 <!-- Footer -->
@@ -434,7 +551,6 @@
 
     </footer>
 
-	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>	

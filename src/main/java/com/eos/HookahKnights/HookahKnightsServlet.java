@@ -1,6 +1,8 @@
 package main.java.com.eos.HookahKnights;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import main.java.com.eos.utils.SMS;
 import main.java.com.eos.utils.SessionManager;
 import main.java.com.eos.utils.TransportQueueManager;
 
@@ -19,46 +22,16 @@ public class HookahKnightsServlet extends HttpServlet {
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		 Logger log = Logger.getLogger(TransportQueueManager.class.getName());
+		 //TransportQueueManager.getQueuedMessenger();
 		// SessionManager.loginUser(request, response);
 		// http://api.clickatell.com/http/sendmsg?user=hknights&password=CgJEPXWSLRfGOd&api_id=3561635&to=917829626302&text=HookahKnights%20!!!
-		// try {
-		// String username = "HKnights";
-		// String password = "hknights01";
-		// String smtphost = "site3.way2sms.com";
-		//
-		// String from = "917829626302@site3.way2sms.com";
-		// String to = "919742850966@site3.way2sms.com";
-		// String body = "Hello SMS World!";
-		// Transport myTransport = null;
-		// try {
-		// Properties props = System.getProperties();
-		// props.put("mail.smtp.auth", "true");
-		// Session mailSession = Session.getDefaultInstance(props, null);
-		// MimeMessage msg = new MimeMessage(mailSession);
-		// msg.setFrom(new InternetAddress(from));
-		// InternetAddress[] address = { new InternetAddress(to) };
-		// msg.setRecipients(MimeMessage.RecipientType.TO, address);
-		//
-		// msg.setText(body);
-		// msg.setSentDate(new Date());
-		//
-		// myTransport = mailSession.getTransport("smtp");
-		// myTransport.connect(smtphost, username, password);
-		// msg.saveChanges();
-		// myTransport.sendMessage(msg, msg.getAllRecipients());
-		// myTransport.close();
-		// System.out.print("sent");
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
-
-		// } finally {
-		// }
-
-		// }
-		// }
 		try {
 			String action = request.getParameter("action1");
+
+			log.warning("Backend started!");
+			log.log(Level.WARNING, "Backend started    !");
+
 			if ("SELECT_HOOKAH".equals(action)) {
 				RequestDispatcher dispatcher = getServletContext()
 						.getRequestDispatcher(HookahNavigationConstantBean.HOOKAH_SEARCH_PAGE);

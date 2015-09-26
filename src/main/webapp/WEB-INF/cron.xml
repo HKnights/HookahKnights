@@ -1,7 +1,6 @@
 <cronentries>
 <cron>
-    <url>/longtimeworkingprocesshandler</url>
-    <schedule>every 12 hours</schedule>
-    <target>longtimeworker</target>
+    <url>/cron/mycronjob</url>
+    <schedule>every 1 minutes</schedule>
 </cron>
 </cronentries>

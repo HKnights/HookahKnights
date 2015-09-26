@@ -1,6 +1,5 @@
 main/java/com/eos/utils/Email.class
 main/java/com/eos/HookahKnights/Serializer.class
-main/java/com/eos/utils/TransportQueueManager$1.class
 main/java/com/eos/utils/TransportQueueManager$TransportMessage.class
 main/java/com/eos/model/HookahKnights.class
 main/java/com/eos/utils/TransportQueueManager.class

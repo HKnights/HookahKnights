@@ -55,22 +55,28 @@ public class TransportQueueManager extends HttpServlet {
 
 	public void startProcessingTransportQueue() {
 		s_transportQueue = new LinkedBlockingQueue<TransportMessage>();
-		if (s_processTransportQueueThread == null) {
-			s_processTransportQueueThread = ThreadManager.createBackgroundThread(new Runnable() {
-				public void run() {
-					while (true) {
-						try {
-							getQueuedMessenger();
-							if (!s_transportQueue.isEmpty())
-								s_transportQueue.take().run();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			});
-			s_processTransportQueueThread.start();
+		// if (s_processTransportQueueThread == null) {
+		// s_processTransportQueueThread =
+		// ThreadManager.createThreadForCurrentRequest(new Runnable() {
+		// public void run() {
+		// try {
+		// Thread.sleep(10000);
+		// } catch (InterruptedException e1) {
+		// }
+		// while (true) {
+		try {
+			log.warning("just thread ran !");
+			getQueuedMessenger();
+			if (!s_transportQueue.isEmpty())
+				s_transportQueue.take().run();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
+		// }
+		// }
+		// });
+		// s_processTransportQueueThread.start();
+		// }
 	}
 
 	public class TransportMessage implements Runnable {
@@ -108,13 +114,16 @@ public class TransportQueueManager extends HttpServlet {
 		for (Entity entity : pq.asIterable()) {
 			// Entity entity=results.next();
 			String[] messData = ((String) entity.getProperty("mess_obj")).split("_");
-			Messenger messenger = new Email(messData[0], messData[1], messData[2]);
-			messenger.key=entity.getKey().getId()+"";
+			Messenger messengerObject;
 			try {
-				s_transportQueue.put(new TransportQueueManager().new TransportMessage(messenger));
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				messengerObject = (Messenger) Class.forName((String) entity.getProperty("obj_class")).newInstance();
+				messengerObject.messageTo = messData[0];
+				messengerObject.content = messData[1];
+				messengerObject.sub = messData[2];
+				messengerObject.key = entity.getKey().getId() + "";
+				s_transportQueue.put(new TransportQueueManager().new TransportMessage(messengerObject));
+			} catch (Exception e1) {
+
 			}
 		}
 	}

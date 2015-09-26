@@ -1,6 +1,6 @@
 <backends>
 <backend name="longtimeworker">
     <class>B1</class>
-    <instances>1</instances>
+    <instances>4</instances>
 </backend>
 </backends>

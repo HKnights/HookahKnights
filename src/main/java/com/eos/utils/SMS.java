@@ -19,6 +19,9 @@ import java.util.logging.Logger;
  * @author sreenath
  */
 public class SMS extends Messenger {
+	public static final String ACCOUNT_SID = "AC29103a3572977b4525f2cf9db2e1a671";
+	public static final String AUTH_TOKEN = "dd382bd6d870982d2da7345bb5dc5ee7";
+
 	private URLConnection sendSMSConnection;
 	private String sessionCookie;
 	private Proxy proxy;
@@ -222,51 +225,23 @@ public class SMS extends Messenger {
 		sendSMSConnection = null;
 	}
 
-	@Override
 	public void sendMessage() {
-		final String USERNAME = "";// REQUIRED
-		final String PASSWORD = "";// REQUIRED
-		final String ACTION = "";// REQUIRED : In order to understand ACTION
-									// value please read the blog
-		SMS sms = new SMS();
-		// HTTP PROXY
-		// sms.setProxy("10.1.1.1",8080); //REQUIRED ONLY IF CONNECTING THROUGH
-		// A PROXY
-
-		StringBuilder phoneNumber = new StringBuilder();
-		StringBuilder message = new StringBuilder();
-		// if (args.length > 0) {
-		// if (args[0].toLowerCase().compareTo("phone") == 0) {
-		// int i = 1;
-		// while (args[i].toLowerCase().compareTo("message") != 0) {
-		// phoneNumber.append(args[i]);
-		// phoneNumber.append(';');
-		// i++;
-		// }
-		// for (i = i + 1; i < args.length; i++) {
-		// message.append(args[i]);
-		// message.append(' ');
-		// }
-		// } else {
-		// System.out.println("USAGE : Way2SMS phone <phonenumber1>
-		// <phonenumber2> ... message <message>");
-		// System.exit(0);
-		// }
-		// } else {
-		// System.out.println("USAGE : Way2SMS phone <phonenumber1>
-		// <phonenumber2> ... message <message>");
-		// System.exit(0);
-		// }
-
-		String cookie = sms.loginWay2SMS(USERNAME, PASSWORD);
-		String textMessage = message.toString();
-		String strPhoneNumber = phoneNumber.toString();
-		String arrPhoneNUmber[] = strPhoneNumber.split(";");
-		for (int i = 0; i < arrPhoneNUmber.length; i++) {
-
-			sms.sendSMS(arrPhoneNUmber[i], textMessage, ACTION);
-		}
-
-		sms.logoutWay2SMS();
-	}
+//		TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
+//
+//		 List<NameValuePair> params = new ArrayList<NameValuePair>();
+//		 params.add(new BasicNameValuePair("To", "+919742850966"));
+//		 params.add(new BasicNameValuePair("From", "+919742850966"));
+//		 params.add(new BasicNameValuePair("Body", "asasasa"));
+//
+//		 MessageFactory messageFactory =
+//		 client.getAccount().getMessageFactory();
+//		 Message message;
+//		try {
+//			message = messageFactory.create(params);
+//			System.out.println(message.getSid());
+//		} catch (TwilioRestException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+}
 }

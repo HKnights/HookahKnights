@@ -87,6 +87,7 @@ public class SessionManager {
 						throw new AccountException(AccountException.INVALID_USER_CREDENTIALS);
 					}
 				} else if (userId != null && !userId.isEmpty()) {
+					user=new User();
 					createUser(userId, name, userEmail, userImage, userPass);
 				} else {
 					throw new AccountException(AccountException.INVALID_USER);
