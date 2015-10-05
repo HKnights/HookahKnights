@@ -1,15 +1,19 @@
 package main.java.com.eos.cart;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import main.java.com.eos.HookahKnights.Serializer;
+import main.java.com.eos.product.Product;
 
 public class ShoppingCart implements Serializable {
 
 	private static final long serialVersionUID = 5588078890935892620L;
-	public String userId = "dummy";
-	public String itemId = "-1";
+	public String userId = "";
+	public String userName = "";
 	public int noOfItems = 0;
+	public List<Product> items = new ArrayList<Product>();
 
 	public ShoppingCart() {
 
@@ -23,14 +27,6 @@ public class ShoppingCart implements Serializable {
 		this.userId = userId;
 	}
 
-	public String getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(String itemId) {
-		this.itemId = itemId;
-	}
-
 	public int getNoOfItems() {
 		return noOfItems;
 	}
@@ -39,14 +35,28 @@ public class ShoppingCart implements Serializable {
 		this.noOfItems = noOfItems;
 	}
 
-	public static byte[] getSerializedCartData(ShoppingCart uc) {
+	public String getUserName() {
+		return userName;
+	}
 
-		StringBuffer buffer = new StringBuffer();
-		buffer.append(uc.getNoOfItems()).append("$$");
-		buffer.append(uc.getUserId()).append("$$");
-		buffer.append(uc.getItemId()).append("$$");
-		return Serializer.serialize(uc);
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
+	public List<Product> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Product> items) {
+		this.items = items;
+	}
+
+	public void addToProductList(Product product) {
+		items.add(product);
+	}
+
+	public void getProductList(Product product) {
+		items.add(product);
 	}
 
 	public static byte[] createDummyShoppingCart() {
@@ -55,7 +65,6 @@ public class ShoppingCart implements Serializable {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(uc.getNoOfItems()).append("$$");
 		buffer.append(uc.getUserId()).append("$$");
-		buffer.append(uc.getItemId()).append("$$");
 		return Serializer.serialize(uc);
 
 	}

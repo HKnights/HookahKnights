@@ -22,6 +22,11 @@
     </prerequisites>
 
     <dependencies>
+   <dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20090211</version>
+    </dependency> 
         <!-- Compile/runtime dependencies -->
         <dependency>
             <groupId>com.google.appengine</groupId>

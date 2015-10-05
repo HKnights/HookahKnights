@@ -215,7 +215,7 @@ cart {
             <img src="hookah14.jpg" alt="item" />
              <h2>Hukkah Small</h2>
             </p>
-            <button style=" color: #ffffff;width: 117px;background-color: #46b29d;height: 34px;border-radius: 4px;position: relative;overflow: hidden;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale; font-weight: 900;text-transform: uppercase;line-height: 30px;border: none;" class="add-to-cart" type="button">Add to cart</button>
+            <button  id="1" style=" color: #ffffff;width: 117px;background-color: #46b29d;height: 34px;border-radius: 4px;position: relative;overflow: hidden;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale; font-weight: 900;text-transform: uppercase;line-height: 30px;border: none;" class="add-to-cart" type="button">Add to cart</button>
         </div>
         <!--/ single item -->
         <!-- single item -->
@@ -528,7 +528,7 @@ cart {
                updateCart();
            });
        }
-      // updateCart();
+       ajaxAddToCart(1);
    });
    </script>
 

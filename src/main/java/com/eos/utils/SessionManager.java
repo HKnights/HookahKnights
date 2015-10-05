@@ -87,7 +87,7 @@ public class SessionManager {
 						throw new AccountException(AccountException.INVALID_USER_CREDENTIALS);
 					}
 				} else if (userId != null && !userId.isEmpty()) {
-					user=new User();
+					user = new User();
 					createUser(userId, name, userEmail, userImage, userPass);
 				} else {
 					throw new AccountException(AccountException.INVALID_USER);
@@ -97,12 +97,12 @@ public class SessionManager {
 			user.m_name = name;
 			user.m_profilePicUrl = userImage;
 			user.m_email = userEmail;
-			// setUser(user, request);
 			session.setAttribute("user_id", userId);
 			session.setAttribute("user_name", name);
 			session.setAttribute("user_image", userImage);
 			session.setAttribute("user_email", userEmail);
 			session.setMaxInactiveInterval(5 * 60);
+			SessionManager.setUser(user, request);
 			Cookie userName = new Cookie("userId", userId);
 			userName.setMaxAge(100 * 30);
 			response.addCookie(userName);
