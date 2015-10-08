@@ -42,7 +42,7 @@ customization .add-to-cart {
 	line-height: 34px;
 	border: none;
 }
-
+#cart_div { cursor: pointer; }
 cart {
 	height: 34px;
 	border-radius: 3px;
@@ -50,6 +50,12 @@ cart {
 	overflow: hidden;
 }
 </style>
+<script type="text/javascript">
+function goToShoppingCartPage(){
+	 document.mainForm.action1.value='SHOPPING_CART_ACTION';
+	 document.mainForm.submit();
+}
+</script>
 <body>
 	<input type="hidden" name="user_name" value="">
 	<input type="hidden" name="user_pass" value="">
@@ -59,7 +65,7 @@ cart {
 	<input type="hidden" name="user_email" value="">
 	<input type="hidden" name="user_image" value="">
 	<div id="cart_div">
-		<span><i class="shopping-cart"><img
+		<span onclick="goToShoppingCartPage()"><i class="shopping-cart"><img
 				src="white-shopping-cart-png.png"
 				style="margin-left: 10px; margin-top: 17px;" /></i></span><span id="cart_value"
 			style="float: right; margin-right: -46px; line-height: 18px; margin-top: 9px; background-color: #46b29d; color: #ffffff; font-size: 1rem; font-weight: bold; text-align: center; border-radius: 50%; transition: transform 0.2s 0s; height: 18px; width: 18px;">0</span>
