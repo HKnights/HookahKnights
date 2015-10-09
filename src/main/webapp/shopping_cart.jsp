@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="com.google.appengine.repackaged.com.google.gson.JsonObject"%>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -32,6 +33,18 @@ function storeUserDetails(userName,userId,userEmail){
         }
     }); 
 }
+$(function(){
+	populateDetails();
+});
+function populateDetails(){
+	var cartJson=jQuery.parseJSON('<%=request.getAttribute("cart_json")%>');
+	for(var cartItem in cartJson){
+		var itemDetails=cartJson[cartItem].split('_');
+	$('ul[id=cart_div_list]').append('<li class="row"><span class="quantity">'+itemDetails[0]+'</span><span class="itemName">'+itemDetails[1]+' Hookah</span><span class="popbtn"><a class="arrow"></a></span><span class="price">'+itemDetails[2]+'</span></li>');
+	}
+}
+
+
 function addToOrder(){
 	document.mainForm.action1.value = "ORDERS_PAGE_ACTION";
 	document.mainForm.submit();
@@ -106,46 +119,11 @@ function MyCtrl($scope, $timeout) {
 			</div>
 			
 			<div class="col-md-7 col-sm-12 text-left">
-				<ul>
+				<ul id="cart_div_list">
 					<li class="row list-inline columnCaptions">
 						<span>QTY</span>
 						<span>ITEM</span>
 						<span>Price</span>
-					</li>
-					<li class="row">
-						<span class="quantity">1</span>
-						<span class="itemName">Birthday Cake</span>
-						<span class="popbtn"><a class="arrow"></a></span>
-						<span class="price">$49.95</span>
-					</li>
-					<li class="row">
-						<span class="quantity">50</span>
-						<span class="itemName">Party Cups</span>
-						<span class="popbtn"><a class="arrow"></a></span>
-						<span class="price">$5.00</span>
-					</li>
-					<li class="row">
-						<span class="quantity">20</span>
-						<span class="itemName">Beer kegs</span>
-						<span class="popbtn"><a class="arrow"></a></span>
-						<span class="price">$919.99</span>				
-					</li>
-					<li class="row">
-						<span class="quantity">18</span>
-						<span class="itemName">Pound of beef</span>
-						<span class="popbtn"><a class="arrow"></a></span>
-						<span class="price">$269.45</span>
-					</li>
-					<li class="row">
-						<span class="quantity">1</span>
-						<span class="itemName">Bullet-proof vest</span>
-						<span class="popbtn"  data-parent="#asd" data-toggle="collapse" data-target="#demo"><a class="arrow"></a></span>
-						<span class="price">$450.00</span>				
-					</li>
-					<li class="row totals">
-						<span class="itemName">Total:</span>
-						<span class="price">$1694.43</span>
-						<span class="order"> <a class="text-center">ORDER</a></span>
 					</li>
 				</ul>
 			</div>
@@ -155,7 +133,7 @@ function MyCtrl($scope, $timeout) {
 		<!-- The popover content -->
 
 		<div id="popover" style="display: none">
-			<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+			<!-- <a href="#"><span class="glyphicon glyphicon-pencil"></span></a> -->
 			<a href="#"><span class="glyphicon glyphicon-remove"></span></a>
 		</div>
 		

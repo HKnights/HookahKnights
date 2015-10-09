@@ -6,7 +6,7 @@ import main.java.com.eos.RequestHandler.AbstractRequestHandler;
 import main.java.com.eos.RequestHandler.HookahRequestHandler;
 import main.java.com.eos.product.Product;
 
-public class Hookah extends Product implements Serializable{
+public class Hookah extends Product implements Serializable {
 
 	private int prodId = -1;
 	private HookahData hookahData = new HookahData();
@@ -26,7 +26,8 @@ public class Hookah extends Product implements Serializable{
 		hookahData.setPrice(hookahRequestHandler.getPrice());
 		hookahData.setSecurity(hookahRequestHandler.getSecurity());
 		hookahData.setCoal(hookahRequestHandler.getCoal());
-		hookahData.setBase(hookahRequestHandler.getBase());
+		hookahData.setBase1(hookahRequestHandler.getBase1());
+		hookahData.setBase2(hookahRequestHandler.getBase2());
 		hookahData.setFlavourFirst(hookahRequestHandler.getFlavourFirst());
 		hookahData.setFlavourSecond(hookahRequestHandler.getFlavourSecond());
 		hookahData.setProdSize(hookahRequestHandler.getProdSize());
@@ -52,4 +53,39 @@ public class Hookah extends Product implements Serializable{
 		this.hookahData = hookahData;
 	}
 
+	public static double getHookahPriceById(int id) {
+		switch (id) {
+		case 1:
+			return 500;
+		case 2:
+			return 600;
+		case 3:
+			return 700;
+		}
+		return 600;
+	}
+
+	public static double getHookahSecurityById(int id) {
+		switch (id) {
+		case 1:
+			return 500;
+		case 2:
+			return 700;
+		case 3:
+			return 1000;
+		}
+		return 700;
+	}
+
+	public static String getHookahSizeById(int id) {
+		switch (id) {
+		case 1:
+			return "Small";
+		case 2:
+			return "Medium";
+		case 3:
+			return "Large";
+		}
+		return "Invalid";
+	}
 }

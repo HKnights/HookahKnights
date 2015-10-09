@@ -1,8 +1,11 @@
 package main.java.com.eos.accounts;
 
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.Random;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -14,6 +17,11 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
+import com.google.appengine.repackaged.com.google.gson.Gson;
+import com.google.appengine.repackaged.com.google.gson.reflect.TypeToken;
+
+import main.java.com.eos.cart.ShoppingCart;
+import main.java.com.eos.utils.SessionManager;
 
 public class User implements Serializable {
 
@@ -112,7 +120,7 @@ public class User implements Serializable {
 		}
 	}
 
-	public static User getUserDataFromEmailandId(String userId) {
+	public static User getUserDataFromEmailandId(String userId, HttpServletRequest request) {
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		User user = null;
 		try {
@@ -123,6 +131,8 @@ public class User implements Serializable {
 			user.m_email = (String) result.getProperty("user_email");
 			user.m_userId = (String) result.getKey().getName();
 			user.m_profilePicUrl = (String) result.getProperty("user_image");
+//			SessionManager.setShoppingCart(
+//					new Gson().fromJson((String) result.getProperty("user_cart"), ShoppingCart.class), request);
 		} catch (EntityNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

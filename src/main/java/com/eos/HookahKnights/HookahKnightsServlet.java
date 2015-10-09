@@ -29,17 +29,28 @@ public class HookahKnightsServlet extends HttpServlet {
 			} else if ("ORDERS_PAGE_ACTION".equals(action)) {
 				response.sendRedirect(HookahNavigationConstantBean.HOOKAH_SEARCH_PAGE);
 			} else if ("ADD_TO_CART".equals(action)) {
+				int cart_count=0;
 				HttpSession session = request.getSession();
 				HookahKnightsBean.addProductToCart(request, response);
-				session.getAttribute("user_id");
-				session.getAttribute("cart");
-				session.getAttribute("cart");
+				if(session.getAttribute("cart_count")!=null){
+					 cart_count = Integer.parseInt((String)session.getAttribute("cart_count"));
+				}
+				session.setAttribute("cart_count", ++cart_count+"");
+				// session.getAttribute("user_id");
+				// session.getAttribute("cart");
+				// session.getAttribute("cart");
 			} else if ("USER_LOGIN".equals(action)) {
 				SessionManager.loginUser(request, response);
 				response.sendRedirect(HookahNavigationConstantBean.HOME_PAGE);
 			} else if ("USER_LOGOUT".equals(action)) {
+				SessionManager.storeUserCart(request, response);
 				SessionManager.invalidateSession(request, response);
 				response.sendRedirect(HookahNavigationConstantBean.HOME_PAGE);
+			} else if ("SHOPPING_CART_ACTION".equals(action)) {
+				SessionManager.getcartDetails(request, response);
+				RequestDispatcher dispatcher = getServletContext()
+						.getRequestDispatcher(HookahNavigationConstantBean.SHOPPING_CART_SEARCH_PAGE);
+				dispatcher.forward(request, response);
 			} else {
 				SessionManager.getShoppingCart(request);
 				RequestDispatcher dispatcher = getServletContext()

@@ -1,18 +1,25 @@
 package main.java.com.eos.utils;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.AddressException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import main.java.com.eos.accounts.User;
-import main.java.com.eos.cart.ShoppingCart;
-import main.java.com.eos.utils.TransportQueueManager;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.repackaged.com.google.gson.Gson;
+
+import main.java.com.eos.accounts.User;
+import main.java.com.eos.cart.ShoppingCart;
+import main.java.com.eos.model.HookahData;
+import main.java.com.eos.product.Product;
 
 public class SessionManager {
 
@@ -51,9 +58,9 @@ public class SessionManager {
 		Boolean isUserLogin = Boolean.parseBoolean(request.getParameter("user_login"));
 		try {
 			if (userId == null || userId.isEmpty()) {
-				user = User.getUserDataFromEmailandId(userEmail);
+				user = User.getUserDataFromEmailandId(userEmail,request);
 			} else {
-				user = User.getUserDataFromEmailandId(userId);
+				user = User.getUserDataFromEmailandId(userId,request);
 			}
 			if (session == null || session.getAttribute("user_id") == null) {
 				session = request.getSession();
@@ -128,6 +135,7 @@ public class SessionManager {
 		e.setProperty("user_email", userEmail);
 		e.setProperty("user_image", userImage);
 		e.setProperty("user_password", userPass);
+		e.setProperty("user_cart", "");
 		ds.put(e);
 	}
 
@@ -147,5 +155,40 @@ public class SessionManager {
 		if (session != null)
 			session.invalidate();
 	}
+	public static void storeUserCart(HttpServletRequest request, HttpServletResponse response) {
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		Entity entity;
+		try {
+			entity = datastore.get(KeyFactory.createKey("User", SessionManager.getUser(request).m_userId));
+			entity.setProperty("user_cart", new Gson().toJson(SessionManager.getShoppingCart(request)));
+			datastore.put(entity);
+		} catch (EntityNotFoundException e) {
+			e.printStackTrace();
+		}
 
+	}
+	public static String getcartDetails(HttpServletRequest request, HttpServletResponse response) {
+		Map<Integer, String> cartItemMap = new HashMap<Integer, String>();
+		HttpSession session = SessionManager.getSession(request);
+		ShoppingCart cart = SessionManager.getShoppingCart(request);
+		int count=0;
+		if (cart != null) {
+			List<Product> productList = cart.getItems();
+			for (Product product : productList) {
+				HookahData hookahData = product.getHookahData();
+				if (cartItemMap.containsKey(hookahData.getProdId())) {
+					int quantity = Integer.parseInt(cartItemMap.get(hookahData.getProdId()).split("_")[0]) + 1;
+					cartItemMap.put(hookahData.getProdId(),
+							quantity + "_" + hookahData.getProdSize() + "_" + hookahData.getPrice() * quantity);
+				} else {
+					cartItemMap.put(hookahData.getProdId(),
+							"1_" + hookahData.getProdSize() + "_" + hookahData.getPrice());
+				}
+				count++;
+			}
+		}
+		session.setAttribute("cart_count", count+"");
+		request.setAttribute("cart_json",new Gson().toJson(cartItemMap));
+		return new Gson().toJson(cartItemMap);
+	}
 }

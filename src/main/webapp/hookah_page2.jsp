@@ -36,6 +36,7 @@ h1, h3 {
 
 .col-sm-8 {
 	margin-left: 0px;
+	    width: 90%;
 }
 
 .hookahImg {
@@ -134,19 +135,7 @@ cart {
 				</div>
 				<!-- Navbar Header-->
 				<div class="collapse navbar-collapse" id="navbar-collapse">
-					<div id="cart_div">
-						<span><i class="shopping-cart"><img
-								src="white-shopping-cart-png.png"
-								style="margin-left: 10px; margin-top: 10px;" /></i></span><span
-							id="cart_value"
-							style="float: right; margin-right: -46px; line-height: 18px; margin-top: 1px; background-color: #46b29d; color: #ffffff; font-size: 1rem; font-weight: bold; text-align: center; border-radius: 50%; transition: transform 0.2s 0s; height: 18px; width: 18px;">0</span>
-					</div>
-					<div id="SIN" onclick="openLoginPage();" href="#DemoModal2"
-						class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right"
-						data-toggle="modal">Login</div>
-					<div id="LGO" onclick="logout();" style="display: none;"
-						class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right"
-						data-toggle="modal">Log Out</div>
+					<%@include file="/common_header.jsp" %>
 					<ul class="nav navbar-nav">
 						<li><a href="#home">Home</a>
 						<li><a href="#hookahs">Hookahs</a></li>
@@ -200,7 +189,7 @@ cart {
 											<h2>Hukkah Small</h2>
 											<button id="1"
 												style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-												class="add-to-cart" type="button">Add to cart</button>
+												onclick="showSubProducts(1)" type="button">Customize your hookah</button>
 										</div>
 										<!--/ single item -->
 										<!-- single item -->
@@ -225,7 +214,7 @@ cart {
 										<table>
 											<tr>
 												<td style="width: 400px;"><h2 style="font-size: 16px;">Cost</h2></td>
-												<td style="width: 400px;">Rs 500</td>
+												<td style="width: 400px;" id="cost_1">Rs 500</td>
 											</tr>
 											<tr>
 												<td><h2 style="font-size: 16px; width: 400px;">Coal</h2></td>
@@ -302,6 +291,13 @@ cart {
 												<!-- <td><input type="button" onclick="ajaxAddToCart(1)" style="margin-right: -14px;margin-bottom: -3px; width:100px" class="btn btn-warning navbar-btn navbar-right" value="Add" /></td></tr> -->
 										</table>
 									</div>
+										<div class="item" style="float: right;margin-top: -284px;">
+											<img src="hookah14.jpg" alt="item" class="hookahImg" />
+											<h2>Hukkah Small</h2>
+											<button id="1"
+												style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+												class="add-to-cart" type="button">Add to cart</button>
+										</div>
 								</div>
 							</div>
 						</td>
@@ -317,7 +313,7 @@ cart {
 										<h2>Hukkah Medium</h2>
 										<button id="2"
 											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-											class="add-to-cart" type="button">Add to cart</button>
+											onclick="showSubProducts(2)" type="button">Customize your hookah</button>
 									</div>
 									<!--/ single item -->
 									<!-- single item -->
@@ -341,7 +337,7 @@ cart {
 										<table>
 											<tr>
 												<td><h2 style="font-size: 16px; width: 400px;">Cost</h2></td>
-												<td style="width: 400px;">Rs 600</td>
+												<td style="width: 400px;" id="cost_2">Rs 600</td>
 											</tr>
 											<tr>
 												<td><h2 style="font-size: 16px; width: 400px;">Coal</h2></td>
@@ -383,13 +379,13 @@ cart {
 												<td>
 													<div style="width: 400px;">
 														<label class="radio-inline"><input type="radio"
-															name="group2" value="Water" checked> Water</label>&nbsp;
+															name="group2_1" value="Water" checked> Water</label>&nbsp;
 														<label class="radio-inline"><input type="radio"
-															name="group2" value="Milk"> Milk</label>&nbsp; <label
+															name="group2_1" value="Milk"> Milk</label>&nbsp; <label
 															class="radio-inline"><input type="radio"
-															name="group2" value="Ice"> Ice</label>&nbsp; <label
+															name="group2_1" value="Ice"> Ice</label>&nbsp; <label
 															class="radio-inline"><input type="radio"
-															name="group2" value="Juice"> Juice</label>
+															name="group2_1" value="Juice"> Juice</label>
 													</div>
 												</td>
 											</tr>
@@ -419,6 +415,13 @@ cart {
 												<td><span>Rs 700 </span></td>
 										</table>
 									</div>
+										<div class="item" style="float: right;margin-top: -284px;">
+											<img src="hookah14.jpg" alt="item" class="hookahImg" />
+											<h2>Hookah Medium</h2>
+											<button id="2"
+												style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+												class="add-to-cart" type="button">Add to cart</button>
+										</div>
 								</div>
 							</div>
 						</td>
@@ -433,7 +436,7 @@ cart {
 										<h2>Hukkah Large</h2>
 										<button id="3"
 											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-											class="add-to-cart" type="button">Add to cart</button>
+											onclick="showSubProducts(3)" type="button">Customize your hookah</button>
 									</div>
 									<!--/ single item -->
 									<!-- single item -->
@@ -457,7 +460,7 @@ cart {
 										<table>
 											<tr>
 												<td><h2 style="font-size: 16px; width: 400px;">Cost</h2></td>
-												<td style="width: 400px;">Rs 700</td>
+												<td style="width: 400px;" id="cost_3">Rs 700</td>
 											</tr>
 											<tr>
 												<td><h2 style="font-size: 16px; width: 400px;">Coal</h2></td>
@@ -499,15 +502,15 @@ cart {
 												<td>
 													<div style="width: 400px;">
 														<label class="radio-inline"><input type="radio"
-															name="group3" value="Water" checked> Water</label>&nbsp;
+															name="group3_1" value="Water" checked> Water</label>&nbsp;
 														<label class="radio-inline"><input type="radio"
-															name="group3" value="Milk"> Milk</label>&nbsp; <label
+															name="group3_1" value="Milk"> Milk</label>&nbsp; <label
 															class="radio-inline"><input type="radio"
-															name="group3" value="Ice"> Ice</label>&nbsp; <label
+															name="group3_1" value="Ice"> Ice</label>&nbsp; <label
 															class="radio-inline"><input type="radio"
-															name="group3" value="Juice"> Juice</label>&nbsp; <label
+															name="group3_1" value="Juice"> Juice</label>&nbsp; <label
 															class="radio-inline"><input type="radio"
-															name="group3" value="Juice"> Coldrink</label>
+															name="group3_1" value="Juice"> Coldrink</label>
 													</div>
 												</td>
 											</tr>
@@ -539,6 +542,13 @@ cart {
 												<td>Rs 1000</td>
 										</table>
 									</div>
+										<div class="item" style="float: right;margin-top: -284px;">
+											<img src="hookah14.jpg" alt="item" class="hookahImg" />
+											<h2>Hukkah Large</h2>
+											<button id="3"
+												style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+												class="add-to-cart" type="button">Add to cart</button>
+										</div>
 								</div>
 							</div>
 						</td>
@@ -627,18 +637,16 @@ cart {
 	<script>
 		function ajaxAddToCart(value) {
 			var id = value;
-			var base = $('input[name=group' + value + '_1]:checked').val();
-			var flavour_1 = document.getElementById('select_flavour_id_'
-					+ value + '_1').value;
-			var flavour_2 = document.getElementById('select_flavour_id_'
-					+ value + '_2').value;
-
-			$
-					.ajax({
+			var base1 = $('input[name=group' + value + '_1]:checked').val();
+			var base2 = $('input[name=group' + value + '_2]:checked').val();
+			var flavour_1 = document.getElementById('select_flavour_id_'+ value + '_1').value;
+			var flavour_2 = document.getElementById('select_flavour_id_'+ value + '_2').value;
+			$.ajax({
 						url : "http://localhost:8888/hookahknights?action1=ADD_TO_CART",
 						data : {
 							prod_id : id,
-							base : base,
+							base1 : base1,
+							base2 : base2,
 							flavour_first : flavour_1,
 							flavour_second : flavour_2
 						},
@@ -659,8 +667,10 @@ cart {
 			var value = parseInt(cartItems.text()) + 1;
 			cartItems.text(value);
 		}
+		function showSubProducts(value){
+			$('#prod_id_' + value + '_div').toggle(1000);	
+		}
 		$('.add-to-cart').on('click', function() {
-			$('#prod_id_' + this.id + '_div').toggle(1000);
 			var cart = $('.shopping-cart');
 			var imgtodrag = $(this).parent('.item').find("img").eq(0);
 			if (imgtodrag) {
@@ -694,7 +704,7 @@ cart {
 					updateCart();
 				});
 			}
-			ajaxAddToCart(1);
+			ajaxAddToCart(this.id);
 		});
 	</script>
 

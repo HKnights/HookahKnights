@@ -38,8 +38,7 @@ public class HookahKnightsBean {
 
 	private static void addToCart(HttpServletRequest request, Product product) {
 
-		HttpSession session = SessionManager.getSession(request);
-		ShoppingCart cart = (ShoppingCart) session.getAttribute("user_cart");
+		ShoppingCart cart = SessionManager.getShoppingCart(request);
 		if (cart == null) {
 			cart = new ShoppingCart();
 		}

@@ -27,4 +27,11 @@ public class Sides extends Product {
 		return null;
 	}
 
+
+	@Override
+	public HookahData getHookahData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

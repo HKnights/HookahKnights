@@ -1,4 +1,5 @@
 
+<%@page import="main.java.com.eos.utils.SessionManager"%>
 <html>
 
 <style>
@@ -56,6 +57,12 @@ function goToShoppingCartPage(){
 	 document.mainForm.submit();
 }
 </script>
+<%HttpSession session1=SessionManager.getSession(request);
+String cartCount=(String)session1.getAttribute("cart_count");
+if(cartCount==null){
+	cartCount="0";
+}
+%>
 <body>
 	<input type="hidden" name="user_name" value="">
 	<input type="hidden" name="user_pass" value="">
@@ -68,7 +75,7 @@ function goToShoppingCartPage(){
 		<span onclick="goToShoppingCartPage()"><i class="shopping-cart"><img
 				src="white-shopping-cart-png.png"
 				style="margin-left: 10px; margin-top: 17px;" /></i></span><span id="cart_value"
-			style="float: right; margin-right: -46px; line-height: 18px; margin-top: 9px; background-color: #46b29d; color: #ffffff; font-size: 1rem; font-weight: bold; text-align: center; border-radius: 50%; transition: transform 0.2s 0s; height: 18px; width: 18px;">0</span>
+			style="float: right; margin-right: -46px; line-height: 18px; margin-top: 9px; background-color: #46b29d; color: #ffffff; font-size: 1rem; font-weight: bold; text-align: center; border-radius: 50%; transition: transform 0.2s 0s; height: 18px; width: 18px;"><%=cartCount%></span>
 	</div>
 	<div><div id="status" style="float: right;margin-top: 20px;position: fixed;margin-left: 865px;font-size: smaller;color: white;"></div>
 			<span><img id="user_profile_pic"  src=""  height="25" width="25" style=" display :none;  border-radius: 10px;float: right;margin-top: 18px;margin-left: 969px;position: fixed;"></span></div>

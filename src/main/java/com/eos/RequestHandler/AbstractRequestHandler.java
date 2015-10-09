@@ -12,20 +12,20 @@ public abstract class AbstractRequestHandler {
 	public static AbstractRequestHandler getProductRequestHandlerInstance(HttpServletRequest request,
 			HttpServletResponse response, int prodId) {
 
-		AbstractRequestHandler requestHandler = null;
+		AbstractRequestHandler requestHandler = new HookahRequestHandler();
 		switch (prodId) {
 
 		case HOOKAH:
 			requestHandler = new HookahRequestHandler();
 			break;
 
-		case SIDES:
-			requestHandler = new SidesRequestHandler();
+//		case SIDES:
+//			requestHandler = new SidesRequestHandler();
 		}
 		return requestHandler;
 
 	}
 
-	public abstract void populateProductRequestHandler(HttpServletRequest request,
-			HttpServletResponse response, int prodId);
+	public abstract void populateProductRequestHandler(HttpServletRequest request, HttpServletResponse response,
+			int prodId);
 }
