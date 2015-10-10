@@ -14,6 +14,7 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.Text;
 import com.google.appengine.repackaged.com.google.gson.Gson;
 
 import main.java.com.eos.accounts.User;
@@ -58,9 +59,9 @@ public class SessionManager {
 		Boolean isUserLogin = Boolean.parseBoolean(request.getParameter("user_login"));
 		try {
 			if (userId == null || userId.isEmpty()) {
-				user = User.getUserDataFromEmailandId(userEmail,request);
+				user = User.getUserDataFromEmailandId(userEmail, request);
 			} else {
-				user = User.getUserDataFromEmailandId(userId,request);
+				user = User.getUserDataFromEmailandId(userId, request);
 			}
 			if (session == null || session.getAttribute("user_id") == null) {
 				session = request.getSession();
@@ -155,23 +156,39 @@ public class SessionManager {
 		if (session != null)
 			session.invalidate();
 	}
+
 	public static void storeUserCart(HttpServletRequest request, HttpServletResponse response) {
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Entity entity;
 		try {
 			entity = datastore.get(KeyFactory.createKey("User", SessionManager.getUser(request).m_userId));
-			entity.setProperty("user_cart", new Gson().toJson(SessionManager.getShoppingCart(request)));
+			entity.setProperty("user_cart", new Text(new Gson().toJson(SessionManager.getShoppingCart(request))));
 			datastore.put(entity);
 		} catch (EntityNotFoundException e) {
 			e.printStackTrace();
 		}
 
 	}
+
+	public static void addToCartCount(HttpServletRequest request) {
+		HttpSession session = SessionManager.getSession(request);
+		int currCount = 0;
+		if (session.getAttribute("cart_count") != null) {
+			currCount = Integer.parseInt((String) session.getAttribute("cart_count"));
+		}
+		session.setAttribute("cart_count", ++currCount + "");
+	}
+
+	public static void setCartCount(HttpServletRequest request, int count) {
+		HttpSession session = SessionManager.getSession(request);
+		session.setAttribute("cart_count", count + "");
+	}
+
 	public static String getcartDetails(HttpServletRequest request, HttpServletResponse response) {
 		Map<Integer, String> cartItemMap = new HashMap<Integer, String>();
 		HttpSession session = SessionManager.getSession(request);
 		ShoppingCart cart = SessionManager.getShoppingCart(request);
-		int count=0;
+		int count = 0;
 		if (cart != null) {
 			List<Product> productList = cart.getItems();
 			for (Product product : productList) {
@@ -187,8 +204,8 @@ public class SessionManager {
 				count++;
 			}
 		}
-		session.setAttribute("cart_count", count+"");
-		request.setAttribute("cart_json",new Gson().toJson(cartItemMap));
+		setCartCount(request, count);
+		request.setAttribute("cart_json", new Gson().toJson(cartItemMap));
 		return new Gson().toJson(cartItemMap);
 	}
 }

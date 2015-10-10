@@ -44,6 +44,7 @@ public class HookahKnightsBean {
 		}
 		cart.addToProductList(product);
 		SessionManager.setShoppingCart(cart, request);
+		SessionManager.addToCartCount(request);
 //		Gson gson = new Gson();
 //		String orderData = gson.toJson(cart);
 //		Order order = new Order();

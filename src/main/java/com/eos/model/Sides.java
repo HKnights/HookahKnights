@@ -15,7 +15,6 @@ public class Sides extends Product {
 		return null;
 	}
 
-	
 	public JSONObject addToCart(HttpServletRequest request) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
@@ -27,11 +26,13 @@ public class Sides extends Product {
 		return null;
 	}
 
-
 	@Override
 	public HookahData getHookahData() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	public void setHookahData(HookahData hookahData) {
+		// TODO Auto-generated method stub
+	}
 }

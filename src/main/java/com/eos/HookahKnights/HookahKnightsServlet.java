@@ -29,13 +29,7 @@ public class HookahKnightsServlet extends HttpServlet {
 			} else if ("ORDERS_PAGE_ACTION".equals(action)) {
 				response.sendRedirect(HookahNavigationConstantBean.HOOKAH_SEARCH_PAGE);
 			} else if ("ADD_TO_CART".equals(action)) {
-				int cart_count=0;
-				HttpSession session = request.getSession();
 				HookahKnightsBean.addProductToCart(request, response);
-				if(session.getAttribute("cart_count")!=null){
-					 cart_count = Integer.parseInt((String)session.getAttribute("cart_count"));
-				}
-				session.setAttribute("cart_count", ++cart_count+"");
 				// session.getAttribute("user_id");
 				// session.getAttribute("cart");
 				// session.getAttribute("cart");
