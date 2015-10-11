@@ -15,8 +15,8 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link
-	href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css"
-	rel="stylesheet">
+  href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css"
+rel="stylesheet">
 </head>
 <style>
 body {
@@ -36,12 +36,14 @@ h1, h3 {
 
 .col-sm-8 {
 	margin-left: 0px;
-	    width: 90%;
+	width: 90%;
 }
 
 .hookahImg {
 	width: 140px;
 	border-radius: 110px;
+	height: 146px;
+	
 }
 
 .shopping-cart {
@@ -135,7 +137,7 @@ cart {
 				</div>
 				<!-- Navbar Header-->
 				<div class="collapse navbar-collapse" id="navbar-collapse">
-					<%@include file="/common_header.jsp" %>
+					<%@include file="/common_header.jsp"%>
 					<ul class="nav navbar-nav">
 						<li><a href="#home">Home</a>
 						<li><a href="#hookahs">Hookahs</a></li>
@@ -176,36 +178,78 @@ cart {
 				</div>
 				<!-- End Page Header -->
 
-				<table style="width: 100%">
-					<tr >
-						<td style="padding-bottom: 15px;">
-							<div class="col-sm-4">
-							
-									<!-- items -->
-									<div class="items">
-										<!-- single item -->
-										<div class="item">
-											<img src="hookah14.jpg" alt="item" class="hookahImg" />
-											<h2>Hukkah Small</h2>
-											<button id="1"
-												style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-												onclick="showSubProducts(1)" type="button">Customize your hookah</button>
-										</div>
-										<!--/ single item -->
-										<!-- single item -->
+				<table
+					style="width: 100%; border: solid 1px rgba(128, 128, 128, 0.21); box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.28);">
+					<tr
+						style="height: 40px; background-color: rgba(128, 128, 128, 0.19);">
+						<td style="text-align: center"><h
+								style="font-weight:bold;margin-right: 122px;">Item</h></td>
 
-										<!--/ items -->
-									
+						<td style="text-align: center"><h
+								style="font-weight:bold;margin-right: 122px;">Type</h></td>
+
+						<td style="text-align: center"><h
+								style="font-weight:bold;margin-right: 122px;">Details</h></td>
+
+						<td style="text-align: center"><h
+								style="font-weight:bold;margin-right: 122px;">Price</h></td>
+
+						<td style="text-align: center"><h
+								style="font-weight:bold;margin-right: 122px;">Delivery
+							Details</h></td>
+
+						<td style="text-align: center"><h
+								style="font-weight:bold;margin-right: 122px;"></h></td>
+					</tr>
+
+					<tr>
+						<td style="width: 20%;">
+							<div class="col-sm-4" style="width: 100%">
+
+								<!-- items -->
+								<div class="items">
+									<!-- single item -->
+									<div class="item" style="margin-top: 10px;">
+										<img id="hookah_small_img" onmouseover="change();"
+											onmouseout="changeReset();" src="hookah14.jpg" alt="item"
+											class="hookahImg" />
+									</div>
+									<!--/ single item -->
+									<!-- single item -->
+
+									<!--/ items -->
+
 								</div>
-								</div>
+							</div>
 						</td>
+						<td style="width: 15%;"><span> <b>Small Sized
+									Hookah (Glass and Steel)</b>
+						</span></td>
+
+						<td style="width: 20%;"><span style="font-size: small;">Very
+								Awesome Smokey Flavour.Very Awesome Smokey Flavour.Very Awesome
+								Smokey Flavour.</span></td>
+
+						<td><span style="margin-left: 9px;">Rs. 500</span></td>
+
+						<td>
+							<p>
+								<span style="font-weight: 700; color: Green;">Free</span></br> <span>Delivered
+									in 1-2 hours.</span>
+							</p>
+						</td>
+						<td><button id="1"
+								style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+								onclick="showSubProducts(1)" type="button">Customize
+								your hookah</button></td>
+
 					</tr>
 					<tr>
-						<td style="padding-bottom: 15px;">
+						<td style="padding-bottom: 15px;" colspan="6">
 							<div class="row-page-header" id="large"
 								style="padding-bottom: 0px; margin-left: 0px !important;">
 								<div class="col-sm-8"
-									style="display: none; background-color: #eee;"
+									style="display: none; background-color: rgba(238, 238, 238, 0.62); margin-left: 10px; margin-top: 11px;"
 									id="prod_id_1_div">
 									<h3
 										style="text-decoration: underline; margin-top: 7px; margin-bottom: 3px; font-size: 19px;">Small
@@ -291,19 +335,730 @@ cart {
 												<!-- <td><input type="button" onclick="ajaxAddToCart(1)" style="margin-right: -14px;margin-bottom: -3px; width:100px" class="btn btn-warning navbar-btn navbar-right" value="Add" /></td></tr> -->
 										</table>
 									</div>
-										<div class="item" style="float: right;margin-top: -284px;">
-											<img src="hookah14.jpg" alt="item" class="hookahImg" />
-											<h2>Hukkah Small</h2>
-											<button id="1"
-												style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-												class="add-to-cart" type="button">Add to cart</button>
-										</div>
+									<div class="item" style="float: right; margin-top: -284px;">
+										<img src="hookah14.jpg" alt="item" class="hookahImg" />
+										<h2>Hookah Small</h2>
+										<button id="1"
+											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+											class="add-to-cart" type="button">Add to cart</button>
+									</div>
 								</div>
 							</div>
 						</td>
 					</tr>
 					<tr>
-						<td style="border-top: solid rgba(112, 115, 108, 0.05) 1px;padding-top: 20px">
+						<td style="width: 20%;">
+							<div class="col-sm-4" style="width: 100%">
+
+								<!-- items -->
+								<div class="items">
+									<!-- single item -->
+									<div class="item" style="margin-top: 10px;">
+										<img src="hookah14.jpg" alt="item" class="hookahImg" />
+									</div>
+									<!--/ single item -->
+									<!-- single item -->
+
+									<!--/ items -->
+
+								</div>
+							</div>
+						</td>
+						<td style="width: 15%;"><span> <b>Small Sized
+									Hookah (Glass and Steel)</b>
+						</span></td>
+
+						<td style="width: 20%;"><span style="font-size: small;">Very
+								Awesome Smokey Flavour.Very Awesome Smokey Flavour.Very Awesome
+								Smokey Flavour.</span></td>
+
+						<td><span style="margin-left: 9px;">Rs. 500</span></td>
+
+						<td>
+							<p>
+								<span style="font-weight: 700; color: Green;">Free</span></br> <span>Delivered
+									in 1-2 hours.</span>
+							</p>
+						</td>
+						<td><button id="1"
+								style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+								onclick="showSubProducts(1)" type="button">Customize
+								your hookah</button></td>
+
+					</tr>
+					<tr>
+						<td style="padding-bottom: 15px;" colspan="6">
+							<div class="row-page-header" id="large"
+								style="padding-bottom: 0px; margin-left: 0px !important;">
+								<div class="col-sm-8"
+									style="display: none; background-color: rgba(238, 238, 238, 0.62); margin-left: 10px; margin-top: 11px;"
+									id="prod_id_1_div">
+									<h3
+										style="text-decoration: underline; margin-top: 7px; margin-bottom: 3px; font-size: 19px;">Small
+										Sized Hookah</h3>
+									<div>
+										<table>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Cost</h2></td>
+												<td style="width: 400px;" id="cost_1">Rs 500</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Coal</h2></td>
+												<td>3 Pieces</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
+														Flavour 1</h2></td>
+												<td>
+													<div>
+														<select name="select_flavour" id="select_flavour_id_1_1">
+															<option value="Mint" selected>Mint</option>
+															<option value="Pan">Pan</option>
+															<option value="Apple">Apple</option>
+															<option value="Grapes">Grapes</option>
+															<option value="BubbleGum">BubbleGum</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
+														Flavour 2</h2></td>
+												<td>
+													<div>
+														<select name="select_flavour" id="select_flavour_id_1_2">
+															<option value="Mint" selected>Mint</option>
+															<option value="Pan">Pan</option>
+															<option value="Apple">Apple</option>
+															<option value="Grapes">Grapes</option>
+															<option value="BubbleGum">BubbleGum</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Liquid
+														Base 1</h2></td>
+												<td>
+													<div style="width: 400px;">
+														<label class="radio-inline"><input type="radio"
+															name="group1_1" value="Water" checked> Water</label>&nbsp;
+														<label class="radio-inline"><input type="radio"
+															name="group1_1" value="Milk"> Milk</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_1" value="Ice"> Ice</label>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Liquid
+														Base 2</h2></td>
+												<td>
+													<div style="width: 400px;">
+														<label class="radio-inline"><input type="radio"
+															name="group1_2" value="Water" checked> Water</label>&nbsp;
+														<label class="radio-inline"><input type="radio"
+															name="group1_2" value="Milk"> Milk</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_2" value="Ice"> Ice</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_2" value="Juice"> Juice</label>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">2
+														in 1 Flavours</h2></td>
+												<td>Not Available</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Security</h2></td>
+												<td>Rs 500</td>
+												<!-- <td><input type="button" onclick="ajaxAddToCart(1)" style="margin-right: -14px;margin-bottom: -3px; width:100px" class="btn btn-warning navbar-btn navbar-right" value="Add" /></td></tr> -->
+										</table>
+									</div>
+									<div class="item" style="float: right; margin-top: -284px;">
+										<img src="hookah14.jpg" alt="item" class="hookahImg" />
+										<h2>Hukkah Small</h2>
+										<button id="1"
+											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+											class="add-to-cart" type="button">Add to cart</button>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 20%;">
+							<div class="col-sm-4" style="width: 100%">
+
+								<!-- items -->
+								<div class="items">
+									<!-- single item -->
+									<div class="item" style="margin-top: 10px;">
+										<img src="hookah14.jpg" alt="item" class="hookahImg" />
+									</div>
+									<!--/ single item -->
+									<!-- single item -->
+
+									<!--/ items -->
+
+								</div>
+							</div>
+						</td>
+						<td style="width: 15%;"><span> <b>Small Sized
+									Hookah (Glass and Steel)</b>
+						</span></td>
+
+						<td style="width: 20%;"><span style="font-size: small;">Very
+								Awesome Smokey Flavour.Very Awesome Smokey Flavour.Very Awesome
+								Smokey Flavour.</span></td>
+
+						<td><span style="margin-left: 9px;">Rs. 500</span></td>
+
+						<td>
+							<p>
+								<span style="font-weight: 700; color: Green;">Free</span></br> <span>Delivered
+									in 1-2 hours.</span>
+							</p>
+						</td>
+						<td><button id="1"
+								style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+								onclick="showSubProducts(1)" type="button">Customize
+								your hookah</button></td>
+
+					</tr>
+					<tr>
+						<td style="padding-bottom: 15px;" colspan="6">
+							<div class="row-page-header" id="large"
+								style="padding-bottom: 0px; margin-left: 0px !important;">
+								<div class="col-sm-8"
+									style="display: none; background-color: rgba(238, 238, 238, 0.62); margin-left: 10px; margin-top: 11px;"
+									id="prod_id_1_div">
+									<h3
+										style="text-decoration: underline; margin-top: 7px; margin-bottom: 3px; font-size: 19px;">Small
+										Sized Hookah</h3>
+									<div>
+										<table>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Cost</h2></td>
+												<td style="width: 400px;" id="cost_1">Rs 500</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Coal</h2></td>
+												<td>3 Pieces</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
+														Flavour 1</h2></td>
+												<td>
+													<div>
+														<select name="select_flavour" id="select_flavour_id_1_1">
+															<option value="Mint" selected>Mint</option>
+															<option value="Pan">Pan</option>
+															<option value="Apple">Apple</option>
+															<option value="Grapes">Grapes</option>
+															<option value="BubbleGum">BubbleGum</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
+														Flavour 2</h2></td>
+												<td>
+													<div>
+														<select name="select_flavour" id="select_flavour_id_1_2">
+															<option value="Mint" selected>Mint</option>
+															<option value="Pan">Pan</option>
+															<option value="Apple">Apple</option>
+															<option value="Grapes">Grapes</option>
+															<option value="BubbleGum">BubbleGum</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Liquid
+														Base 1</h2></td>
+												<td>
+													<div style="width: 400px;">
+														<label class="radio-inline"><input type="radio"
+															name="group1_1" value="Water" checked> Water</label>&nbsp;
+														<label class="radio-inline"><input type="radio"
+															name="group1_1" value="Milk"> Milk</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_1" value="Ice"> Ice</label>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Liquid
+														Base 2</h2></td>
+												<td>
+													<div style="width: 400px;">
+														<label class="radio-inline"><input type="radio"
+															name="group1_2" value="Water" checked> Water</label>&nbsp;
+														<label class="radio-inline"><input type="radio"
+															name="group1_2" value="Milk"> Milk</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_2" value="Ice"> Ice</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_2" value="Juice"> Juice</label>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">2
+														in 1 Flavours</h2></td>
+												<td>Not Available</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Security</h2></td>
+												<td>Rs 500</td>
+												<!-- <td><input type="button" onclick="ajaxAddToCart(1)" style="margin-right: -14px;margin-bottom: -3px; width:100px" class="btn btn-warning navbar-btn navbar-right" value="Add" /></td></tr> -->
+										</table>
+									</div>
+									<div class="item" style="float: right; margin-top: -284px;">
+										<img src="hookah14.jpg" alt="item" class="hookahImg" />
+										<h2>Hukkah Small</h2>
+										<button id="1"
+											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+											class="add-to-cart" type="button">Add to cart</button>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 20%;">
+							<div class="col-sm-4" style="width: 100%">
+
+								<!-- items -->
+								<div class="items">
+									<!-- single item -->
+									<div class="item" style="margin-top: 10px;">
+										<img src="hookah14.jpg" alt="item" class="hookahImg" />
+									</div>
+									<!--/ single item -->
+									<!-- single item -->
+
+									<!--/ items -->
+
+								</div>
+							</div>
+						</td>
+						<td style="width: 15%;"><span> <b>Small Sized
+									Hookah (Glass and Steel)</b>
+						</span></td>
+
+						<td style="width: 20%;"><span style="font-size: small;">Very
+								Awesome Smokey Flavour.Very Awesome Smokey Flavour.Very Awesome
+								Smokey Flavour.</span></td>
+
+						<td><span style="margin-left: 9px;">Rs. 500</span></td>
+
+						<td>
+							<p>
+								<span style="font-weight: 700; color: Green;">Free</span></br> <span>Delivered
+									in 1-2 hours.</span>
+							</p>
+						</td>
+						<td><button id="1"
+								style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+								onclick="showSubProducts(1)" type="button">Customize
+								your hookah</button></td>
+
+					</tr>
+					<tr>
+						<td style="padding-bottom: 15px;" colspan="6">
+							<div class="row-page-header" id="large"
+								style="padding-bottom: 0px; margin-left: 0px !important;">
+								<div class="col-sm-8"
+									style="display: none; background-color: rgba(238, 238, 238, 0.62); margin-left: 10px; margin-top: 11px;"
+									id="prod_id_1_div">
+									<h3
+										style="text-decoration: underline; margin-top: 7px; margin-bottom: 3px; font-size: 19px;">Small
+										Sized Hookah</h3>
+									<div>
+										<table>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Cost</h2></td>
+												<td style="width: 400px;" id="cost_1">Rs 500</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Coal</h2></td>
+												<td>3 Pieces</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
+														Flavour 1</h2></td>
+												<td>
+													<div>
+														<select name="select_flavour" id="select_flavour_id_1_1">
+															<option value="Mint" selected>Mint</option>
+															<option value="Pan">Pan</option>
+															<option value="Apple">Apple</option>
+															<option value="Grapes">Grapes</option>
+															<option value="BubbleGum">BubbleGum</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
+														Flavour 2</h2></td>
+												<td>
+													<div>
+														<select name="select_flavour" id="select_flavour_id_1_2">
+															<option value="Mint" selected>Mint</option>
+															<option value="Pan">Pan</option>
+															<option value="Apple">Apple</option>
+															<option value="Grapes">Grapes</option>
+															<option value="BubbleGum">BubbleGum</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Liquid
+														Base 1</h2></td>
+												<td>
+													<div style="width: 400px;">
+														<label class="radio-inline"><input type="radio"
+															name="group1_1" value="Water" checked> Water</label>&nbsp;
+														<label class="radio-inline"><input type="radio"
+															name="group1_1" value="Milk"> Milk</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_1" value="Ice"> Ice</label>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Liquid
+														Base 2</h2></td>
+												<td>
+													<div style="width: 400px;">
+														<label class="radio-inline"><input type="radio"
+															name="group1_2" value="Water" checked> Water</label>&nbsp;
+														<label class="radio-inline"><input type="radio"
+															name="group1_2" value="Milk"> Milk</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_2" value="Ice"> Ice</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_2" value="Juice"> Juice</label>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">2
+														in 1 Flavours</h2></td>
+												<td>Not Available</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Security</h2></td>
+												<td>Rs 500</td>
+												<!-- <td><input type="button" onclick="ajaxAddToCart(1)" style="margin-right: -14px;margin-bottom: -3px; width:100px" class="btn btn-warning navbar-btn navbar-right" value="Add" /></td></tr> -->
+										</table>
+									</div>
+									<div class="item" style="float: right; margin-top: -284px;">
+										<img src="hookah14.jpg" alt="item" class="hookahImg" />
+										<h2>Hukkah Small</h2>
+										<button id="1"
+											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+											class="add-to-cart" type="button">Add to cart</button>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 20%;">
+							<div class="col-sm-4" style="width: 100%">
+
+								<!-- items -->
+								<div class="items">
+									<!-- single item -->
+									<div class="item" style="margin-top: 10px;">
+										<img src="hookah14.jpg" alt="item" class="hookahImg" />
+									</div>
+									<!--/ single item -->
+									<!-- single item -->
+
+									<!--/ items -->
+
+								</div>
+							</div>
+						</td>
+						<td style="width: 15%;"><span> <b>Small Sized
+									Hookah (Glass and Steel)</b>
+						</span></td>
+
+						<td style="width: 20%;"><span style="font-size: small;">Very
+								Awesome Smokey Flavour.Very Awesome Smokey Flavour.Very Awesome
+								Smokey Flavour.</span></td>
+
+						<td><span style="margin-left: 9px;">Rs. 500</span></td>
+
+						<td>
+							<p>
+								<span style="font-weight: 700; color: Green;">Free</span></br> <span>Delivered
+									in 1-2 hours.</span>
+							</p>
+						</td>
+						<td><button id="1"
+								style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+								onclick="showSubProducts(1)" type="button">Customize
+								your hookah</button></td>
+
+					</tr>
+					<tr>
+						<td style="padding-bottom: 15px;" colspan="6">
+							<div class="row-page-header" id="large"
+								style="padding-bottom: 0px; margin-left: 0px !important;">
+								<div class="col-sm-8"
+									style="display: none; background-color: rgba(238, 238, 238, 0.62); margin-left: 10px; margin-top: 11px;"
+									id="prod_id_1_div">
+									<h3
+										style="text-decoration: underline; margin-top: 7px; margin-bottom: 3px; font-size: 19px;">Small
+										Sized Hookah</h3>
+									<div>
+										<table>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Cost</h2></td>
+												<td style="width: 400px;" id="cost_1">Rs 500</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Coal</h2></td>
+												<td>3 Pieces</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
+														Flavour 1</h2></td>
+												<td>
+													<div>
+														<select name="select_flavour" id="select_flavour_id_1_1">
+															<option value="Mint" selected>Mint</option>
+															<option value="Pan">Pan</option>
+															<option value="Apple">Apple</option>
+															<option value="Grapes">Grapes</option>
+															<option value="BubbleGum">BubbleGum</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
+														Flavour 2</h2></td>
+												<td>
+													<div>
+														<select name="select_flavour" id="select_flavour_id_1_2">
+															<option value="Mint" selected>Mint</option>
+															<option value="Pan">Pan</option>
+															<option value="Apple">Apple</option>
+															<option value="Grapes">Grapes</option>
+															<option value="BubbleGum">BubbleGum</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Liquid
+														Base 1</h2></td>
+												<td>
+													<div style="width: 400px;">
+														<label class="radio-inline"><input type="radio"
+															name="group1_1" value="Water" checked> Water</label>&nbsp;
+														<label class="radio-inline"><input type="radio"
+															name="group1_1" value="Milk"> Milk</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_1" value="Ice"> Ice</label>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Liquid
+														Base 2</h2></td>
+												<td>
+													<div style="width: 400px;">
+														<label class="radio-inline"><input type="radio"
+															name="group1_2" value="Water" checked> Water</label>&nbsp;
+														<label class="radio-inline"><input type="radio"
+															name="group1_2" value="Milk"> Milk</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_2" value="Ice"> Ice</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_2" value="Juice"> Juice</label>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">2
+														in 1 Flavours</h2></td>
+												<td>Not Available</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Security</h2></td>
+												<td>Rs 500</td>
+												<!-- <td><input type="button" onclick="ajaxAddToCart(1)" style="margin-right: -14px;margin-bottom: -3px; width:100px" class="btn btn-warning navbar-btn navbar-right" value="Add" /></td></tr> -->
+										</table>
+									</div>
+									<div class="item" style="float: right; margin-top: -284px;">
+										<img src="hookah14.jpg" alt="item" class="hookahImg" />
+										<h2>Hukkah Small</h2>
+										<button id="1"
+											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+											class="add-to-cart" type="button">Add to cart</button>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 20%;">
+							<div class="col-sm-4" style="width: 100%">
+
+								<!-- items -->
+								<div class="items">
+									<!-- single item -->
+									<div class="item" style="margin-top: 10px;">
+										<img src="hookah14.jpg" alt="item" class="hookahImg" />
+									</div>
+									<!--/ single item -->
+									<!-- single item -->
+
+									<!--/ items -->
+
+								</div>
+							</div>
+						</td>
+						<td style="width: 15%;"><span> <b>Small Sized
+									Hookah (Glass and Steel)</b>
+						</span></td>
+
+						<td style="width: 20%;"><span style="font-size: small;">Very
+								Awesome Smokey Flavour.Very Awesome Smokey Flavour.Very Awesome
+								Smokey Flavour.</span></td>
+
+						<td><span style="margin-left: 9px;">Rs. 500</span></td>
+
+						<td>
+							<p>
+								<span style="font-weight: 700; color: Green;">Free</span></br> <span>Delivered
+									in 1-2 hours.</span>
+							</p>
+						</td>
+						<td><button id="1"
+								style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+								onclick="showSubProducts(1)" type="button">Customize
+								your hookah</button></td>
+
+					</tr>
+					<tr>
+						<td style="padding-bottom: 15px;" colspan="6">
+							<div class="row-page-header" id="large"
+								style="padding-bottom: 0px; margin-left: 0px !important;">
+								<div class="col-sm-8"
+									style="display: none; background-color: rgba(238, 238, 238, 0.62); margin-left: 10px; margin-top: 11px;"
+									id="prod_id_1_div">
+									<h3
+										style="text-decoration: underline; margin-top: 7px; margin-bottom: 3px; font-size: 19px;">Small
+										Sized Hookah</h3>
+									<div>
+										<table>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Cost</h2></td>
+												<td style="width: 400px;" id="cost_1">Rs 500</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Coal</h2></td>
+												<td>3 Pieces</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
+														Flavour 1</h2></td>
+												<td>
+													<div>
+														<select name="select_flavour" id="select_flavour_id_1_1">
+															<option value="Mint" selected>Mint</option>
+															<option value="Pan">Pan</option>
+															<option value="Apple">Apple</option>
+															<option value="Grapes">Grapes</option>
+															<option value="BubbleGum">BubbleGum</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
+														Flavour 2</h2></td>
+												<td>
+													<div>
+														<select name="select_flavour" id="select_flavour_id_1_2">
+															<option value="Mint" selected>Mint</option>
+															<option value="Pan">Pan</option>
+															<option value="Apple">Apple</option>
+															<option value="Grapes">Grapes</option>
+															<option value="BubbleGum">BubbleGum</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Liquid
+														Base 1</h2></td>
+												<td>
+													<div style="width: 400px;">
+														<label class="radio-inline"><input type="radio"
+															name="group1_1" value="Water" checked> Water</label>&nbsp;
+														<label class="radio-inline"><input type="radio"
+															name="group1_1" value="Milk"> Milk</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_1" value="Ice"> Ice</label>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Liquid
+														Base 2</h2></td>
+												<td>
+													<div style="width: 400px;">
+														<label class="radio-inline"><input type="radio"
+															name="group1_2" value="Water" checked> Water</label>&nbsp;
+														<label class="radio-inline"><input type="radio"
+															name="group1_2" value="Milk"> Milk</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_2" value="Ice"> Ice</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_2" value="Juice"> Juice</label>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">2
+														in 1 Flavours</h2></td>
+												<td>Not Available</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Security</h2></td>
+												<td>Rs 500</td>
+												<!-- <td><input type="button" onclick="ajaxAddToCart(1)" style="margin-right: -14px;margin-bottom: -3px; width:100px" class="btn btn-warning navbar-btn navbar-right" value="Add" /></td></tr> -->
+										</table>
+									</div>
+									<div class="item" style="float: right; margin-top: -284px;">
+										<img src="hookah14.jpg" alt="item" class="hookahImg" />
+										<h2>Hukkah Small</h2>
+										<button id="1"
+											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+											class="add-to-cart" type="button">Add to cart</button>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td
+							style="border-top: solid rgba(112, 115, 108, 0.05) 1px; padding-top: 20px">
 
 							<div class="col-sm-4">
 								<div class="items">
@@ -313,7 +1068,8 @@ cart {
 										<h2>Hukkah Medium</h2>
 										<button id="2"
 											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-											onclick="showSubProducts(2)" type="button">Customize your hookah</button>
+											onclick="showSubProducts(2)" type="button">Customize
+											your hookah</button>
 									</div>
 									<!--/ single item -->
 									<!-- single item -->
@@ -415,13 +1171,13 @@ cart {
 												<td><span>Rs 700 </span></td>
 										</table>
 									</div>
-										<div class="item" style="float: right;margin-top: -284px;">
-											<img src="hookah14.jpg" alt="item" class="hookahImg" />
-											<h2>Hookah Medium</h2>
-											<button id="2"
-												style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-												class="add-to-cart" type="button">Add to cart</button>
-										</div>
+									<div class="item" style="float: right; margin-top: -284px;">
+										<img src="hookah14.jpg" alt="item" class="hookahImg" />
+										<h2>Hookah Medium</h2>
+										<button id="2"
+											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+											class="add-to-cart" type="button">Add to cart</button>
+									</div>
 								</div>
 							</div>
 						</td>
@@ -436,7 +1192,8 @@ cart {
 										<h2>Hukkah Large</h2>
 										<button id="3"
 											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-											onclick="showSubProducts(3)" type="button">Customize your hookah</button>
+											onclick="showSubProducts(3)" type="button">Customize
+											your hookah</button>
 									</div>
 									<!--/ single item -->
 									<!-- single item -->
@@ -542,13 +1299,13 @@ cart {
 												<td>Rs 1000</td>
 										</table>
 									</div>
-										<div class="item" style="float: right;margin-top: -284px;">
-											<img src="hookah14.jpg" alt="item" class="hookahImg" />
-											<h2>Hukkah Large</h2>
-											<button id="3"
-												style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-												class="add-to-cart" type="button">Add to cart</button>
-										</div>
+									<div class="item" style="float: right; margin-top: -284px;">
+										<img src="hookah14.jpg" alt="item" class="hookahImg" />
+										<h2>Hukkah Large</h2>
+										<button id="3"
+											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+											class="add-to-cart" type="button">Add to cart</button>
+									</div>
 								</div>
 							</div>
 						</td>
@@ -639,9 +1396,12 @@ cart {
 			var id = value;
 			var base1 = $('input[name=group' + value + '_1]:checked').val();
 			var base2 = $('input[name=group' + value + '_2]:checked').val();
-			var flavour_1 = document.getElementById('select_flavour_id_'+ value + '_1').value;
-			var flavour_2 = document.getElementById('select_flavour_id_'+ value + '_2').value;
-			$.ajax({
+			var flavour_1 = document.getElementById('select_flavour_id_'
+					+ value + '_1').value;
+			var flavour_2 = document.getElementById('select_flavour_id_'
+					+ value + '_2').value;
+			$
+					.ajax({
 						url : "http://localhost:8888/hookahknights?action1=ADD_TO_CART",
 						data : {
 							prod_id : id,
@@ -667,10 +1427,11 @@ cart {
 			var value = parseInt(cartItems.text()) + 1;
 			cartItems.text(value);
 		}
-		function showSubProducts(value){
-			$('#prod_id_' + value + '_div').toggle(1000);	
+		function showSubProducts(value) {
+			$('#prod_id_' + value + '_div').toggle(300);
 		}
 		$('.add-to-cart').on('click', function() {
+			$('#prod_id_' + this.id + '_div').hide(1000);
 			var cart = $('.shopping-cart');
 			var imgtodrag = $(this).parent('.item').find("img").eq(0);
 			if (imgtodrag) {
@@ -706,13 +1467,30 @@ cart {
 			}
 			ajaxAddToCart(this.id);
 		});
+		function change() {
+			var target = document.getElementById("hookah_small_img");
+			target.src = "hookah15.png";
+			window.setTimeout(function() {
+				target.src = "hookah16.png";
+			}, 500);
+			window.setTimeout(function() {
+				target.src = "hookah14.jpg";
+			}, 1000);
+// 			window.setTimeout(function() {
+// 				target.src = "hookah16.png";
+// 			}, 500);
+		}
+		function changeReset() {
+			/* var target = document.getElementById("hookah_small_img");
+			target.src = "hookah14.jpg"; */
+		}
 	</script>
 
 	<!-- Footer -->
 
 	<footer>
 		<hr>
-		<div class="container text-center">
+		<xdiv class="container text-center">
 			<hr>
 			<ul class="list-inline">
 				<li><a href="http://www.twitter.com/wiredwiki">Twitter</a></li>

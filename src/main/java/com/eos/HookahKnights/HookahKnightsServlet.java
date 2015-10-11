@@ -46,7 +46,7 @@ public class HookahKnightsServlet extends HttpServlet {
 						.getRequestDispatcher(HookahNavigationConstantBean.SHOPPING_CART_SEARCH_PAGE);
 				dispatcher.forward(request, response);
 			} else {
-				SessionManager.getShoppingCart(request);
+				//SessionManager.getShoppingCart(request);
 				RequestDispatcher dispatcher = getServletContext()
 						.getRequestDispatcher(HookahNavigationConstantBean.HOME_PAGE);
 				dispatcher.forward(request, response);
