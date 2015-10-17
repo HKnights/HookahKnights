@@ -80,13 +80,7 @@ cart {
 <body data-spy="scroll" data-target="#my-navbar">
 
 	<form action="hookahknights" method="POST" name="mainForm">
-		<input type="hidden" name="user_name" value=""> <input
-			type="hidden" name="user_pass" value=""> <input type="hidden"
-			name="user_signup" value="false"> <input type="hidden"
-			name="user_login" value="false"> <input type="hidden"
-			name="user_id" value=""> <input type="hidden"
-			name="user_email" value=""> <input type="hidden"
-			name="user_image" value=""> <input type="hidden"
+		<input type="hidden"
 			name="action1" value="" /> <input type="hidden" name="selected_item"
 			value="" /> <input type="hidden" name="prod_1" id="prod_id_1"
 			value="orderId_1" /> <input type="hidden" name="prod_2"
@@ -1402,7 +1396,7 @@ cart {
 					+ value + '_2').value;
 			$
 					.ajax({
-						url : "http://localhost:8888/hookahknights?action1=ADD_TO_CART",
+						url : "/hookahknights?action1=ADD_TO_CART",
 						data : {
 							prod_id : id,
 							base1 : base1,
@@ -1507,7 +1501,5 @@ cart {
 	</footer>
 
 	<!-- Latest compiled and minified JavaScript -->
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>

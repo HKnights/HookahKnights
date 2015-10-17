@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -25,13 +24,13 @@ import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Text;
-import com.google.appengine.repackaged.com.google.gson.Gson;
-import com.google.appengine.repackaged.com.google.gson.GsonBuilder;
-import com.google.appengine.repackaged.com.google.gson.JsonDeserializationContext;
-import com.google.appengine.repackaged.com.google.gson.JsonElement;
-import com.google.appengine.repackaged.com.google.gson.JsonObject;
-import com.google.appengine.repackaged.com.google.gson.JsonParseException;
-import com.google.appengine.repackaged.com.google.gson.reflect.TypeToken;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 
 import main.java.com.eos.cart.ShoppingCart;
 import main.java.com.eos.model.Hookah;
@@ -155,15 +154,15 @@ public class User implements Serializable {
 			try {
 				cart = new ShoppingCart();
 				jsonObj = new JSONObject((Text) result.getProperty("user_cart"));
-				JSONArray jsonArray =(new JSONObject((String)jsonObj.opt("value"))).optJSONArray("items");
-				for(int i = 0; i < jsonArray.length(); i++){
+				JSONArray jsonArray = (new JSONObject((String) jsonObj.opt("value"))).optJSONArray("items");
+				for (int i = 0; i < jsonArray.length(); i++) {
 					Product product = new Hookah();
-					String key = ((JSONObject)jsonArray.get(i)).toString();
+					String key = ((JSONObject) jsonArray.get(i)).toString();
 					product = customGson.fromJson(key, Product.class);
 					cart.addToProductList(product);
 				}
 				SessionManager.setCartCount(request, cart.items.size());
-			} catch (JSONException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -186,7 +185,7 @@ public class User implements Serializable {
 	}
 
 	public static class CustomDeserializer
-			implements com.google.appengine.repackaged.com.google.gson.JsonDeserializer<Product> {
+			implements JsonDeserializer<Product> {
 
 		public Product deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
 				throws JsonParseException {
@@ -216,6 +215,7 @@ public class User implements Serializable {
 				return product;
 			}
 		}
+
 	}
 
 }

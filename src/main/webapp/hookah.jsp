@@ -6,15 +6,16 @@
 	<meta name="description" content="Wiredwiki App">
 	<!-- Latest compiled and minified CSS -->
 	 <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	 <!-- <link rel="stylesheet" href="/js/bootstrap3_2_0.css" type="text/css" media="screen"> -->
+	 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 </head>
-<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script async src="/js/codejquery_min.js"></script>
+<script async src="/js/bootstrap3_2_0.min.js"></script>
 <script type="text/javascript">
 function storeUserDetails(userName,userId,userEmail){
 	$.ajax({
-        url: 'http://localhost:8888/hookahknights?action1=USER_LOGIN',
+        url: '/hookahknights?action1=USER_LOGIN',
         type: 'GET',
         data: { name: userName, user_id : userId,email:userEmail} ,
         contentType: 'application/json; charset=utf-8',
@@ -282,15 +283,11 @@ function MyCtrl($scope, $timeout) {
         <div class="container text-center">
         <hr>
         <ul class="list-inline">
-          <li><a href="http://www.twitter.com/wiredwiki">Twitter</a></li>
-          <li><a href="http://www.facebook.com/askorama">Facebook</a></li>
-          <li><a href="http://www.youtube.com/wiredwiki">YouTube</a></li>
-        </ul>
+          </ul>
         <p>&copy; Copyright @ 2014</p>
       </div><!-- end Container-->
       
     </footer>
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>	
 </html>

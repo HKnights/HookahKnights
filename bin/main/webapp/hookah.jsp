@@ -6,11 +6,10 @@
 	<meta name="description" content="Wiredwiki App">
 	<!-- Latest compiled and minified CSS -->
 	 <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<script src="/js/bootstrap3_2_0.min.js"></script>
 	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 </head>
-<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="/js/codejquery_min.js"></script>
 <script type="text/javascript">
 function storeUserDetails(userName,userId,userEmail){
 	$.ajax({
@@ -287,6 +286,5 @@ function MyCtrl($scope, $timeout) {
       
     </footer>
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>	
 </html>

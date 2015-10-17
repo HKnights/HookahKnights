@@ -1,5 +1,7 @@
 package main.java.com.eos.utils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +17,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Text;
-import com.google.appengine.repackaged.com.google.gson.Gson;
+import com.google.gson.Gson;
 
 import main.java.com.eos.accounts.User;
 import main.java.com.eos.cart.ShoppingCart;
@@ -184,6 +186,11 @@ public class SessionManager {
 		session.setAttribute("cart_count", count + "");
 	}
 
+	public static Integer getCartCount(HttpServletRequest request) {
+		HttpSession session = SessionManager.getSession(request);
+		return Integer.parseInt((String) session.getAttribute("cart_count"));
+	}
+
 	public static String getcartDetails(HttpServletRequest request, HttpServletResponse response) {
 		Map<Integer, String> cartItemMap = new HashMap<Integer, String>();
 		HttpSession session = SessionManager.getSession(request);
@@ -207,5 +214,28 @@ public class SessionManager {
 		setCartCount(request, count);
 		request.setAttribute("cart_json", new Gson().toJson(cartItemMap));
 		return new Gson().toJson(cartItemMap);
+	}
+
+	public static void removeItem(HttpServletRequest request) {
+		int itemToRemove = Integer.parseInt(request.getParameter("itemToRemove"));
+		Map<Integer, String> cartItemMap = new HashMap<Integer, String>();
+		HttpSession session = SessionManager.getSession(request);
+		ShoppingCart cart = SessionManager.getShoppingCart(request);
+		int count = SessionManager.getCartCount(request);
+		if (cart != null) {
+			List<Product> productList = cart.getItems();
+			List<Product> productListIterable = new ArrayList<Product>(productList);
+			for (Product product : productListIterable) {
+				HookahData hookahData = product.getHookahData();
+				if (itemToRemove == hookahData.getProdId()) {
+					productList.remove(product);
+					count--;
+					break;
+				}
+			}
+			cart.setItems(productList);
+			SessionManager.setCartCount(request, count);
+			SessionManager.setShoppingCart(cart, request);
+		}
 	}
 }
