@@ -15,8 +15,8 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link
-  href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css"
-rel="stylesheet">
+	href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css"
+	rel="stylesheet">
 </head>
 <style>
 body {
@@ -43,7 +43,6 @@ h1, h3 {
 	width: 140px;
 	border-radius: 110px;
 	height: 146px;
-	
 }
 
 .shopping-cart {
@@ -347,29 +346,49 @@ cart {
 						</td>
 					</tr>
 					<tr>
-						<td
-							style="border-top: solid rgba(112, 115, 108, 0.05) 1px; padding-top: 20px">
-							<div class="col-sm-4">
+						<td style="width: 20%;">
+							<div class="col-sm-4" style="width: 100%">
+
+								<!-- items -->
 								<div class="items">
 									<!-- single item -->
-									<div class="item">
-										<img src="hookah14.jpg" alt="item" class="hookahImg" />
-										<h2>Hukkah Medium</h2>
-										<button id="2"
-											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-											onclick="showSubProducts(2)" type="button">Customize
-											your hookah</button>
+									<div class="item" style="margin-top: 10px;">
+										<img id="hookah_small_img" onmouseover="change();"
+											onmouseout="changeReset();" src="hookah14.jpg" alt="item"
+											class="hookahImg" />
 									</div>
 									<!--/ single item -->
 									<!-- single item -->
 
 									<!--/ items -->
+
 								</div>
 							</div>
 						</td>
+						<td style="width: 15%;"><span> <b>Medium Sized
+									Hookah (Glass and Steel)</b>
+						</span></td>
+
+						<td style="width: 20%;"><span style="font-size: small;">Very
+								Awesome Smokey Flavour.Very Awesome Smokey Flavour.Very Awesome
+								Smokey Flavour.</span></td>
+
+						<td><span style="margin-left: 9px;">Rs. 600</span></td>
+
+						<td>
+							<p>
+								<span style="font-weight: 700; color: Green;">Free</span></br> <span>Delivered
+									in 1-2 hours.</span>
+							</p>
+						</td>
+						<td><button id="1"
+								style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+								onclick="showSubProducts(2)" type="button">Customize
+								your hookah</button></td>
+
 					</tr>
 					<tr>
-						<td>
+						<td style="padding-bottom: 15px;" colspan="6">
 							<div class="row page-header" id="medium"
 								style="padding-bottom: 0px; margin-left: 0px !important;">
 								<div class="col-sm-8"
@@ -472,28 +491,49 @@ cart {
 						</td>
 					</tr>
 					<tr>
-						<td>
-							<div class="col-sm-4">
+						<td style="width: 20%;">
+							<div class="col-sm-4" style="width: 100%">
+
+								<!-- items -->
 								<div class="items">
 									<!-- single item -->
-									<div class="item">
-										<img src="hookah14.jpg" alt="item" class="hookahImg" />
-										<h2>Hukkah Large</h2>
-										<button id="3"
-											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-											onclick="showSubProducts(3)" type="button">Customize
-											your hookah</button>
+									<div class="item" style="margin-top: 10px;">
+										<img id="hookah_small_img" onmouseover="change();"
+											onmouseout="changeReset();" src="hookah14.jpg" alt="item"
+											class="hookahImg" />
 									</div>
 									<!--/ single item -->
 									<!-- single item -->
 
 									<!--/ items -->
+
 								</div>
 							</div>
 						</td>
+						<td style="width: 15%;"><span> <b>Large Sized
+									Hookah (Glass and Steel)</b>
+						</span></td>
+
+						<td style="width: 20%;"><span style="font-size: small;">Very
+								Awesome Smokey Flavour.Very Awesome Smokey Flavour.Very Awesome
+								Smokey Flavour.</span></td>
+
+						<td><span style="margin-left: 9px;">Rs. 700</span></td>
+
+						<td>
+							<p>
+								<span style="font-weight: 700; color: Green;">Free</span></br> <span>Delivered
+									in 1-2 hours.</span>
+							</p>
+						</td>
+						<td><button id="1"
+								style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+								onclick="showSubProducts(3)" type="button">Customize
+								your hookah</button></td>
+
 					</tr>
 					<tr>
-						<td>
+						<td style="padding-bottom: 15px;" colspan="6">
 							<div class="row-page-header" id="large"
 								style="padding-bottom: 0px; margin-left: 0px !important;">
 								<div class="col-sm-8"
@@ -689,26 +729,25 @@ cart {
 					+ value + '_1').value;
 			var flavour_2 = document.getElementById('select_flavour_id_'
 					+ value + '_2').value;
-			$
-					.ajax({
-						url : "http://localhost:8888/hookahknights?action1=ADD_TO_CART",
-						data : {
-							prod_id : id,
-							base1 : base1,
-							base2 : base2,
-							flavour_first : flavour_1,
-							flavour_second : flavour_2
-						},
-						contentType : 'application/json; charset=utf-8',
-						type : "GET",
-						success : function(response) {
+			$.ajax({
+				url : "/hookahknights?action1=ADD_TO_CART",
+				data : {
+					prod_id : id,
+					base1 : base1,
+					base2 : base2,
+					flavour_first : flavour_1,
+					flavour_second : flavour_2
+				},
+				contentType : 'application/json; charset=utf-8',
+				type : "GET",
+				success : function(response) {
 
-						},
-						error : function(xhr) {
+				},
+				error : function(xhr) {
 
-						}
+				}
 
-					});
+			});
 		}
 		function updateCart() {
 			//show counter if this is the first item added to the cart
@@ -765,9 +804,9 @@ cart {
 			window.setTimeout(function() {
 				target.src = "hookah14.jpg";
 			}, 1000);
-// 			window.setTimeout(function() {
-// 				target.src = "hookah16.png";
-// 			}, 500);
+			// 			window.setTimeout(function() {
+			// 				target.src = "hookah16.png";
+			// 			}, 500);
 		}
 		function changeReset() {
 			/* var target = document.getElementById("hookah_small_img");
