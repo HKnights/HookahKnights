@@ -1,3 +1,4 @@
+aa
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,12 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+	
+
 <!-- Optional theme -->
 </head>
 <title>Shopping Cart</title>
@@ -20,31 +27,62 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-	<style type="text/css">   
-		.popover-content { border: solid 1px grey;}
-	</style>
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.min.js"></script>
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+	
+<style type="text/css">
+.popover-content {
+	border: solid 1px grey;
+}
+</style>
 <script type="text/javascript">
+function continueShopping(){
+	document.mainForm.action1.value = "ORDERS_PAGE_ACTION";
+	document.mainForm.submit();
+}
+function submitPage(){
+	if(!isValidOrder()){
+		return;
+	}
+	document.mainForm.action1.value = "SUBMIT_ORDER";
+	document.mainForm.submit();
+}
 function removeItem(itemToRemoveId){
 	document.mainForm.action1.value = "ITEM_REMOVE";
 	document.mainForm.itemToRemove.value=itemToRemoveId;
+	document.mainForm.request_from.value="checkout";
 	document.mainForm.submit();
 }
-function storeUserDetails(userName,userId,userEmail){
+function isValidOrder(){
+	var retVal=false;
 	$.ajax({
-        url: '/hookahknights?action1=USER_LOGIN',
+        url: '/hookahknights?action1=IS_VALID_ORDER',
         type: 'GET',
-        data: { name: userName, user_id : userId,email:userEmail} ,
+        data: {} ,
+        async:false,
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
-            //your success code
+        	if(response !=''){
+        		swal({   title: response,   text: "You can either remove or wait for sometime !!!",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Yes, remove excess hookah!",   cancelButtonText: "No, i'll wait!",   closeOnConfirm: false,   closeOnCancel: false }, function(isConfirm){   if (isConfirm) {  swal({   title: "You can remove items by clicking image with a cross sign",   text: "",   timer: 1000,   showConfirmButton: false });} else {     swal("Thanks for waiting...", "Your cart is still the same !!! :)", "success");   } });
+        		retVal=false;
+        	}
+        	else{
+        		retVal=true;
+        	}
         },
         error: function () {
-            //your error code
+        	return false;
         }
-    }); 
+    });
+	return retVal;
+	
 }
 $(function(){
 	populateDetails();
@@ -52,6 +90,13 @@ $(function(){
 function populateDetails(){
 	var countItem=0;
 	var cartJson=jQuery.parseJSON('<%=request.getAttribute("cart_json")%>');
+	if(Object.keys(cartJson).length==0){
+		$('.col-md-5').html('<img src="empty-cart.png"/>');
+		$('.col-md-7').attr({'style':'display:none;'});
+		$('#proceed_checkout').toggle();
+		$('#continue_shopping').toggle();
+		$('body').attr({'style':'background-color: white;'});
+	}else{
 		for ( var cartItem in cartJson) {
 			var itemDetails = cartJson[cartItem].split('_');
 			for (var i = 0; i < itemDetails[0]; i++) {
@@ -80,8 +125,9 @@ function populateDetails(){
 										'</td>/tr></table></div></div></li>');
 			}
 		}
+		}
+	$('.col-md-5').toggle();
 	}
-
 
 	function addToOrder() {
 		document.mainForm.action1.value = "ORDERS_PAGE_ACTION";
@@ -125,6 +171,8 @@ img {
 			id="prod_id_1" value="orderId_1" /> <input type="hidden"
 			name="prod_2" id="prod_id_2" value="orderId_2" /> <input
 			type="hidden" name="prod_3" id="prod_id_3" value="orderId_3" />
+			<input type="hidden" name="request_from" value="" />
+			
 		<!-- Navbar -->
 		<nav class="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
 			<div class="container">
@@ -155,46 +203,66 @@ img {
 
 		<div class="container text-center" style="margin-top: 115px;">
 
-			<div class="col-md-5 col-sm-12">
-				<h1>Your shopping cart</h1>
-				          <div class="col-lg-8">
-              <div class="form-group">
-                <label for="user-name" class="col-lg-2 control-label">Name</label>
-                <div class="col-lg-10">
-                  <input type="text" class="form-control" id="user-name" placeholder="Enter you name">
-                </div>
-              </div><!-- End form group -->
-              <div class="form-group">
-                <label for="user-email" class="col-lg-2 control-label">Email</label>
-                <div class="col-lg-10">
-                  <input type="text" class="form-control" id="user-email" placeholder="Enter you Email Address">
-                </div>
-              </div><!-- End form group -->
-              <div class="form-group">
-                <label for="user-url" class="col-lg-2 control-label">Your Website</label>
-                <div class="col-lg-10">
-                  <input type="text" class="form-control" id="user-email" placeholder="If you have Any.">
-                </div>
-              </div><!-- End form group -->
-              <div class="form-group">
-                <label for="user-message" class="col-lg-2 control-label">Any Message</label>
-                <div class="col-lg-10">
-                  <textarea name="user-message" id="user-message" class="form-control" 
-                  cols="20" rows="10" placeholder="Enter your Message"></textarea>
-                </div>
-              </div><!-- End form group -->
-              <div class="form-group">
-                <div class="col-lg-10 col-lg-offset-2">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-              </div>
+			<div style="MARGIN-TOP: 28px;display:none;" class="col-md-5 col-sm-12">
+			<table style="width: 450px;">
+			<tr><td style="padding-bottom: 10px;">
+				<div class="form-group">
+					<label for="user-name" class="col-lg-2 control-label">Name</label>
+					
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="user-name" name="user-name"
+							placeholder="Enter you name">
+					</div>
+				</div>
+				</td></tr>
+				<tr><td style="padding-bottom: 10px;">
+				<!-- End form group -->
+				<div class="form-group">
+					<label for="user-email" class="col-lg-2 control-label">Email</label>
+					
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="user-email" name="user-email"
+							placeholder="Enter you Email Address">
+					</div>
+				</div>
+				</td></tr>
+				<tr><td style="padding-bottom: 10px;">
+				<div class="form-group">
+					<label for="user-email" class="col-lg-2 control-label">Phone No.</label>
+					
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="user-phone" name="user-phone"
+							placeholder="Enter you Phone Number">
+					</div>
+				</div>
+				</td></tr>
+				<tr><td style="padding-bottom: 10px;">
+				<!-- End form group -->
+				<div class="form-group">
+					<label for="user-url" class="col-lg-2 control-label">Address</label>
+						
+					<div class="col-lg-10">
+						<textarea name="user-message" id="user-address" name="user-address"
+							class="form-control" cols="20" rows="10"
+							placeholder="Enter your Message"></textarea>
+					</div>
+				</div>
+				</td></tr>
+				
+				</table>
+				<!-- End form group -->
 			</div>
-
 			<div class="col-md-7 col-sm-12 text-left">
 				<ul id="cart_div_list">
-					<li class="row list-inline columnCaptions"><span>Item Number</span> <span>ITEM</span>
+					<li class="row list-inline columnCaptions"><span>QTY</span> <span>ITEM</span>
 						<span>Price</span></li>
 				</ul>
+			</div>
+			<div id="proceed_checkout" style="float:right;margin-right: 14px;">
+				<input type=button onclick="submitPage()" class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right" value="CHECKOUT">
+			</div>
+ 			<div id="continue_shopping" style="float:right;margin-right: 182px;margin-top: 100px;display:none;" >
+				<button onclick="continueShopping()" class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right">Continue Shopping</button>
 			</div>
 
 		</div>
@@ -226,7 +294,13 @@ img {
 	<footer>
 		<hr>
 		<div class="container text-center" style="margin-top: 115px;">
-			
+			<hr>
+			<ul class="list-inline">
+				<li><a href="http://www.twitter.com/wiredwiki">Twitter</a></li>
+				<li><a href="http://www.facebook.com/askorama">Facebook</a></li>
+				<li><a href="http://www.youtube.com/wiredwiki">YouTube</a></li>
+			</ul>
+			<p>&copy; Copyright @ 2014</p>
 		</div>
 		<!-- end Container-->
 

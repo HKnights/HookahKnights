@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="main.java.com.eos.accounts.Order"%>
 <html lang="en">
 
 <head>
@@ -14,9 +15,21 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 <link
 	href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css"
 	rel="stylesheet">
+		<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.min.js"></script>
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+	
 </head>
 <style>
 body {
@@ -75,7 +88,11 @@ cart {
 	overflow: hidden;
 }
 </style>
-
+<%String[] inventorDetails=(Order.getInventory()).split("_"); 
+int smallHookahLeft=Integer.parseInt(inventorDetails[0]);
+int mediumHookahLeft=Integer.parseInt(inventorDetails[1]);
+int largeHookahLeft=Integer.parseInt(inventorDetails[2]);
+%> 
 <body data-spy="scroll" data-target="#my-navbar">
 
 	<form action="hookahknights" method="POST" name="mainForm">
@@ -173,7 +190,9 @@ cart {
 			<section>
 				<div class="page-header" id="categories"
 					style="margin-top: 7px; margin-bottom: 3px; padding-bottom: 0px;">
-					<h2>Hookah Categories.</h2>
+					<h2>Hookah Categories.<div style="height: 42px;float:right;">
+				<button onclick="submitPage()" class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right">Proceed To Checkout</button>
+			</div></h2>
 				</div>
 				<!-- End Page Header -->
 
@@ -237,7 +256,13 @@ cart {
 									in 1-2 hours.</span>
 							</p>
 						</td>
-						<td><button id="1"
+						<td>
+						<%if(smallHookahLeft==1) {%>
+						<b style="color: red;font-weight: 400;">only <%=smallHookahLeft %> hookah left</b>
+						<%}else if(smallHookahLeft>1){ %>
+						<b style="color: green;font-weight: 200;">only <%=smallHookahLeft %> hookahs left</b>
+						<%} %>
+						<button id="1"
 								style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
 								onclick="showSubProducts(1)" type="button">Customize
 								your hookah</button></td>
@@ -337,9 +362,15 @@ cart {
 									<div class="item" style="float: right; margin-top: -284px;">
 										<img src="hookah14.jpg" alt="item" class="hookahImg" />
 										<h2>Hookah Small</h2>
+										<%if(smallHookahLeft>0){ %>
 										<button id="1"
 											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
 											class="add-to-cart" type="button">Add to cart</button>
+											<%}else{ %>
+											<button id="1"
+											style="color: #ffffff; width: 130px; background-color: #940332; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+											class="add-to-cart"  disabled="disabled" type="button">Out Of Stock</button>
+											<%} %>
 									</div>
 								</div>
 							</div>
@@ -381,7 +412,13 @@ cart {
 									in 1-2 hours.</span>
 							</p>
 						</td>
-						<td><button id="1"
+						<td>
+						<%if(mediumHookahLeft==1) {%>
+						<b style="color: red;font-weight: 400;">only <%=mediumHookahLeft %> hookah left</b>
+						<%}else if(mediumHookahLeft>1){ %>
+						<b style="color: green;font-weight: 200;">only <%=mediumHookahLeft %> hookahs left</b>
+						<%} %>
+						<button id="1"
 								style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
 								onclick="showSubProducts(2)" type="button">Customize
 								your hookah</button></td>
@@ -482,9 +519,15 @@ cart {
 									<div class="item" style="float: right; margin-top: -284px;">
 										<img src="hookah14.jpg" alt="item" class="hookahImg" />
 										<h2>Hookah Medium</h2>
+										<%if(mediumHookahLeft>0){ %>
 										<button id="2"
 											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
 											class="add-to-cart" type="button">Add to cart</button>
+											<%}else{ %>
+											<button id="2"
+											style="color: #ffffff; width: 130px; background-color: #940332; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+											class="add-to-cart"  disabled="disabled" type="button">Out Of Stock</button>
+											<%} %>
 									</div>
 								</div>
 							</div>
@@ -526,7 +569,13 @@ cart {
 									in 1-2 hours.</span>
 							</p>
 						</td>
-						<td><button id="1"
+						<td>
+						<%if(largeHookahLeft==1) {%>
+						<b style="color: red;font-weight: 400;">only <%=largeHookahLeft %> hookah left</b>
+						<%}else if(largeHookahLeft>1){ %>
+						<b style="color: green;font-weight: 200;">only <%=largeHookahLeft %> hookahs left</b>
+						<%} %>
+						<button id="1"
 								style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
 								onclick="showSubProducts(3)" type="button">Customize
 								your hookah</button></td>
@@ -631,9 +680,15 @@ cart {
 									<div class="item" style="float: right; margin-top: -284px;">
 										<img src="hookah14.jpg" alt="item" class="hookahImg" />
 										<h2>Hukkah Large</h2>
+										<%if(largeHookahLeft>0){ %>
 										<button id="3"
 											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
 											class="add-to-cart" type="button">Add to cart</button>
+											<%}else{ %>
+											<button id="3"
+											style="color: #ffffff; width: 130px; background-color: #940332; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+											class="add-to-cart"  disabled="disabled" type="button">Out Of Stock</button>
+											<%} %>
 									</div>
 								</div>
 							</div>
@@ -721,6 +776,10 @@ cart {
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<script>
+	function submitPage(){
+		document.mainForm.action1.value = "CHECKOUT_ACTION";
+		document.mainForm.submit();
+	}
 		function ajaxAddToCart(value) {
 			var id = value;
 			var base1 = $('input[name=group' + value + '_1]:checked').val();
@@ -748,6 +807,8 @@ cart {
 				}
 
 			});
+
+
 		}
 		function updateCart() {
 			//show counter if this is the first item added to the cart
@@ -759,6 +820,7 @@ cart {
 			$('#prod_id_' + value + '_div').toggle(300);
 		}
 		$('.add-to-cart').on('click', function() {
+			if(isAddMoreApplicable(this.id)){
 			$('#prod_id_' + this.id + '_div').hide(1000);
 			var cart = $('.shopping-cart');
 			var imgtodrag = $(this).parent('.item').find("img").eq(0);
@@ -793,8 +855,34 @@ cart {
 					updateCart();
 				});
 			}
+			
 			ajaxAddToCart(this.id);
+			}
 		});
+		function isAddMoreApplicable(prodId){
+			var retVal=false;
+			$.ajax({
+		        url: '/hookahknights?action1=CAN_ADD_MORE',
+		        type: 'GET',
+		        data: {id:prodId} ,
+		        async:false,
+		        contentType: 'application/json; charset=utf-8',
+		        success: function (response) {
+		        	if(response !=''){
+		        		swal({   title: response,   text: "You can either wait or proceed without adding this hookah !!!",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Cool! proceed without adding!",   cancelButtonText: "No, i'll wait!",   closeOnConfirm: false,   closeOnCancel: false }, function(isConfirm){   if (isConfirm) {     swal("", "Thanks for proceeding !!!", "success");   } else {     swal("Thanks for waiting...", "Your cart is still the same !!! :)", "success");   } });
+		        		retVal=false;
+		        	}
+		        	else{
+		        		retVal=true;
+		        	}
+		        },
+		        error: function () {
+		        	return false;
+		        }
+		    });
+			return retVal;
+			
+		}
 		function change() {
 			var target = document.getElementById("hookah_small_img");
 			target.src = "hookah15.png";

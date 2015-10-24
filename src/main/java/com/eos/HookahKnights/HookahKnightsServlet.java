@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import main.java.com.eos.accounts.Order;
 import main.java.com.eos.beans.HookahKnightsBean;
 import main.java.com.eos.cart.ShoppingCart;
+import main.java.com.eos.utils.SMS;
 import main.java.com.eos.utils.SessionManager;
 
 @SuppressWarnings("serial")
@@ -46,13 +48,36 @@ public class HookahKnightsServlet extends HttpServlet {
 						.getRequestDispatcher(HookahNavigationConstantBean.SHOPPING_CART_SEARCH_PAGE);
 				dispatcher.forward(request, response);
 			} else if ("ITEM_REMOVE".equals(action)) {
+				String redirectTo = HookahNavigationConstantBean.SHOPPING_CART_SEARCH_PAGE;
 				SessionManager.removeItem(request);
 				SessionManager.getcartDetails(request, response);
-				RequestDispatcher dispatcher = getServletContext()
-						.getRequestDispatcher(HookahNavigationConstantBean.SHOPPING_CART_SEARCH_PAGE);
+				if (request.getParameter("request_from").equals("checkout")) {
+					redirectTo = HookahNavigationConstantBean.CHECKOUT_PAGE;
+				}
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirectTo);
 				dispatcher.forward(request, response);
+			} else if ("SUBMIT_ORDER".equals(action)) {
+				Order.prepareOrder(request);
+				Order.storeOrderInDB();
+				SessionManager.setShoppingCart(new ShoppingCart(), request);
+				SessionManager.setCartCount(request, 0);
+				RequestDispatcher dispatcher = getServletContext()
+						.getRequestDispatcher(HookahNavigationConstantBean.ORDERS_PAGE);
+				dispatcher.forward(request, response);
+			} else if ("INVENTRY_CONTROL".equals(action)) {
+				Order.updateInventory(request.getParameter("SHvalue"), request.getParameter("MHvalue"),
+						request.getParameter("LHvalue"));
+			} else if ("CHECKOUT_ACTION".equals(action)) {
+				SessionManager.getcartDetails(request, response);
+				RequestDispatcher dispatcher = getServletContext()
+						.getRequestDispatcher(HookahNavigationConstantBean.CHECKOUT_PAGE);
+				dispatcher.forward(request, response);
+			} else if ("IS_VALID_ORDER".equals(action)) {
+				SessionManager.isValidOrder(request, response);
+			} else if ("CAN_ADD_MORE".equals(action)) {
+				SessionManager.canAddMore(request, response);
 			} else {
-				//SessionManager.getShoppingCart(request);
+				// SessionManager.getShoppingCart(request);
 				RequestDispatcher dispatcher = getServletContext()
 						.getRequestDispatcher(HookahNavigationConstantBean.HOME_PAGE);
 				dispatcher.forward(request, response);

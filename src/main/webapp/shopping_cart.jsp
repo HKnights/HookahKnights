@@ -24,10 +24,22 @@ aa
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+	<style type="text/css">   
+		.popover-content { border: solid 1px grey;}
+	</style>
 <script type="text/javascript">
+function submitPage(){
+	document.mainForm.action1.value = "CHECKOUT_ACTION";
+	document.mainForm.submit();
+}
+function continueShopping(){
+	document.mainForm.action1.value = "ORDERS_PAGE_ACTION";
+	document.mainForm.submit();
+}
 function removeItem(itemToRemoveId){
 	document.mainForm.action1.value = "ITEM_REMOVE";
 	document.mainForm.itemToRemove.value=itemToRemoveId;
+	document.mainForm.request_from.value="shopping_cart";
 	document.mainForm.submit();
 }
 function storeUserDetails(userName,userId,userEmail){
@@ -48,26 +60,47 @@ $(function(){
 	populateDetails();
 });
 function populateDetails(){
-	var countItem=1;
+	var countItem=0;
 	var cartJson=jQuery.parseJSON('<%=request.getAttribute("cart_json")%>');
+	if(Object.keys(cartJson).length==0){
+		$('.col-md-5').html('<img src="empty-cart.png"/>');
+		$('.col-md-7').attr({'style':'display:none;'});
+		$('#submit_page').toggle();
+		$('#continue_shopping').toggle();
+		$('body').attr({'style':'background-color: white;'});
+	}else{
 		for ( var cartItem in cartJson) {
 			var itemDetails = cartJson[cartItem].split('_');
 			for (var i = 0; i < itemDetails[0]; i++) {
 				$('ul[id=cart_div_list]')
 						.append(
 								'<li class="row" id='+cartItem+'><span class="quantity">'
-										+ countItem++
+										+ ++countItem
 										+ '</span><span class="itemName">'
 										+ itemDetails[1]
 										+ ' Hookah</span><span class="popbtn"><span id='
 										+ cartItem
 										+ ' onclick="removeItem('
 										+ cartItem
-										+ ')" style="margin-top: -30px;margin-left: -6px;" class="glyphicon glyphicon-remove"></span></span><span class="price">'
-										+ itemDetails[2]/itemDetails[0] + '</span></li>');
+										+ ')" style="margin-top: -30px;margin-left: 34px;" class="glyphicon glyphicon-remove"></span></span><span class="price">'
+										+ itemDetails[2]/itemDetails[0] +
+										'</span><div style="float: right;margin-top: 30px;margin-right: -82px;" class="arrow"><div id="popover'+countItem+'" style="display: none"><table style="font-weight: bolder;"><tr><td>Coal</td><td>'
+										+itemDetails[3]+
+										'</td></tr><tr><td>Flavour 1</td><td>'
+										+itemDetails[4]+
+										'</td></tr> <tr><td>Flavour 2</td><td>'
+										+itemDetails[5]+
+										'</td></tr> <tr><td>Liquid Base</td><td>'
+										+itemDetails[6]+
+										'</td></tr> <tr><td>Security</td><td>'
+										+itemDetails[7]+
+										'</td>/tr></table></div></div></li>');
 			}
 		}
+		}
+	$('.col-md-5').toggle();
 	}
+
 
 	function addToOrder() {
 		document.mainForm.action1.value = "ORDERS_PAGE_ACTION";
@@ -111,6 +144,8 @@ img {
 			id="prod_id_1" value="orderId_1" /> <input type="hidden"
 			name="prod_2" id="prod_id_2" value="orderId_2" /> <input
 			type="hidden" name="prod_3" id="prod_id_3" value="orderId_3" />
+			 <input type="hidden"
+			name="request_from" value="" /> 
 		<!-- Navbar -->
 		<nav class="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
 			<div class="container">
@@ -141,7 +176,7 @@ img {
 
 		<div class="container text-center" style="margin-top: 115px;">
 
-			<div class="col-md-5 col-sm-12">
+			<div class="col-md-5 col-sm-12" style="display:none;">
 				<div class="bigcart"></div>
 				<h1>Your shopping cart</h1>
 				<p>
@@ -160,6 +195,12 @@ img {
 						<span>Price</span></li>
 				</ul>
 			</div>
+			<div id="submit_page" style="float:right;margin-right: 14px;">
+				<button onclick="submitPage()" class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right">Proceed To Checkout</button>
+			</div>
+			<div id="continue_shopping" style="float:right;margin-right: 182px;margin-top: 100px;display:none;" >
+				<button onclick="continueShopping()" class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right">Continue Shopping</button>
+			</div>
 
 		</div>
 
@@ -171,7 +212,7 @@ img {
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
-		<script src="/js/customjs.js?v=123412"></script>
+		<script src="/js/customjs.js?v=1234121212"></script>
 
 		<div id="DemoModal2" class="modal fade">
 			<!-- class modal and fade -->

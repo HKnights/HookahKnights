@@ -58,8 +58,9 @@ public class TransportQueueManager extends HttpServlet {
 		try {
 			log.warning("just thread ran !");
 			getQueuedMessenger();
-			if (!s_transportQueue.isEmpty())
+			while (!s_transportQueue.isEmpty()) {
 				s_transportQueue.take().run();
+			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

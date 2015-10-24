@@ -1,3 +1,4 @@
+<%@page import="main.java.com.eos.utils.FilterHKnightsRequest"%>
 <%@page import="main.java.com.eos.accounts.User"%>
 <%@page import="main.java.com.eos.utils.SessionManager"%>
 <%@page import="javax.mail.Session"%>
@@ -52,11 +53,13 @@
     	 $('#LGO').toggle();
     	 $('#SIN').toggle();
        }
-    function onSignInCallback(resp) {
-    //  gapi.client.load('plus', 'v1', apiClientLoaded);
-    }
+     function onSignInCallback(resp) {
+     	if(resp.status.method==='PROMPT'){
+       		gapi.client.load('plus', 'v1', apiClientLoaded);
+     	}
+     }
 
-    /**
+     /**
      * Sets up an API call after the Google API client loads.
      */
     function apiClientLoaded() {
@@ -150,7 +153,7 @@
 
     window.fbAsyncInit = function() {
     FB.init({
-      appId      : '1484009795227981',
+      appId      : '<%=FilterHKnightsRequest.FB_ACCOUNT_ID%>',
       cookie     : true,  // enable cookies to allow the server to access 
                           // the session
       xfbml      : true,  // parse social plugins on this page

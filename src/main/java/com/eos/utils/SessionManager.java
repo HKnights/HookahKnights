@@ -1,5 +1,6 @@
 package main.java.com.eos.utils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Text;
 import com.google.gson.Gson;
 
+import main.java.com.eos.accounts.Order;
 import main.java.com.eos.accounts.User;
 import main.java.com.eos.cart.ShoppingCart;
 import main.java.com.eos.model.HookahData;
@@ -74,18 +76,13 @@ public class SessionManager {
 					throw new AccountException(AccountException.USER_ALREADY_REGISTERED);
 				}
 				user = new User();
-				// TransportQueueManager.s_transportQueue.add(new
-				// TransportQueueManager().new TransportMessage(userEmail,
-				// "Mail from HookahKnights, You have Successfully Signed Up
-				// with us.",
+				TransportQueueManager.insertMessenger(
+						new Email(userEmail, "Mail from HookahKnights, You have Successfully Signed Up with us.",
+								"HookahKnights Welcomes you !!!"));
+				// TransportQueueManager.insertMessenger(
+				// new SMS("", "Mail from HookahKnights, You have Successfully
+				// Signed Up with us.",
 				// "HookahKnights Welcomes you !!!"));
-				Messenger messenger = new Email(userEmail,
-						"Mail from HookahKnights, You have Successfully Signed Up with us.",
-						"HookahKnights Welcomes you !!!");
-				TransportQueueManager.insertMessenger(messenger);
-				// TransportQueueManager
-				// .addTransportQueueThread(new TransportQueueManager().new
-				// TransportMessage(messenger));
 				createUser(userId, name, userEmail, userImage, userPass);
 			} else {
 				if (user != null) {
@@ -200,13 +197,18 @@ public class SessionManager {
 			List<Product> productList = cart.getItems();
 			for (Product product : productList) {
 				HookahData hookahData = product.getHookahData();
-				if (cartItemMap.containsKey(hookahData.getProdId())) {
+				if (cartItemMap.containsKey(hookahData.getItemId())) {
 					int quantity = Integer.parseInt(cartItemMap.get(hookahData.getProdId()).split("_")[0]) + 1;
-					cartItemMap.put(hookahData.getProdId(),
-							quantity + "_" + hookahData.getProdSize() + "_" + hookahData.getPrice() * quantity);
+					cartItemMap.put(hookahData.getItemId(),
+							quantity + "_" + hookahData.getProdSize() + "_" + hookahData.getPrice() * quantity + "_"
+									+ hookahData.getCoal() + "_" + hookahData.getFlavourFirst() + "_"
+									+ hookahData.getFlavourSecond() + "_" + hookahData.getBase1() + "_"
+									+ hookahData.getSecurity());
 				} else {
-					cartItemMap.put(hookahData.getProdId(),
-							"1_" + hookahData.getProdSize() + "_" + hookahData.getPrice());
+					cartItemMap.put(hookahData.getItemId(),
+							"1_" + hookahData.getProdSize() + "_" + hookahData.getPrice() + "_" + hookahData.getCoal()
+									+ "_" + hookahData.getFlavourFirst() + "_" + hookahData.getFlavourSecond() + "_"
+									+ hookahData.getBase1() + "_" + hookahData.getSecurity());
 				}
 				count++;
 			}
@@ -214,6 +216,79 @@ public class SessionManager {
 		setCartCount(request, count);
 		request.setAttribute("cart_json", new Gson().toJson(cartItemMap));
 		return new Gson().toJson(cartItemMap);
+	}
+
+	public static boolean isValidOrder(HttpServletRequest request, HttpServletResponse response) {
+		Map<Integer, String> cartItemMap = new HashMap<Integer, String>();
+		ShoppingCart cart = SessionManager.getShoppingCart(request);
+		String[] orderCountInInventory = Order.getInventory().split("_");
+		int smallCountinInven = Integer.parseInt(orderCountInInventory[0]);
+		int medCountinInven = Integer.parseInt(orderCountInInventory[1]);
+		int largeCountinInven = Integer.parseInt(orderCountInInventory[2]);
+		int smallCountInCart = 0;
+		int medCountInCart = 0;
+		int largeCountInCart = 0;
+		if (cart != null) {
+			List<Product> productList = cart.getItems();
+			for (Product product : productList) {
+				HookahData hookahData = product.getHookahData();
+				switch (hookahData.getProdId()) {
+				case 1:
+					smallCountInCart++;
+					break;
+				case 2:
+					medCountInCart++;
+					break;
+				case 3:
+					largeCountInCart++;
+					break;
+				}
+			}
+		}
+		try {
+			if (smallCountinInven < smallCountInCart) {
+				response.getWriter().println(
+						"You can only order " + (smallCountInCart - smallCountinInven + "") + " small sized hookahs");
+				return false;
+			} else if (medCountinInven < medCountInCart) {
+				response.getWriter().println(
+						"You can only order " + (medCountInCart - medCountinInven + "") + " medium sized hookahs");
+				return false;
+			} else if (largeCountinInven < largeCountInCart) {
+				response.getWriter().println(
+						"You can only order " + (largeCountInCart - largeCountinInven + "") + " large sized hookahs");
+				return false;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+	public static boolean canAddMore(HttpServletRequest request, HttpServletResponse response) {
+		Map<Integer, String> cartItemMap = new HashMap<Integer, String>();
+		ShoppingCart cart = SessionManager.getShoppingCart(request);
+		String[] orderCountInInventory = Order.getInventory().split("_");
+		int smallCountinInven = Integer.parseInt(orderCountInInventory[(Integer.parseInt(request.getParameter("id"))-1)]);
+		int smallCountInCart = 0;
+		
+		if (cart != null) {
+			List<Product> productList = cart.getItems();
+			for (Product product : productList) {
+				HookahData hookahData = product.getHookahData();
+				if (Integer.parseInt(request.getParameter("id")) == hookahData.getProdId())
+					smallCountInCart++;
+			}
+		}
+		try {
+			if (smallCountinInven <= smallCountInCart) {
+				response.getWriter().println("You cannot add more hookah of this type");
+				return false;
+			} 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return true;
 	}
 
 	public static void removeItem(HttpServletRequest request) {
@@ -227,7 +302,7 @@ public class SessionManager {
 			List<Product> productListIterable = new ArrayList<Product>(productList);
 			for (Product product : productListIterable) {
 				HookahData hookahData = product.getHookahData();
-				if (itemToRemove == hookahData.getProdId()) {
+				if (itemToRemove == hookahData.getItemId()) {
 					productList.remove(product);
 					count--;
 					break;

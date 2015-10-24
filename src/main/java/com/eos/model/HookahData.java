@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class HookahData implements Serializable {
 
 	private int prodId;
+	private int itemId;
 
 	private String prodName;
 
@@ -102,5 +103,13 @@ public class HookahData implements Serializable {
 	public void setSecurity(double security) {
 		this.security = security;
 	}
+	public int getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
+	}
+
 
 }

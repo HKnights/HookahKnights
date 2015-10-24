@@ -31,6 +31,7 @@ public class Hookah extends Product implements Serializable {
 		hookahData.setFlavourFirst(hookahRequestHandler.getFlavourFirst());
 		hookahData.setFlavourSecond(hookahRequestHandler.getFlavourSecond());
 		hookahData.setProdSize(hookahRequestHandler.getProdSize());
+		hookahData.setItemId(Product.getRandomProductId());
 
 		this.setProdId(prodId);
 		this.setHookahData(hookahData);

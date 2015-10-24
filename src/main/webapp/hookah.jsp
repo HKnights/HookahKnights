@@ -10,8 +10,8 @@
 	 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<!-- Optional theme -->
 </head>
-<script async src="/js/codejquery_min.js"></script>
-<script async src="/js/bootstrap3_2_0.min.js"></script>
+<script  src="/js/codejquery_min.js"></script>
+<script  src="/js/bootstrap3_2_0.min.js"></script>
 <script type="text/javascript">
 function storeUserDetails(userName,userId,userEmail){
 	$.ajax({

@@ -26,7 +26,7 @@ public class SMS extends Messenger {
 	private String sessionCookie;
 	private Proxy proxy;
 	protected static String JAVAMAIL_PROPERTIES = "javamail.properties";
-	static Logger log = Logger.getLogger(Email.class.getName());
+	static Logger log = Logger.getLogger(SMS.class.getName());
 
 	public SMS(String messageTo, String content, String sub) {
 		this.messageTo = messageTo;
@@ -106,85 +106,26 @@ public class SMS extends Messenger {
 	}
 
 	public void sendSMS(String phoneNumber, String message, String action) {
-
-		if (phoneNumber == null || phoneNumber.isEmpty()) {
-			System.err.println("Enter A Valid Phone Number");
-			System.exit(0);
-		} else {
-			try {
-
-				long testLong = Long.valueOf(phoneNumber);
-			} catch (NumberFormatException ex) {
-				System.err.println("Invalid Phone Number");
-				System.exit(0);
-			}
-
-		}
-
-		if (message == null || message.isEmpty()) {
-			System.err.println("Enter A Valid Phone Number");
-			System.exit(0);
-		} else if (message.length() > 140) {
-			System.err.println("Message should be less than 140 characters");
-		}
-		if (action == null || action.isEmpty()) {
-			System.err.println("Enter Valid Action to send Message");
-			System.exit(0);
-		}
-
-		URL sendURL;
-		HttpURLConnection sendConnection;
-		String sendContent;
+		// http://api.clickatell.com/http/sendmsg?user=hknights&password=CgJEPXWSLRfGOd&api_id=3561635&to=917829626302&text=HookahKnights%20!!!
+		String url = "http://api.clickatell.com/http/sendmsg?user=HKNIGHTS01&password=JUWDGNDEfZFEYB&api_id=3568202&to=919742850966&text=HookahKnights%20!!!";
+		URL obj;
 		try {
-			message = URLEncoder.encode(message, "UTF-8");
-			sendURL = new URL("http://site5.way2sms.com/FirstServletsms?custid=");
-			if (proxy == null) {
-				sendConnection = (HttpURLConnection) sendURL.openConnection();
-			} else {
-				sendConnection = (HttpURLConnection) sendURL.openConnection(proxy);
-			}
-			sendContent = "custid=undefined&HiddenAction=instantsms&Action=" + action + "&login=&pass=&MobNo="
-					+ phoneNumber + "&textArea=" + message;
-			sendConnection.setDoOutput(true);
-			sendConnection.setRequestProperty("User-Agent",
-					"Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.0.5) Gecko/2008120122 Firefox/3.0.5");
-			sendConnection.setRequestProperty("Content-Length", String.valueOf(sendContent.getBytes().length));
-			sendConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-			sendConnection.setRequestProperty("Accept", "*/*");
-			sendConnection.setRequestProperty("Cookie", sessionCookie);
-			sendConnection.setRequestMethod("POST");
-			sendConnection.setInstanceFollowRedirects(false);
+			obj = new URL(url);
 
-			PrintWriter printWriter = new PrintWriter(new OutputStreamWriter(sendConnection.getOutputStream()), true);
-			printWriter.print(sendContent);
-			printWriter.flush();
-			printWriter.close();
-			// Reading the returned web page to analyse whether the operation
-			// was sucessfull
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(sendConnection.getInputStream()));
-			StringBuilder SendResult = new StringBuilder();
-			String line;
-			while ((line = bufferedReader.readLine()) != null) {
-				SendResult.append(line);
-				SendResult.append('\n');
-				// Message has been submitted successfully
-			}
-			if (SendResult.toString().contains("Message has been submitted successfully")) {
-				System.out.println("Message sent to " + phoneNumber + " successfully.");
-			} else {
-				System.err.println("Message could not send to " + phoneNumber + ". Also check login credentials");
-			}
-			bufferedReader.close();
+			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-		} catch (UnsupportedEncodingException ex) {
-			System.err.println("Message content encoding error");
-			System.exit(0);
-		} catch (MalformedURLException ex) {
-			System.err.println("Sending URL Error");
-			System.exit(0);
-		} catch (IOException ex) {
-			System.err.println("Sending URL Connection Error");
-			System.exit(0);
+			// optional default is GET
+			con.setRequestMethod("GET");
+
+			// add request header
+			con.setRequestProperty("User-Agent", "Mozilla/5.0");
+
+			int responseCode = con.getResponseCode();
+			System.out.println("\nSending 'GET' request to URL : " + url);
+			System.out.println("Response Code : " + responseCode);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -226,22 +167,47 @@ public class SMS extends Messenger {
 	}
 
 	public void sendMessage() {
-//		TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
-//
-//		 List<NameValuePair> params = new ArrayList<NameValuePair>();
-//		 params.add(new BasicNameValuePair("To", "+919742850966"));
-//		 params.add(new BasicNameValuePair("From", "+919742850966"));
-//		 params.add(new BasicNameValuePair("Body", "asasasa"));
-//
-//		 MessageFactory messageFactory =
-//		 client.getAccount().getMessageFactory();
-//		 Message message;
-//		try {
-//			message = messageFactory.create(params);
-//			System.out.println(message.getSid());
-//		} catch (TwilioRestException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-}
+		log.warning("SMS SENDING started!");
+		// http://api.clickatell.com/http/sendmsg?user=hknights&password=CgJEPXWSLRfGOd&api_id=3561635&to=917829626302&text=HookahKnights%20!!!
+		String url = "http://api.clickatell.com/http/sendmsg?user=HKNIGHTS01&password=JUWDGNDEfZFEYB&api_id=3568202&to=919742850966&text=HookahKnights%20!!!";
+		URL obj;
+		try {
+			obj = new URL(url);
+
+			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+			// optional default is GET
+			con.setRequestMethod("GET");
+
+			// add request header
+			con.setRequestProperty("User-Agent", "Mozilla/5.0");
+
+			int responseCode = con.getResponseCode();
+			System.out.println("\nSending 'GET' request to URL : " + url);
+			System.out.println("Response Code : " + responseCode);
+			log.warning("sms sent!");
+		} catch (Exception e) {
+			log.warning("SMS ERROR !" + e);
+
+		}
+
+		// TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID,
+		// AUTH_TOKEN);
+		//
+		// List<NameValuePair> params = new ArrayList<NameValuePair>();
+		// params.add(new BasicNameValuePair("To", "+919742850966"));
+		// params.add(new BasicNameValuePair("From", "+919742850966"));
+		// params.add(new BasicNameValuePair("Body", "asasasa"));
+		//
+		// MessageFactory messageFactory =
+		// client.getAccount().getMessageFactory();
+		// Message message;
+		// try {
+		// message = messageFactory.create(params);
+		// System.out.println(message.getSid());
+		// } catch (TwilioRestException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+	}
 }

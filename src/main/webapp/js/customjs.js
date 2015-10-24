@@ -9,14 +9,15 @@ $(function() {
 		container: 'body',
 		placement: 'bottom',
 		animation: false,
+		id:this,
 		content: function() {
-			return $('#popover').html();
+			return $('#popover'+(pop.index(this)+1)).html().split('&gt;')[1];
 		}
 	});
 
 
 	pop.on('click', function(e) {
-		pop.popover('toggle');
+		pop.popover('toggle',pop.index(this));
 		pop.not(this).popover('hide');
 	});
 

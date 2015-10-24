@@ -15,7 +15,7 @@ public class AccountBean {
 		String password = request.getParameter("password");
 
 		if (password.equals("")) {
-			password = User.generatePassword();
+			//password = User.generatePassword();
 		}
 
 		User user = new User(name, phone, email, mobile, password);

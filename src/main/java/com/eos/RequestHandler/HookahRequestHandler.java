@@ -36,27 +36,10 @@ public class HookahRequestHandler extends AbstractRequestHandler {
 		this.base2 = request.getParameter("base2");
 		this.flavourFirst = request.getParameter("flavour_first");
 		this.flavourSecond = request.getParameter("flavour_second");
-
-		// DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-		// try {
-		// Entity result = ds.get(KeyFactory.createKey("Product", prodId));
-		// this.prodName = (String) result.getProperty("prod_name");
-		// this.coal = Integer.parseInt((String) result.getProperty("coal"));
-		// this.price = Double.parseDouble((String)
-		// result.getProperty("price"));
-		// this.security = Double.parseDouble((String)
-		// result.getProperty("security"));
-		// this.prodSize = (String) result.getProperty("size");
-		//
-		// return this;
-		// } catch (Exception e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
 		this.prodName = "Hookah";
 		this.coal = 3;
 		this.price = Hookah.getHookahPriceById(prodId);
-		this.security =  Hookah.getHookahSecurityById(prodId);
+		this.security = Hookah.getHookahSecurityById(prodId);
 		this.prodSize = Hookah.getHookahSizeById(prodId);
 
 	}
