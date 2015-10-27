@@ -79,7 +79,7 @@ public class HookahKnightsServlet extends HttpServlet {
 			} else {
 				// SessionManager.getShoppingCart(request);
 				RequestDispatcher dispatcher = getServletContext()
-						.getRequestDispatcher(HookahNavigationConstantBean.HOME_PAGE);
+						.getRequestDispatcher("/progree.jsp");
 				dispatcher.forward(request, response);
 			}
 		} catch (Exception e) {

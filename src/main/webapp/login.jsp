@@ -9,7 +9,6 @@
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="845473618760-8v6rabh48mpdecntb77dkd81h1ovpmva.apps.googleusercontent.com">	
     <script src = "https://plus.google.com/js/client:platform.js" async defer></script>
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     
   </head>
   <body>

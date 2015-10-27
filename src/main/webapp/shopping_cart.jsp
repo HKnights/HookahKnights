@@ -5,6 +5,7 @@ aa
 <meta charset="utf-8">
 <title>Hookah Knights</title>
 <meta name="description" content="Wiredwiki App">
+<%@include file="/progree.jsp" %>
 <!-- Latest compiled and minified CSS -->
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
@@ -22,12 +23,13 @@ aa
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<style type="text/css">   
 		.popover-content { border: solid 1px grey;}
 	</style>
 <script type="text/javascript">
+$(function(){
+	startFromHalf();
+	});
 function submitPage(){
 	document.mainForm.action1.value = "CHECKOUT_ACTION";
 	document.mainForm.submit();
@@ -195,10 +197,10 @@ img {
 						<span>Price</span></li>
 				</ul>
 			</div>
-			<div id="submit_page" style="float:right;margin-right: 14px;">
+			<div class="usageType" id="submit_page" style="float:right;margin-right: 14px;">
 				<button onclick="submitPage()" class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right">Proceed To Checkout</button>
 			</div>
-			<div id="continue_shopping" style="float:right;margin-right: 182px;margin-top: 100px;display:none;" >
+			<div class="usageType" id="continue_shopping" style="float:right;margin-right: 182px;margin-top: 100px;display:none;" >
 				<button onclick="continueShopping()" class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right">Continue Shopping</button>
 			</div>
 
@@ -210,7 +212,6 @@ img {
 
 		<!-- JavaScript includes -->
 
-		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/customjs.js?v=1234121212"></script>
 

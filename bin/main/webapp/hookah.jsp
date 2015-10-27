@@ -10,7 +10,15 @@
 	<!-- Optional theme -->
 </head>
 <script src="/js/codejquery_min.js"></script>
-<script type="text/javascript">
+ <link href="ytLoad.jquery.css" rel="stylesheet" type="text/css">
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type="text/javascript" src="jquery.transit.js"></script>
+
+        <script type="text/javascript" src="ytLoad.jquery.js"></script>
+        <script type="text/javascript">
+
+          
 function storeUserDetails(userName,userId,userEmail){
 	$.ajax({
         url: 'http://localhost:8888/hookahknights?action1=USER_LOGIN',

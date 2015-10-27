@@ -10,6 +10,7 @@
 <!-- Latest compiled and minified CSS -->
 <!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
 
+
 <!-- Optional theme -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -31,10 +32,217 @@
 
 	
 </head>
+
 <style>
-body {
-	padding-top: 40px;
+
+.cover {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
 }
+
+.blur-in {
+  -webkit-animation: blur 2s forwards;
+  -moz-animation: blur 2s forwards;
+  -o-animation: blur 2s forwards;
+  animation: blur 2s forwards;
+}
+
+.blur-out {
+  -webkit-animation: blur-out 2s forwards;
+  -moz-animation: blur-out 2s forwards;
+  -o-animation: blur-out 2s forwards;
+  animation: blur-out 2s forwards;
+}
+ @-webkit-keyframes 
+blur { 0% {
+ -webkit-filter: blur(0px);
+ -moz-filter: blur(0px);
+ -o-filter: blur(0px);
+ -ms-filter: blur(0px);
+ filter: blur(0px);
+}
+ 100% {
+ -webkit-filter: blur(4px);
+ -moz-filter: blur(4px);
+ -o-filter: blur(4px);
+ -ms-filter: blur(4px);
+ filter: blur(4px);
+}
+}
+ @-moz-keyframes 
+blur { 0% {
+ -webkit-filter: blur(0px);
+ -moz-filter: blur(0px);
+ -o-filter: blur(0px);
+ -ms-filter: blur(0px);
+ filter: blur(0px);
+}
+ 100% {
+ -webkit-filter: blur(4px);
+ -moz-filter: blur(4px);
+ -o-filter: blur(4px);
+ -ms-filter: blur(4px);
+ filter: blur(4px);
+}
+}
+ @-o-keyframes 
+blur { 0% {
+ -webkit-filter: blur(0px);
+ -moz-filter: blur(0px);
+ -o-filter: blur(0px);
+ -ms-filter: blur(0px);
+ filter: blur(0px);
+}
+ 100% {
+ -webkit-filter: blur(4px);
+ -moz-filter: blur(4px);
+ -o-filter: blur(4px);
+ -ms-filter: blur(4px);
+ filter: blur(4px);
+}
+}
+ @keyframes 
+blur { 0% {
+ -webkit-filter: blur(0px);
+ -moz-filter: blur(0px);
+ -o-filter: blur(0px);
+ -ms-filter: blur(0px);
+ filter: blur(0px);
+}
+ 100% {
+ -webkit-filter: blur(4px);
+ -moz-filter: blur(4px);
+ -o-filter: blur(4px);
+ -ms-filter: blur(4px);
+ filter: blur(4px);
+}
+}
+ @-webkit-keyframes 
+blur-out { 0% {
+ -webkit-filter: blur(4px);
+ -moz-filter: blur(4px);
+ -o-filter: blur(4px);
+ -ms-filter: blur(4px);
+ filter: blur(4px);
+}
+ 100% {
+ -webkit-filter: blur(0px);
+ -moz-filter: blur(0px);
+ -o-filter: blur(0px);
+ -ms-filter: blur(0px);
+ filter: blur(0px);
+}
+}
+ @-moz-keyframes 
+blur-out { 0% {
+ -webkit-filter: blur(4px);
+ -moz-filter: blur(4px);
+ -o-filter: blur(4px);
+ -ms-filter: blur(4px);
+ filter: blur(4px);
+}
+ 100% {
+ -webkit-filter: blur(0px);
+ -moz-filter: blur(0px);
+ -o-filter: blur(0px);
+ -ms-filter: blur(0px);
+ filter: blur(0px);
+}
+}
+ @-o-keyframes 
+blur-out { 0% {
+ -webkit-filter: blur(4px);
+ -moz-filter: blur(4px);
+ -o-filter: blur(4px);
+ -ms-filter: blur(4px);
+ filter: blur(4px);
+}
+ 100% {
+ -webkit-filter: blur(0px);
+ -moz-filter: blur(0px);
+ -o-filter: blur(0px);
+ -ms-filter: blur(0px);
+ filter: blur(0px);
+}
+}
+ @keyframes 
+blur-out { 0% {
+ -webkit-filter: blur(4px);
+ -moz-filter: blur(4px);
+ -o-filter: blur(4px);
+ -ms-filter: blur(4px);
+ filter: blur(4px);
+}
+ 100% {
+ -webkit-filter: blur(0px);
+ -moz-filter: blur(0px);
+ -o-filter: blur(0px);
+ -ms-filter: blur(0px);
+ filter: blur(0px);
+}
+}
+
+.content {
+  width: 650px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+
+span { color: dimgray; }
+
+.pop-up {
+  position: fixed;
+  margin: 5% auto;
+  margin-top: -51px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.box {
+  background-color: whitesmoke;
+  position: relative;
+  -webkit-box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
+}
+
+.button {
+ margin 0 auto;
+  background-color: #FF8566;
+  margin-bottom: 33px;
+}
+
+.button:hover {
+  background-color: #7CCF29;
+  -webkit-box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
+}
+
+.close-button {
+  transition: all 0.5s ease;
+  position: absolute;
+  background-color: #FF9980;
+  padding: 1.5px 7px;
+  left: 0;
+  margin-left: -10px;
+  margin-top: -57px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  color: white;
+  -webkit-box-shadow: -4px -2px 6px 0px rgba(0,0,0,0.1);
+  -moz-box-shadow: -4px -2px 6px 0px rgba(0,0,0,0.1);
+  box-shadow: -3px 1px 6px 0px rgba(0,0,0,0.1);
+}
+
+.close-button:hover {
+  background-color: tomato;
+  color: #fff;
+}
+
 
 h2 {
 	font-size: large;
@@ -88,13 +296,28 @@ cart {
 	overflow: hidden;
 }
 </style>
+<script type="text/javascript">
+function demo() {
+	  $('.pop-up').hide();
+	  $('.pop-up').fadeIn(400);
+	  $('#overlay').addClass('blur-in');
+	  $('#overlay').removeClass('blur-out');
+	      $('.close-button').click(function (e) { 
+	      $('.pop-up').fadeOut(300);
+	      $('#overlay').removeClass('blur-in');
+	      $('#overlay').addClass('blur-out');
+	      e.stopPropagation();
+	    });
+	 }</script>
 <%String[] inventorDetails=(Order.getInventory()).split("_"); 
 int smallHookahLeft=Integer.parseInt(inventorDetails[0]);
 int mediumHookahLeft=Integer.parseInt(inventorDetails[1]);
 int largeHookahLeft=Integer.parseInt(inventorDetails[2]);
 %> 
-<body data-spy="scroll" data-target="#my-navbar">
+<%@include file="/progree.jsp" %>
 
+<body data-spy="scroll" data-target="#my-navbar">
+<input type="button" onclick="demo();" value="Test"/>
 	<form action="hookahknights" method="POST" name="mainForm">
 		<input type="hidden" name="user_name" value=""> <input
 			type="hidden" name="user_pass" value=""> <input type="hidden"
@@ -137,6 +360,7 @@ int largeHookahLeft=Integer.parseInt(inventorDetails[2]);
   			<span><img id="user_profile_pic"  src=""  height="25" width="25" style=" display :none;  border-radius: 10px;float: right;margin-top: -36px;margin-right: 101px;"></span></div>
   		</div>End Container
   	</nav>End navbar -->
+<div id="overlay"  class="cover" >
 		<nav class="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
 			<div class="container">
 				<div class="navbar-header">
@@ -191,7 +415,7 @@ int largeHookahLeft=Integer.parseInt(inventorDetails[2]);
 				<div class="page-header" id="categories"
 					style="margin-top: 7px; margin-bottom: 3px; padding-bottom: 0px;">
 					<h2>Hookah Categories.<div style="height: 42px;float:right;">
-				<button onclick="submitPage()" class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right">Proceed To Checkout</button>
+				<button onclick="submitPage()"  class="usageType btn btn-lg btn-primary btn-warning navbar-btn navbar-right">Proceed To Checkout</button>
 			</div></h2>
 				</div>
 				<!-- End Page Header -->
@@ -264,115 +488,14 @@ int largeHookahLeft=Integer.parseInt(inventorDetails[2]);
 						<%} %>
 						<button id="1"
 								style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-								onclick="showSubProducts(1)" type="button">Customize
-								your hookah</button></td>
+								onclick="showSubProducts(1)" type="button">Customize your hookah</button></td>
 
 					</tr>
 					<tr>
 						<td style="padding-bottom: 15px;" colspan="6">
 							<div class="row-page-header" id="large"
 								style="padding-bottom: 0px; margin-left: 0px !important;">
-								<div class="col-sm-8"
-									style="display: none; background-color: rgba(238, 238, 238, 0.62); margin-left: 10px; margin-top: 11px;"
-									id="prod_id_1_div">
-									<h3
-										style="text-decoration: underline; margin-top: 7px; margin-bottom: 3px; font-size: 19px;">Small
-										Sized Hookah</h3>
-									<div>
-										<table>
-											<tr>
-												<td style="width: 400px;"><h2 style="font-size: 16px;">Cost</h2></td>
-												<td style="width: 400px;" id="cost_1">Rs 500</td>
-											</tr>
-											<tr>
-												<td><h2 style="font-size: 16px; width: 400px;">Coal</h2></td>
-												<td>3 Pieces</td>
-											</tr>
-											<tr>
-												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
-														Flavour 1</h2></td>
-												<td>
-													<div>
-														<select name="select_flavour" id="select_flavour_id_1_1">
-															<option value="Mint" selected>Mint</option>
-															<option value="Pan">Pan</option>
-															<option value="Apple">Apple</option>
-															<option value="Grapes">Grapes</option>
-															<option value="BubbleGum">BubbleGum</option>
-														</select>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
-														Flavour 2</h2></td>
-												<td>
-													<div>
-														<select name="select_flavour" id="select_flavour_id_1_2">
-															<option value="Mint" selected>Mint</option>
-															<option value="Pan">Pan</option>
-															<option value="Apple">Apple</option>
-															<option value="Grapes">Grapes</option>
-															<option value="BubbleGum">BubbleGum</option>
-														</select>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td><h2 style="font-size: 16px; width: 400px;">Liquid
-														Base 1</h2></td>
-												<td>
-													<div style="width: 400px;">
-														<label class="radio-inline"><input type="radio"
-															name="group1_1" value="Water" checked> Water</label>&nbsp;
-														<label class="radio-inline"><input type="radio"
-															name="group1_1" value="Milk"> Milk</label>&nbsp; <label
-															class="radio-inline"><input type="radio"
-															name="group1_1" value="Ice"> Ice</label>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td><h2 style="font-size: 16px; width: 400px;">Liquid
-														Base 2</h2></td>
-												<td>
-													<div style="width: 400px;">
-														<label class="radio-inline"><input type="radio"
-															name="group1_2" value="Water" checked> Water</label>&nbsp;
-														<label class="radio-inline"><input type="radio"
-															name="group1_2" value="Milk"> Milk</label>&nbsp; <label
-															class="radio-inline"><input type="radio"
-															name="group1_2" value="Ice"> Ice</label>&nbsp; <label
-															class="radio-inline"><input type="radio"
-															name="group1_2" value="Juice"> Juice</label>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td style="width: 400px;"><h2 style="font-size: 16px;">2
-														in 1 Flavours</h2></td>
-												<td>Not Available</td>
-											</tr>
-											<tr>
-												<td style="width: 400px;"><h2 style="font-size: 16px;">Security</h2></td>
-												<td>Rs 500</td>
-												<!-- <td><input type="button" onclick="ajaxAddToCart(1)" style="margin-right: -14px;margin-bottom: -3px; width:100px" class="btn btn-warning navbar-btn navbar-right" value="Add" /></td></tr> -->
-										</table>
-									</div>
-									<div class="item" style="float: right; margin-top: -284px;">
-										<img src="hookah14.jpg" alt="item" class="hookahImg" />
-										<h2>Hookah Small</h2>
-										<%if(smallHookahLeft>0){ %>
-										<button id="1"
-											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-											class="add-to-cart" type="button">Add to cart</button>
-											<%}else{ %>
-											<button id="1"
-											style="color: #ffffff; width: 130px; background-color: #940332; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-											class="add-to-cart"  disabled="disabled" type="button">Out Of Stock</button>
-											<%} %>
-									</div>
-								</div>
+								
 							</div>
 						</td>
 					</tr>
@@ -770,12 +893,118 @@ int largeHookahLeft=Integer.parseInt(inventorDetails[2]);
 
 			</section>
 		</div>
+		</div>
+<div class="row pop-up" style="display:none;">
+  <div class="box large-centered" style="height: 543px;width: 80%;margin-left: 94px;margin-top: 54px;padding: 44px;"> <a href="#" class="close-button">&#10006;</a>
+		<div class="col-sm-8" style=" background-color: rgba(238, 238, 238, 0.62); margin-left: 10px; margin-top: 11px;"
+									id="prod_id_1_div">
+									<h3
+										style="text-decoration: underline; margin-top: 7px; margin-bottom: 3px; font-size: 19px;">Small
+										Sized Hookah</h3>
+									<div>
+										<table>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Cost</h2></td>
+												<td style="width: 400px;" id="cost_1">Rs 500</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Coal</h2></td>
+												<td>3 Pieces</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
+														Flavour 1</h2></td>
+												<td>
+													<div>
+														<select name="select_flavour" id="select_flavour_id_1_1">
+															<option value="Mint" selected>Mint</option>
+															<option value="Pan">Pan</option>
+															<option value="Apple">Apple</option>
+															<option value="Grapes">Grapes</option>
+															<option value="BubbleGum">BubbleGum</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
+														Flavour 2</h2></td>
+												<td>
+													<div>
+														<select name="select_flavour" id="select_flavour_id_1_2">
+															<option value="Mint" selected>Mint</option>
+															<option value="Pan">Pan</option>
+															<option value="Apple">Apple</option>
+															<option value="Grapes">Grapes</option>
+															<option value="BubbleGum">BubbleGum</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Liquid
+														Base 1</h2></td>
+												<td>
+													<div style="width: 400px;">
+														<label class="radio-inline"><input type="radio"
+															name="group1_1" value="Water" checked> Water</label>&nbsp;
+														<label class="radio-inline"><input type="radio"
+															name="group1_1" value="Milk"> Milk</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_1" value="Ice"> Ice</label>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Liquid
+														Base 2</h2></td>
+												<td>
+													<div style="width: 400px;">
+														<label class="radio-inline"><input type="radio"
+															name="group1_2" value="Water" checked> Water</label>&nbsp;
+														<label class="radio-inline"><input type="radio"
+															name="group1_2" value="Milk"> Milk</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_2" value="Ice"> Ice</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_2" value="Juice"> Juice</label>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">2
+														in 1 Flavours</h2></td>
+												<td>Not Available</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Security</h2></td>
+												<td>Rs 500</td>
+												<!-- <td><input type="button" onclick="ajaxAddToCart(1)" style="margin-right: -14px;margin-bottom: -3px; width:100px" class="btn btn-warning navbar-btn navbar-right" value="Add" /></td></tr> -->
+										</table>
+									</div>
+									<div class="item" style="float: right; margin-top: -284px;">
+										<img src="hookah14.jpg" alt="item" class="hookahImg" />
+										<h2>Hookah Small</h2>
+										<%if(smallHookahLeft>0){ %>
+										<button id="1"
+											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+											class="add-to-cart" type="button">Add to cart</button>
+											<%}else{ %>
+											<button id="1"
+											style="color: #ffffff; width: 130px; background-color: #940332; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+											class="add-to-cart"  disabled="disabled" type="button">Out Of Stock</button>
+											<%} %>
+									</div>
+								</div>
+	</div>
+</div>
 	</form>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<script>
+	$(function(){
+		startFromHalf();
+		});
 	function submitPage(){
 		document.mainForm.action1.value = "CHECKOUT_ACTION";
 		document.mainForm.submit();
@@ -817,11 +1046,23 @@ int largeHookahLeft=Integer.parseInt(inventorDetails[2]);
 			cartItems.text(value);
 		}
 		function showSubProducts(value) {
-			$('#prod_id_' + value + '_div').toggle(300);
+			  $('.pop-up').hide();
+			  $('#to_display').html($('#prod_id_' + value + '_div').html());
+			  $('.pop-up').fadeIn(400);
+			  $('#overlay').addClass('blur-in');
+			  $('#overlay').removeClass('blur-out');
+			      $('.close-button').click(function (e) { 
+			      $('.pop-up').fadeOut(300);
+			      $('#overlay').removeClass('blur-in');
+			      $('#overlay').addClass('blur-out');
+			      e.stopPropagation();
+			    });
+			//$('#prod_id_' + value + '_div').toggle(300);
 		}
 		$('.add-to-cart').on('click', function() {
 			if(isAddMoreApplicable(this.id)){
-			$('#prod_id_' + this.id + '_div').hide(1000);
+				$('.close-button').click();
+			//$('#prod_id_' + this.id + '_div').hide(1000);
 			var cart = $('.shopping-cart');
 			var imgtodrag = $(this).parent('.item').find("img").eq(0);
 			if (imgtodrag) {
@@ -916,7 +1157,7 @@ int largeHookahLeft=Integer.parseInt(inventorDetails[2]);
 
 			<p>&copy; Copyright @ 2014</p>
 
-		</div>
+		
 		<!-- end Container-->
 
 
@@ -925,5 +1166,7 @@ int largeHookahLeft=Integer.parseInt(inventorDetails[2]);
 	<!-- Latest compiled and minified JavaScript -->
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</div>
 </body>
+
 </html>

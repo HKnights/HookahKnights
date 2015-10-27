@@ -1,7 +1,11 @@
 
 <%@page import="main.java.com.eos.utils.SessionManager"%>
 <html>
-
+<link href="ytLoad.jquery.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.transit.js"></script>
+<script type="text/javascript" src="ytLoad.jquery.js"></script>
+       
 <style>
 body {
 	padding-top: 40px;
@@ -43,7 +47,7 @@ customization .add-to-cart {
 	line-height: 34px;
 	border: none;
 }
-#cart_div { cursor: pointer; }
+.cart_div { cursor: pointer; }
 cart {
 	height: 34px;
 	border-radius: 3px;
@@ -71,7 +75,7 @@ if(cartCount==null){
 	<input type="hidden" name="user_id" value="">
 	<input type="hidden" name="user_email" value="">
 	<input type="hidden" name="user_image" value="">
-	<div id="cart_div">
+	<div   class="cart_div usageType">
 		<span onclick="goToShoppingCartPage()"><i class="shopping-cart"><img
 				src="white-shopping-cart-png.png"
 				style="margin-left: 10px; margin-top: 17px;" /></i></span><span id="cart_value"

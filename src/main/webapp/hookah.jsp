@@ -10,9 +10,15 @@
 	 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<!-- Optional theme -->
 </head>
+
 <script  src="/js/codejquery_min.js"></script>
 <script  src="/js/bootstrap3_2_0.min.js"></script>
-<script type="text/javascript">
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <%@include file="/progree.jsp" %>
+    <script type="text/javascript">
+
+        
 function storeUserDetails(userName,userId,userEmail){
 	$.ajax({
         url: '/hookahknights?action1=USER_LOGIN',
@@ -41,10 +47,7 @@ function MyCtrl($scope, $timeout) {
 }
 </script>
 	<style>
-	body{
-		padding-top: 40px;
-	}
-	h1,h2,h3{
+		h1,h2,h3{
 	margin-top: 7px !important;
 	 margin-bottom: 3px !important;
 	 }
@@ -86,6 +89,9 @@ function MyCtrl($scope, $timeout) {
   					<li><a href="#contact">ContactUs</a> 
   				</ul>
   			</div>
+  			<!-- <div id="topBar">
+  			<input id="usageType" type="button" value="asax">
+        </div> -->
 			</div><!-- End Container-->
   	</nav><!-- End navbar -->
   	<!-- jumbotron-->
@@ -102,7 +108,7 @@ function MyCtrl($scope, $timeout) {
   			<div class="page-header container text-center" id="home" style="padding-bottom: 0px;">
   			<div class="btn-group">
 <!--   				<input type="submit" class="btn btn-lg btn-warning" value="Search Hookah/Beverages" /> -->
-  				<input type="button" class="btn btn-lg btn-warning" value="Search Hookah/Beverages" onclick="addToOrder();">
+  				<input type="button" class="usageType btn btn-lg btn-warning" value="Search Hookah/Beverages" onclick="addToOrder();">
   			</div>
   			</div>
   			<div class="row">
