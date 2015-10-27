@@ -50,10 +50,10 @@
 }
 
 .blur-out {
-  -webkit-animation: blur-out 2s forwards;
-  -moz-animation: blur-out 2s forwards;
-  -o-animation: blur-out 2s forwards;
-  animation: blur-out 2s forwards;
+  -webkit-animation: blur-out 1s forwards;
+  -moz-animation: blur-out 1s forwards;
+  -o-animation: blur-out 1s forwards;
+  animation: blur-out 1s forwards;
 }
  @-webkit-keyframes 
 blur { 0% {
@@ -229,7 +229,8 @@ span { color: dimgray; }
   padding: 1.5px 7px;
   left: 0;
   margin-left: -10px;
-  margin-top: -57px;
+  margin-top: -14px;
+      z-index: 10;
   border-radius: 50%;
   border: 2px solid #fff;
   color: white;
@@ -256,8 +257,9 @@ h1, h3 {
 }
 
 .col-sm-8 {
-	margin-left: 0px;
-	width: 90%;
+background-color: rgba(238, 238, 238, 0.62);
+       border-radius: 24px;
+    width: 896px;
 }
 
 .hookahImg {
@@ -296,19 +298,6 @@ cart {
 	overflow: hidden;
 }
 </style>
-<script type="text/javascript">
-function demo() {
-	  $('.pop-up').hide();
-	  $('.pop-up').fadeIn(400);
-	  $('#overlay').addClass('blur-in');
-	  $('#overlay').removeClass('blur-out');
-	      $('.close-button').click(function (e) { 
-	      $('.pop-up').fadeOut(300);
-	      $('#overlay').removeClass('blur-in');
-	      $('#overlay').addClass('blur-out');
-	      e.stopPropagation();
-	    });
-	 }</script>
 <%String[] inventorDetails=(Order.getInventory()).split("_"); 
 int smallHookahLeft=Integer.parseInt(inventorDetails[0]);
 int mediumHookahLeft=Integer.parseInt(inventorDetails[1]);
@@ -317,7 +306,6 @@ int largeHookahLeft=Integer.parseInt(inventorDetails[2]);
 <%@include file="/progree.jsp" %>
 
 <body data-spy="scroll" data-target="#my-navbar">
-<input type="button" onclick="demo();" value="Test"/>
 	<form action="hookahknights" method="POST" name="mainForm">
 		<input type="hidden" name="user_name" value=""> <input
 			type="hidden" name="user_pass" value=""> <input type="hidden"
@@ -551,8 +539,246 @@ int largeHookahLeft=Integer.parseInt(inventorDetails[2]);
 						<td style="padding-bottom: 15px;" colspan="6">
 							<div class="row page-header" id="medium"
 								style="padding-bottom: 0px; margin-left: 0px !important;">
-								<div class="col-sm-8"
-									style="display: none; background-color: #eee;"
+								
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 20%;">
+							<div class="col-sm-4" style="width: 100%">
+
+								<!-- items -->
+								<div class="items">
+									<!-- single item -->
+									<div class="item" style="margin-top: 10px;">
+										<img id="hookah_small_img" onmouseover="change();"
+											onmouseout="changeReset();" src="hookah14.jpg" alt="item"
+											class="hookahImg" />
+									</div>
+									<!--/ single item -->
+									<!-- single item -->
+
+									<!--/ items -->
+
+								</div>
+							</div>
+						</td>
+						<td style="width: 15%;"><span> <b>Large Sized
+									Hookah (Glass and Steel)</b>
+						</span></td>
+
+						<td style="width: 20%;"><span style="font-size: small;">Very
+								Awesome Smokey Flavour.Very Awesome Smokey Flavour.Very Awesome
+								Smokey Flavour.</span></td>
+
+						<td><span style="margin-left: 9px;">Rs. 700</span></td>
+
+						<td>
+							<p>
+								<span style="font-weight: 700; color: Green;">Free</span></br> <span>Delivered
+									in 1-2 hours.</span>
+							</p>
+						</td>
+						<td>
+						<%if(largeHookahLeft==1) {%>
+						<b style="color: red;font-weight: 400;">only <%=largeHookahLeft %> hookah left</b>
+						<%}else if(largeHookahLeft>1){ %>
+						<b style="color: green;font-weight: 200;">only <%=largeHookahLeft %> hookahs left</b>
+						<%} %>
+						<button id="1"
+								style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+								onclick="showSubProducts(3)" type="button">Customize
+								your hookah</button></td>
+
+					</tr>
+					<tr>
+						<td style="padding-bottom: 15px;" colspan="6">
+							<div class="row-page-header" id="large"
+								style="padding-bottom: 0px; margin-left: 0px !important;">
+								
+							</div>
+						</td>
+					</tr>
+				</table>
+				<hr>
+			</section>
+		</div>
+		<!-- End Container -->
+
+		<!-- Contact -->
+
+		<div class="container">
+			<section>
+				<div class="page-header" id="contact">
+					<h2>Contact Us.</h2>
+				</div>
+				<!-- End Page Header -->
+
+				<div class="row-page-header" style="margin-left: 0px !important;">
+					<div class="col-lg-4">
+						<p>Send us a message, or contact us from the address below</p>
+
+
+						<address>
+							<strong>Wiredwiki Pvt Ltd.</strong></br> 111, Malviya nagar </br> Plot no.
+							45</br> New delhi - 110017</br> P: +91 9999999999
+						</address>
+					</div>
+
+					<div class="col-lg-8">
+						<form action="" class="form-horizontal">
+							<div class="form-group">
+								<label for="user-name" class="col-lg-2 control-label">Name</label>
+								<div class="col-lg-10">
+									<input type="text" class="form-control" id="user-name"
+										placeholder="Enter you name">
+								</div>
+							</div>
+							<!-- End form group -->
+
+							<div class="form-group">
+								<label for="user-email" class="col-lg-2 control-label">Email</label>
+								<div class="col-lg-10">
+									<input type="text" class="form-control" id="user-email"
+										placeholder="Enter you Email Address">
+								</div>
+							</div>
+							<!-- End form group -->
+
+							<div class="form-group">
+								<label for="user-message" class="col-lg-2 control-label">Any
+									Message</label>
+								<div class="col-lg-10">
+									<textarea name="user-message" id="user-message"
+										class="form-control" cols="20" rows="4"
+										placeholder="Enter your Message"></textarea>
+								</div>
+							</div>
+							<!-- End form group -->
+
+							<div class="form-group">
+								<div class="col-lg-10 col-lg-offset-2">
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- End the row -->
+
+			</section>
+		</div>
+		</div>
+		<div id="DemoModal2" class="modal fade">
+							<!-- class modal and fade -->
+							<div class="modal-body">
+								<!-- modal body -->
+								<%@include file="/index.jsp"%>
+							</div>
+						</div>
+<div class="row pop-up" style="display:none;">
+  <div class="box large-centered" style="height: 451px;width: 898px;margin-left: 195px;margin-top:94px;border-radius: 24px;box-shadow: 1px 1px 9px 10px rgba(0, 0, 0, 0.28);"> <a href="#" class="close-button">&#10006;</a>
+		<div class="col-sm-8" style=" display: none; background-color: rgba(238, 238, 238, 0.62);"
+									id="prod_id_1_div">
+									<h3
+										style="text-decoration: underline; margin-top: 7px; margin-bottom: 3px; font-size: 19px;">Small
+										Sized Hookah</h3>
+									<div>
+										<table>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Cost</h2></td>
+												<td style="width: 400px;" id="cost_1">Rs 500</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Coal</h2></td>
+												<td>3 Pieces</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
+														Flavour 1</h2></td>
+												<td>
+													<div>
+														<select name="select_flavour" id="select_flavour_id_1_1">
+															<option value="Mint" selected>Mint</option>
+															<option value="Pan">Pan</option>
+															<option value="Apple">Apple</option>
+															<option value="Grapes">Grapes</option>
+															<option value="BubbleGum">BubbleGum</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
+														Flavour 2</h2></td>
+												<td>
+													<div>
+														<select name="select_flavour" id="select_flavour_id_1_2">
+															<option value="Mint" selected>Mint</option>
+															<option value="Pan">Pan</option>
+															<option value="Apple">Apple</option>
+															<option value="Grapes">Grapes</option>
+															<option value="BubbleGum">BubbleGum</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Liquid
+														Base 1</h2></td>
+												<td>
+													<div style="width: 400px;">
+														<label class="radio-inline"><input type="radio"
+															name="group1_1" value="Water" checked> Water</label>&nbsp;
+														<label class="radio-inline"><input type="radio"
+															name="group1_1" value="Milk"> Milk</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_1" value="Ice"> Ice</label>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><h2 style="font-size: 16px; width: 400px;">Liquid
+														Base 2</h2></td>
+												<td>
+													<div style="width: 400px;">
+														<label class="radio-inline"><input type="radio"
+															name="group1_2" value="Water" checked> Water</label>&nbsp;
+														<label class="radio-inline"><input type="radio"
+															name="group1_2" value="Milk"> Milk</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_2" value="Ice"> Ice</label>&nbsp; <label
+															class="radio-inline"><input type="radio"
+															name="group1_2" value="Juice"> Juice</label>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">2
+														in 1 Flavours</h2></td>
+												<td>Not Available</td>
+											</tr>
+											<tr>
+												<td style="width: 400px;"><h2 style="font-size: 16px;">Security</h2></td>
+												<td>Rs 500</td>
+												<!-- <td><input type="button" onclick="ajaxAddToCart(1)" style="margin-right: -14px;margin-bottom: -3px; width:100px" class="btn btn-warning navbar-btn navbar-right" value="Add" /></td></tr> -->
+										</table>
+									</div>
+									<div class="item" style="float: right; margin-top: -284px;">
+										<img src="hookah14.jpg" alt="item" class="hookahImg" />
+										<h2>Hookah Small</h2>
+										<%if(smallHookahLeft>0){ %>
+										<button id="1"
+											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+											class="add-to-cart" type="button">Add to cart</button>
+											<%}else{ %>
+											<button id="1"
+											style="color: #ffffff; width: 130px; background-color: #940332; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
+											class="add-to-cart"  disabled="disabled" type="button">Out Of Stock</button>
+											<%} %>
+									</div>
+								</div>
+		<div class="col-sm-8" style="display: none; background-color: #eee;"
 									id="prod_id_2_div">
 									<h3
 										style="text-decoration: underline; margin-top: 7px; margin-bottom: 3px; font-size: 19px;">Medium
@@ -653,64 +879,7 @@ int largeHookahLeft=Integer.parseInt(inventorDetails[2]);
 											<%} %>
 									</div>
 								</div>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td style="width: 20%;">
-							<div class="col-sm-4" style="width: 100%">
-
-								<!-- items -->
-								<div class="items">
-									<!-- single item -->
-									<div class="item" style="margin-top: 10px;">
-										<img id="hookah_small_img" onmouseover="change();"
-											onmouseout="changeReset();" src="hookah14.jpg" alt="item"
-											class="hookahImg" />
-									</div>
-									<!--/ single item -->
-									<!-- single item -->
-
-									<!--/ items -->
-
-								</div>
-							</div>
-						</td>
-						<td style="width: 15%;"><span> <b>Large Sized
-									Hookah (Glass and Steel)</b>
-						</span></td>
-
-						<td style="width: 20%;"><span style="font-size: small;">Very
-								Awesome Smokey Flavour.Very Awesome Smokey Flavour.Very Awesome
-								Smokey Flavour.</span></td>
-
-						<td><span style="margin-left: 9px;">Rs. 700</span></td>
-
-						<td>
-							<p>
-								<span style="font-weight: 700; color: Green;">Free</span></br> <span>Delivered
-									in 1-2 hours.</span>
-							</p>
-						</td>
-						<td>
-						<%if(largeHookahLeft==1) {%>
-						<b style="color: red;font-weight: 400;">only <%=largeHookahLeft %> hookah left</b>
-						<%}else if(largeHookahLeft>1){ %>
-						<b style="color: green;font-weight: 200;">only <%=largeHookahLeft %> hookahs left</b>
-						<%} %>
-						<button id="1"
-								style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-								onclick="showSubProducts(3)" type="button">Customize
-								your hookah</button></td>
-
-					</tr>
-					<tr>
-						<td style="padding-bottom: 15px;" colspan="6">
-							<div class="row-page-header" id="large"
-								style="padding-bottom: 0px; margin-left: 0px !important;">
-								<div class="col-sm-8"
-									style="display: none; background-color: #eee;"
-									id="prod_id_3_div">
+	    <div class="col-sm-8" style="display: none; background-color: #eee;" id="prod_id_3_div">
 									<h3
 										style="text-decoration: underline; margin-top: 7px; margin-bottom: 3px; font-size: 19px;">Large
 										Sized Hookah</h3>
@@ -814,333 +983,155 @@ int largeHookahLeft=Integer.parseInt(inventorDetails[2]);
 											<%} %>
 									</div>
 								</div>
-							</div>
-						</td>
-					</tr>
-				</table>
-				<hr>
-			</section>
-		</div>
-		<!-- End Container -->
-
-		<!-- Contact -->
-
-		<div class="container">
-			<section>
-				<div class="page-header" id="contact">
-					<h2>Contact Us.</h2>
-				</div>
-				<!-- End Page Header -->
-
-				<div class="row-page-header" style="margin-left: 0px !important;">
-					<div class="col-lg-4">
-						<p>Send us a message, or contact us from the address below</p>
-
-
-						<address>
-							<strong>Wiredwiki Pvt Ltd.</strong></br> 111, Malviya nagar </br> Plot no.
-							45</br> New delhi - 110017</br> P: +91 9999999999
-						</address>
-					</div>
-
-					<div class="col-lg-8">
-						<form action="" class="form-horizontal">
-							<div class="form-group">
-								<label for="user-name" class="col-lg-2 control-label">Name</label>
-								<div class="col-lg-10">
-									<input type="text" class="form-control" id="user-name"
-										placeholder="Enter you name">
-								</div>
-							</div>
-							<!-- End form group -->
-
-							<div class="form-group">
-								<label for="user-email" class="col-lg-2 control-label">Email</label>
-								<div class="col-lg-10">
-									<input type="text" class="form-control" id="user-email"
-										placeholder="Enter you Email Address">
-								</div>
-							</div>
-							<!-- End form group -->
-
-							<div class="form-group">
-								<label for="user-message" class="col-lg-2 control-label">Any
-									Message</label>
-								<div class="col-lg-10">
-									<textarea name="user-message" id="user-message"
-										class="form-control" cols="20" rows="4"
-										placeholder="Enter your Message"></textarea>
-								</div>
-							</div>
-							<!-- End form group -->
-
-							<div class="form-group">
-								<div class="col-lg-10 col-lg-offset-2">
-									<button type="submit" class="btn btn-primary">Submit</button>
-								</div>
-							</div>
-						</form>
-						<div id="DemoModal2" class="modal fade">
-							<!-- class modal and fade -->
-							<div class="modal-body">
-								<!-- modal body -->
-								<%@include file="/index.jsp"%>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End the row -->
-
-			</section>
-		</div>
-		</div>
-<div class="row pop-up" style="display:none;">
-  <div class="box large-centered" style="height: 543px;width: 80%;margin-left: 94px;margin-top: 54px;padding: 44px;"> <a href="#" class="close-button">&#10006;</a>
-		<div class="col-sm-8" style=" background-color: rgba(238, 238, 238, 0.62); margin-left: 10px; margin-top: 11px;"
-									id="prod_id_1_div">
-									<h3
-										style="text-decoration: underline; margin-top: 7px; margin-bottom: 3px; font-size: 19px;">Small
-										Sized Hookah</h3>
-									<div>
-										<table>
-											<tr>
-												<td style="width: 400px;"><h2 style="font-size: 16px;">Cost</h2></td>
-												<td style="width: 400px;" id="cost_1">Rs 500</td>
-											</tr>
-											<tr>
-												<td><h2 style="font-size: 16px; width: 400px;">Coal</h2></td>
-												<td>3 Pieces</td>
-											</tr>
-											<tr>
-												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
-														Flavour 1</h2></td>
-												<td>
-													<div>
-														<select name="select_flavour" id="select_flavour_id_1_1">
-															<option value="Mint" selected>Mint</option>
-															<option value="Pan">Pan</option>
-															<option value="Apple">Apple</option>
-															<option value="Grapes">Grapes</option>
-															<option value="BubbleGum">BubbleGum</option>
-														</select>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td style="width: 400px;"><h2 style="font-size: 16px;">Choose
-														Flavour 2</h2></td>
-												<td>
-													<div>
-														<select name="select_flavour" id="select_flavour_id_1_2">
-															<option value="Mint" selected>Mint</option>
-															<option value="Pan">Pan</option>
-															<option value="Apple">Apple</option>
-															<option value="Grapes">Grapes</option>
-															<option value="BubbleGum">BubbleGum</option>
-														</select>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td><h2 style="font-size: 16px; width: 400px;">Liquid
-														Base 1</h2></td>
-												<td>
-													<div style="width: 400px;">
-														<label class="radio-inline"><input type="radio"
-															name="group1_1" value="Water" checked> Water</label>&nbsp;
-														<label class="radio-inline"><input type="radio"
-															name="group1_1" value="Milk"> Milk</label>&nbsp; <label
-															class="radio-inline"><input type="radio"
-															name="group1_1" value="Ice"> Ice</label>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td><h2 style="font-size: 16px; width: 400px;">Liquid
-														Base 2</h2></td>
-												<td>
-													<div style="width: 400px;">
-														<label class="radio-inline"><input type="radio"
-															name="group1_2" value="Water" checked> Water</label>&nbsp;
-														<label class="radio-inline"><input type="radio"
-															name="group1_2" value="Milk"> Milk</label>&nbsp; <label
-															class="radio-inline"><input type="radio"
-															name="group1_2" value="Ice"> Ice</label>&nbsp; <label
-															class="radio-inline"><input type="radio"
-															name="group1_2" value="Juice"> Juice</label>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td style="width: 400px;"><h2 style="font-size: 16px;">2
-														in 1 Flavours</h2></td>
-												<td>Not Available</td>
-											</tr>
-											<tr>
-												<td style="width: 400px;"><h2 style="font-size: 16px;">Security</h2></td>
-												<td>Rs 500</td>
-												<!-- <td><input type="button" onclick="ajaxAddToCart(1)" style="margin-right: -14px;margin-bottom: -3px; width:100px" class="btn btn-warning navbar-btn navbar-right" value="Add" /></td></tr> -->
-										</table>
-									</div>
-									<div class="item" style="float: right; margin-top: -284px;">
-										<img src="hookah14.jpg" alt="item" class="hookahImg" />
-										<h2>Hookah Small</h2>
-										<%if(smallHookahLeft>0){ %>
-										<button id="1"
-											style="color: #ffffff; width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-											class="add-to-cart" type="button">Add to cart</button>
-											<%}else{ %>
-											<button id="1"
-											style="color: #ffffff; width: 130px; background-color: #940332; height: 34px; border-radius: 4px; position: relative; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 900; text-transform: uppercase; line-height: 30px; border: none;"
-											class="add-to-cart"  disabled="disabled" type="button">Out Of Stock</button>
-											<%} %>
-									</div>
-								</div>
 	</div>
 </div>
 	</form>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<script>
-	$(function(){
-		startFromHalf();
-		});
-	function submitPage(){
-		document.mainForm.action1.value = "CHECKOUT_ACTION";
-		document.mainForm.submit();
-	}
-		function ajaxAddToCart(value) {
-			var id = value;
-			var base1 = $('input[name=group' + value + '_1]:checked').val();
-			var base2 = $('input[name=group' + value + '_2]:checked').val();
-			var flavour_1 = document.getElementById('select_flavour_id_'
-					+ value + '_1').value;
-			var flavour_2 = document.getElementById('select_flavour_id_'
-					+ value + '_2').value;
-			$.ajax({
-				url : "/hookahknights?action1=ADD_TO_CART",
-				data : {
-					prod_id : id,
-					base1 : base1,
-					base2 : base2,
-					flavour_first : flavour_1,
-					flavour_second : flavour_2
-				},
-				contentType : 'application/json; charset=utf-8',
-				type : "GET",
-				success : function(response) {
-
-				},
-				error : function(xhr) {
-
-				}
-
+		$(function(){
+			startFromHalf();
 			});
-
-
+		function submitPage(){
+			document.mainForm.action1.value = "CHECKOUT_ACTION";
+			document.mainForm.submit();
 		}
-		function updateCart() {
-			//show counter if this is the first item added to the cart
-			var cartItems = $('#cart_value');
-			var value = parseInt(cartItems.text()) + 1;
-			cartItems.text(value);
-		}
-		function showSubProducts(value) {
-			  $('.pop-up').hide();
-			  $('#to_display').html($('#prod_id_' + value + '_div').html());
-			  $('.pop-up').fadeIn(400);
-			  $('#overlay').addClass('blur-in');
-			  $('#overlay').removeClass('blur-out');
-			      $('.close-button').click(function (e) { 
-			      $('.pop-up').fadeOut(300);
-			      $('#overlay').removeClass('blur-in');
-			      $('#overlay').addClass('blur-out');
-			      e.stopPropagation();
-			    });
-			//$('#prod_id_' + value + '_div').toggle(300);
-		}
-		$('.add-to-cart').on('click', function() {
-			if(isAddMoreApplicable(this.id)){
-				$('.close-button').click();
-			//$('#prod_id_' + this.id + '_div').hide(1000);
-			var cart = $('.shopping-cart');
-			var imgtodrag = $(this).parent('.item').find("img").eq(0);
-			if (imgtodrag) {
-				var imgclone = imgtodrag.clone().offset({
-					top : imgtodrag.offset().top,
-					left : imgtodrag.offset().left
-				}).css({
-					'opacity' : '0.5',
-					'position' : 'absolute',
-					'height' : '150px',
-					'width' : '150px',
-					'z-index' : '100'
-				}).appendTo($('body')).animate({
-					'top' : cart.offset().top + 10,
-					'left' : cart.offset().left + 10,
-					'width' : 75,
-					'height' : 75
-				}, 1000, 'easeInOutExpo');
+			function ajaxAddToCart(value) {
+				var id = value;
+				var base1 = $('input[name=group' + value + '_1]:checked').val();
+				var base2 = $('input[name=group' + value + '_2]:checked').val();
+				var flavour_1 = document.getElementById('select_flavour_id_'
+						+ value + '_1').value;
+				var flavour_2 = document.getElementById('select_flavour_id_'
+						+ value + '_2').value;
+				$.ajax({
+					url : "/hookahknights?action1=ADD_TO_CART",
+					data : {
+						prod_id : id,
+						base1 : base1,
+						base2 : base2,
+						flavour_first : flavour_1,
+						flavour_second : flavour_2
+					},
+					contentType : 'application/json; charset=utf-8',
+					type : "GET",
+					success : function(response) {
 
-				setTimeout(function() {
-					cart.effect("shake", {
-						times : 2
-					}, 200);
-				}, 1500);
+					},
+					error : function(xhr) {
 
-				imgclone.animate({
-					'width' : 0,
-					'height' : 0
-				}, function() {
-					$(this).detach()
-					updateCart();
+					}
+
 				});
+
+
 			}
-			
-			ajaxAddToCart(this.id);
+			function updateCart() {
+				//show counter if this is the first item added to the cart
+				var cartItems = $('#cart_value');
+				var value = parseInt(cartItems.text()) + 1;
+				cartItems.text(value);
 			}
-		});
-		function isAddMoreApplicable(prodId){
-			var retVal=false;
-			$.ajax({
-		        url: '/hookahknights?action1=CAN_ADD_MORE',
-		        type: 'GET',
-		        data: {id:prodId} ,
-		        async:false,
-		        contentType: 'application/json; charset=utf-8',
-		        success: function (response) {
-		        	if(response !=''){
-		        		swal({   title: response,   text: "You can either wait or proceed without adding this hookah !!!",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Cool! proceed without adding!",   cancelButtonText: "No, i'll wait!",   closeOnConfirm: false,   closeOnCancel: false }, function(isConfirm){   if (isConfirm) {     swal("", "Thanks for proceeding !!!", "success");   } else {     swal("Thanks for waiting...", "Your cart is still the same !!! :)", "success");   } });
-		        		retVal=false;
-		        	}
-		        	else{
-		        		retVal=true;
-		        	}
-		        },
-		        error: function () {
-		        	return false;
-		        }
-		    });
-			return retVal;
-			
-		}
-		function change() {
-			var target = document.getElementById("hookah_small_img");
-			target.src = "hookah15.png";
-			window.setTimeout(function() {
-				target.src = "hookah16.png";
-			}, 500);
-			window.setTimeout(function() {
-				target.src = "hookah14.jpg";
-			}, 1000);
-			// 			window.setTimeout(function() {
-			// 				target.src = "hookah16.png";
-			// 			}, 500);
-		}
-		function changeReset() {
-			/* var target = document.getElementById("hookah_small_img");
-			target.src = "hookah14.jpg"; */
-		}
+			function showSubProducts(value) {
+				  $('.pop-up').hide();
+				  $('#to_display').html($('#prod_id_' + value + '_div').html());
+				  $('#prod_id_' + value + '_div').toggle();
+				  $('.pop-up').fadeIn(500);
+				  $('#overlay').addClass('blur-in');
+				  $('#overlay').removeClass('blur-out');
+				      $('.close-button').click(function (e) {
+				   	  $('#prod_id_' + 1 + '_div').hide();
+				   	  $('#prod_id_' + 2 + '_div').hide();
+				   	  $('#prod_id_' + 3 + '_div').hide();
+				      $('.pop-up').fadeOut(100);
+				      $('#overlay').removeClass('blur-in');
+				      $('#overlay').addClass('blur-out');
+				     e.stopPropagation();
+				    });
+				//$('#prod_id_' + value + '_div').toggle(300);
+			}
+			$('.add-to-cart').on('click', function() {
+				if(isAddMoreApplicable(this.id)){
+				//$('#prod_id_' + this.id + '_div').hide(1000);
+				var cart = $('.shopping-cart');
+				var imgtodrag = $(this).parent('.item').find("img").eq(0);
+				if (imgtodrag) {
+					var imgclone = imgtodrag.clone().offset({
+						top : imgtodrag.offset().top,
+						left : imgtodrag.offset().left
+					}).css({
+						'opacity' : '0.5',
+						'position' : 'absolute',
+						'height' : '150px',
+						'width' : '150px',
+						'z-index' : '100'
+					}).appendTo($('body')).animate({
+						'top' : cart.offset().top + 10,
+						'left' : cart.offset().left + 10,
+						'width' : 75,
+						'height' : 75
+					}, 1000, 'easeInOutExpo');
+
+					setTimeout(function() {
+						cart.effect("shake", {
+							times : 2
+						}, 200);
+					}, 1500);
+
+					imgclone.animate({
+						'width' : 0,
+						'height' : 0
+					}, function() {
+						$(this).detach()
+						updateCart();
+					});
+				}
+				
+				ajaxAddToCart(this.id);
+				}
+				$('.close-button').click();
+			});
+			function isAddMoreApplicable(prodId){
+				var retVal=false;
+				$.ajax({
+			        url: '/hookahknights?action1=CAN_ADD_MORE',
+			        type: 'GET',
+			        data: {id:prodId} ,
+			        async:false,
+			        contentType: 'application/json; charset=utf-8',
+			        success: function (response) {
+			        	if(response !=''){
+			        		swal({   title: response,   text: "You can either wait or proceed without adding this hookah !!!",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Cool! proceed without adding!",   cancelButtonText: "No, i'll wait!",   closeOnConfirm: false,   closeOnCancel: false }, function(isConfirm){   if (isConfirm) {     swal("", "Thanks for proceeding !!!", "success");   } else {     swal("Thanks for waiting...", "Your cart is still the same !!! :)", "success");   } });
+			        		retVal=false;
+			        	}
+			        	else{
+			        		retVal=true;
+			        	}
+			        },
+			        error: function () {
+			        	return false;
+			        }
+			    });
+				return retVal;
+				
+			}
+			function change() {
+				var target = document.getElementById("hookah_small_img");
+				target.src = "hookah15.png";
+				window.setTimeout(function() {
+					target.src = "hookah16.png";
+				}, 500);
+				window.setTimeout(function() {
+					target.src = "hookah14.jpg";
+				}, 1000);
+				// 			window.setTimeout(function() {
+				// 				target.src = "hookah16.png";
+				// 			}, 500);
+			}
+			function changeReset() {
+				/* var target = document.getElementById("hookah_small_img");
+				target.src = "hookah14.jpg"; */
+			}
 	</script>
 
 	<!-- Footer -->

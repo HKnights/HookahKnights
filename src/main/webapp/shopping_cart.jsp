@@ -1,4 +1,3 @@
-aa
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,9 +18,11 @@ aa
 	rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/css/custom.css" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<script
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script  src="/js/codejquery_min.js"></script>
+
+	
+	<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<style type="text/css">   
 		.popover-content { border: solid 1px grey;}
@@ -212,7 +213,6 @@ img {
 
 		<!-- JavaScript includes -->
 
-		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/customjs.js?v=1234121212"></script>
 
 		<div id="DemoModal2" class="modal fade">

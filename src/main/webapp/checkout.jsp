@@ -275,7 +275,6 @@ img {
 
 		<!-- JavaScript includes -->
 
-		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/customjs.js?v=1234121212"></script>
 
 		<div id="DemoModal2" class="modal fade">
