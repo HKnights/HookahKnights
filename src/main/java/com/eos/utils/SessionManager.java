@@ -105,13 +105,15 @@ public class SessionManager {
 			user.m_profilePicUrl = userImage;
 			user.m_email = userEmail;
 			session.setAttribute("user_id", userId);
-			session.setAttribute("user_name", name);
+			session.setAttribute("user_name", name.split(" ")[0]);
 			session.setAttribute("user_image", userImage);
 			session.setAttribute("user_email", userEmail);
+			request.setAttribute("is_logged_out", "yes");
 			session.setMaxInactiveInterval(5 * 60);
 			SessionManager.setUser(user, request);
 			Cookie userName = new Cookie("userId", userId);
-			userName.setMaxAge(100 * 30);
+			session.setAttribute("is_log_out", "false");
+			userName.setMaxAge(100 * 30); 
 			response.addCookie(userName);
 		} catch (Exception e) {
 			session.setAttribute("error", e.getMessage());
@@ -190,7 +192,6 @@ public class SessionManager {
 
 	public static String getcartDetails(HttpServletRequest request, HttpServletResponse response) {
 		Map<Integer, String> cartItemMap = new HashMap<Integer, String>();
-		HttpSession session = SessionManager.getSession(request);
 		ShoppingCart cart = SessionManager.getShoppingCart(request);
 		int count = 0;
 		if (cart != null) {
@@ -216,6 +217,10 @@ public class SessionManager {
 		setCartCount(request, count);
 		request.setAttribute("cart_json", new Gson().toJson(cartItemMap));
 		return new Gson().toJson(cartItemMap);
+	}
+
+	public static String getShoppingCartJSON(HttpServletRequest request) {
+		return new Gson().toJson(SessionManager.getShoppingCart(request));
 	}
 
 	public static boolean isValidOrder(HttpServletRequest request, HttpServletResponse response) {
@@ -269,9 +274,10 @@ public class SessionManager {
 		Map<Integer, String> cartItemMap = new HashMap<Integer, String>();
 		ShoppingCart cart = SessionManager.getShoppingCart(request);
 		String[] orderCountInInventory = Order.getInventory().split("_");
-		int smallCountinInven = Integer.parseInt(orderCountInInventory[(Integer.parseInt(request.getParameter("id"))-1)]);
+		int smallCountinInven = Integer
+				.parseInt(orderCountInInventory[(Integer.parseInt(request.getParameter("id")) - 1)]);
 		int smallCountInCart = 0;
-		
+
 		if (cart != null) {
 			List<Product> productList = cart.getItems();
 			for (Product product : productList) {
@@ -284,7 +290,7 @@ public class SessionManager {
 			if (smallCountinInven <= smallCountInCart) {
 				response.getWriter().println("You cannot add more hookah of this type");
 				return false;
-			} 
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

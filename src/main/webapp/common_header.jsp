@@ -82,12 +82,13 @@ if(cartCount==null){
 			style="float: right; margin-right: -46px; line-height: 18px; margin-top: 9px; background-color: #46b29d; color: #ffffff; font-size: 1rem; font-weight: bold; text-align: center; border-radius: 50%; transition: transform 0.2s 0s; height: 18px; width: 18px;"><%=cartCount%></span>
 	</div>
 	<div><div id="status" style="float: right;margin-top: 20px;position: fixed;margin-left: 865px;font-size: smaller;color: white;"></div>
-			<span><img id="user_profile_pic"  src=""  height="25" width="25" style=" display :none;  border-radius: 10px;float: right;margin-top: 18px;margin-left: 969px;position: fixed;"></span></div>
-  		
+			<span><img id="user_profile_pic"  src=""  height="30" width="30" style=" display :none;  border-radius: 10px;float: right;margin-top: 18px;margin-left: 969px;position: fixed;width: 30px;height: 30px;border-radius: 50%;font-size: 50px;color: #fff;line-height: 500px;text-align: center;background: #000;"></span>
+  				<span id="user_profile_name" style="display: none;border-radius: 10px;float: right;margin-top:1.3%;width: 30px;height: 27px;margin-left: 77%;background-color: #323D8E;position: fixed;"><span id="pic_value" style="color:white;margin-left: 10px;font-size: large;"></span></span></span></div>
+  	
 	<div id="SIN" onclick="openLoginPage();" href="#DemoModal2"
 		class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right"
-		data-toggle="modal">Login</div>
-	<div id="LGO" onclick="logout();" style="display: none;"
+		data-toggle="modal" style="margin-right: 0;">Login</div>
+	<div id="LGO" onclick="logout();" style="display: none;margin-right: 0;"
 		class="btn btn-lg btn-primary btn-warning navbar-btn navbar-right"
 		data-toggle="modal">Log Out</div>
 </body>

@@ -31,13 +31,16 @@
   %>
     <script type="text/javascript">
     $(function(){
-    	if(<%=!isUserLoggedOut%>){
+    	if(<%=!isUserLoggedOut%> ||<%=nsession.getAttribute("is_log_out")!=null%>){
     		  if(<%=userName!=null || "null".equals(userName)%>){
     			  userLoggedInDiv();
     		 	  document.getElementById('status').innerHTML = 'Hi, <%=userName%> !';
     		  	  document.getElementById('user_profile_pic').src='<%=userImage%>';
     		  	  if(<%=userImage !=null && !userImage.equals("")%>){
     		  	  	document.getElementById('user_profile_pic').style.display='block';
+    		  	  }else if(<%=userName !=null && !"null".equals(userName)%>){
+    		  		document.getElementById('user_profile_name').style.display='block';
+    		  		document.getElementById('pic_value').textContent='<%=userName!=null?userName.toUpperCase().charAt(0):""%>';
     		  	  }
     		  }
     	  }

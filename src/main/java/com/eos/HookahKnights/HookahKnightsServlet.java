@@ -1,18 +1,23 @@
 package main.java.com.eos.HookahKnights;
 
 import java.io.IOException;
+import java.io.IOException;
 
+import javax.servlet.FilterChain;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 import main.java.com.eos.accounts.Order;
+import main.java.com.eos.accounts.User;
 import main.java.com.eos.beans.HookahKnightsBean;
 import main.java.com.eos.cart.ShoppingCart;
-import main.java.com.eos.utils.SMS;
 import main.java.com.eos.utils.SessionManager;
+import main.java.com.eos.utils.XssFilter;
 
 @SuppressWarnings("serial")
 public class HookahKnightsServlet extends HttpServlet {
@@ -32,12 +37,11 @@ public class HookahKnightsServlet extends HttpServlet {
 				response.sendRedirect(HookahNavigationConstantBean.HOOKAH_SEARCH_PAGE);
 			} else if ("ADD_TO_CART".equals(action)) {
 				HookahKnightsBean.addProductToCart(request, response);
-				// session.getAttribute("user_id");
-				// session.getAttribute("cart");
-				// session.getAttribute("cart");
 			} else if ("USER_LOGIN".equals(action)) {
-				SessionManager.loginUser(request, response);
-				response.sendRedirect(HookahNavigationConstantBean.HOME_PAGE);
+//				SessionManager.loginUser(request, response);
+//				RequestDispatcher rd = getServletContext().getRequestDispatcher("/hookahknights");
+//		        rd.forward(request, response);
+				//response.sendRedirect(request.getParameter("from"));
 			} else if ("USER_LOGOUT".equals(action)) {
 				SessionManager.storeUserCart(request, response);
 				SessionManager.invalidateSession(request, response);
@@ -58,7 +62,7 @@ public class HookahKnightsServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 			} else if ("SUBMIT_ORDER".equals(action)) {
 				Order.prepareOrder(request);
-				Order.storeOrderInDB();
+				Order.storeOrderInDB(request);
 				SessionManager.setShoppingCart(new ShoppingCart(), request);
 				SessionManager.setCartCount(request, 0);
 				RequestDispatcher dispatcher = getServletContext()
@@ -76,10 +80,17 @@ public class HookahKnightsServlet extends HttpServlet {
 				SessionManager.isValidOrder(request, response);
 			} else if ("CAN_ADD_MORE".equals(action)) {
 				SessionManager.canAddMore(request, response);
+			} else if ("SHOPPING_CART_ACTION_API".equals(action)) {
+				response.getWriter().print(SessionManager.getcartDetails(request, response));
+			} else if ("USER_ACCOUNT".equals(action)) {
+				User.populateUserOrders(SessionManager.getUser(request).m_userId, request);
+				RequestDispatcher dispatcher = getServletContext()
+						.getRequestDispatcher(HookahNavigationConstantBean.USER_ACCOUNTS_PAGE);
+				dispatcher.forward(request, response);
 			} else {
 				// SessionManager.getShoppingCart(request);
 				RequestDispatcher dispatcher = getServletContext()
-						.getRequestDispatcher("/progree.jsp");
+						.getRequestDispatcher(HookahNavigationConstantBean.HOME_PAGE);
 				dispatcher.forward(request, response);
 			}
 		} catch (Exception e) {

@@ -10,7 +10,6 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.google.appengine.api.datastore.DatastoreService;
@@ -175,6 +174,42 @@ public class User implements Serializable {
 		return user;
 	}
 
+	public static void populateUserOrders(String userId, HttpServletRequest request) {
+		try {
+			JSONObject jsonObj;
+			String time="";
+			JSONObject orderJson = new JSONObject();
+			int count = 0;
+			DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+			Filter filter = new FilterPredicate("user_id", FilterOperator.EQUAL, userId);
+			Query q = new Query("Orders").setFilter(filter);
+			PreparedQuery pq = ds.prepare(q);
+			for (Entity result : pq.asIterable()) {
+				GsonBuilder gb = new GsonBuilder();
+				gb.registerTypeAdapter(Product.class, new CustomDeserializer());
+				Gson customGson = gb.create();
+				ShoppingCart cart = null;
+				try {
+					cart = new ShoppingCart();
+					jsonObj = new JSONObject((Text) result.getProperty("order_details"));
+					 time=result.getProperty("generation_time").toString();
+					JSONArray jsonArray = (new JSONObject((String) jsonObj.opt("value"))).optJSONArray("items");
+					for (int i = 0; i < jsonArray.length(); i++) {
+						Product product = new Hookah();
+						String key = ((JSONObject) jsonArray.get(i)).toString();
+						product = customGson.fromJson(key, Product.class);
+						cart.addToProductList(product);
+					}
+					orderJson.put(++count + "", cart);
+					orderJson.put("generation_time"+count, time);
+				} catch (Exception e) {
+				}
+			}
+			request.setAttribute("order_details", new Gson().toJson(orderJson));
+		} catch (Exception e) {
+		}
+	}
+
 	public static User authenticateUserByEmail(String email, String password) throws Exception {
 		try {
 
@@ -184,8 +219,7 @@ public class User implements Serializable {
 		return null;
 	}
 
-	public static class CustomDeserializer
-			implements JsonDeserializer<Product> {
+	public static class CustomDeserializer implements JsonDeserializer<Product> {
 
 		public Product deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
 				throws JsonParseException {
@@ -198,16 +232,12 @@ public class User implements Serializable {
 				JsonObject jsonObject = json.getAsJsonObject();
 				HookahData hookahData = new HookahData();
 				hookahData.setBase1(((JsonObject) jsonObject.get("hookahData")).get("base1").getAsString());
-				hookahData.setBase2(((JsonObject) jsonObject.get("hookahData")).get("base2").getAsString());
 				hookahData.setProdId(((JsonObject) jsonObject.get("hookahData")).get("prodId").getAsInt());
 				hookahData.setCoal(((JsonObject) jsonObject.get("hookahData")).get("coal").getAsInt());
 				hookahData.setProdName(((JsonObject) jsonObject.get("hookahData")).get("prodName").getAsString());
 				hookahData.setProdSize(((JsonObject) jsonObject.get("hookahData")).get("prodSize").getAsString());
 				hookahData.setPrice(((JsonObject) jsonObject.get("hookahData")).get("price").getAsDouble());
-				hookahData
-						.setFlavourFirst(((JsonObject) jsonObject.get("hookahData")).get("flavourFirst").getAsString());
-				hookahData.setFlavourSecond(
-						((JsonObject) jsonObject.get("hookahData")).get("flavourSecond").getAsString());
+				hookahData.setFlavourFirst(((JsonObject) jsonObject.get("hookahData")).get("flavourFirst").getAsString());
 				hookahData.setSecurity(((JsonObject) jsonObject.get("hookahData")).get("security").getAsDouble());
 				product.setHookahData(hookahData);
 				items.add(product);

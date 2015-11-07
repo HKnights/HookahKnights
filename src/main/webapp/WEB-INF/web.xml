@@ -31,5 +31,14 @@
 		<servlet-name>StartupServlet</servlet-name>
 		<url-pattern>/Startup</url-pattern>
 	</servlet-mapping>
+	
+	<filter>  
+<filter-name>f1</filter-name>  
+<filter-class>main.java.com.eos.utils.XssFilter</filter-class>  
+</filter>  
+<filter-mapping>  
+<filter-name>f1</filter-name>  
+<url-pattern>/hookahknights</url-pattern>  
+</filter-mapping>  
 
 </web-app>

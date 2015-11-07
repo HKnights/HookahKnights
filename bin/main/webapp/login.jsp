@@ -1,3 +1,4 @@
+<%@page import="main.java.com.eos.utils.FilterHKnightsRequest"%>
 <%@page import="main.java.com.eos.accounts.User"%>
 <%@page import="main.java.com.eos.utils.SessionManager"%>
 <%@page import="javax.mail.Session"%>
@@ -8,7 +9,6 @@
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="845473618760-8v6rabh48mpdecntb77dkd81h1ovpmva.apps.googleusercontent.com">	
     <script src = "https://plus.google.com/js/client:platform.js" async defer></script>
-<script src="/js/codejquery_min.js"></script>
     
   </head>
   <body>
@@ -38,6 +38,9 @@
     		  	  document.getElementById('user_profile_pic').src='<%=userImage%>';
     		  	  if(<%=userImage !=null && !userImage.equals("")%>){
     		  	  	document.getElementById('user_profile_pic').style.display='block';
+    		  	  }else if(<%=userName !=null && !"null".equals(userName)%>){
+    		  		document.getElementById('user_profile_name').style.display='block';
+    		  		document.getElementById('pic_value').textContent='<%=userName!=null?userName.toUpperCase().charAt(0):""%>';
     		  	  }
     		  }
     	  }
@@ -52,11 +55,13 @@
     	 $('#LGO').toggle();
     	 $('#SIN').toggle();
        }
-    function onSignInCallback(resp) {
-    //  gapi.client.load('plus', 'v1', apiClientLoaded);
-    }
+     function onSignInCallback(resp) {
+     	if(resp.status.method==='PROMPT'){
+       		gapi.client.load('plus', 'v1', apiClientLoaded);
+     	}
+     }
 
-    /**
+     /**
      * Sets up an API call after the Google API client loads.
      */
     function apiClientLoaded() {
@@ -150,7 +155,7 @@
 
     window.fbAsyncInit = function() {
     FB.init({
-      appId      : '1484009795227981',
+      appId      : '<%=FilterHKnightsRequest.FB_ACCOUNT_ID%>',
       cookie     : true,  // enable cookies to allow the server to access 
                           // the session
       xfbml      : true,  // parse social plugins on this page

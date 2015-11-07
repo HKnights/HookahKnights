@@ -17,7 +17,7 @@ public class FilterHKnightsRequest extends GenericServlet {
 		 * "Google App Engine Development/x.x.x" if will run locally, and
 		 * "Google App Engine/x.x.x" if run on production envoirnment
 		 */
-		if (!serverInfo.contains("Users")) {
+		if (!serverInfo.contains("aman")) {
 			FB_ACCOUNT_ID = "1481278548864631";
 		} else {
 			FB_ACCOUNT_ID = "1484009795227981";

@@ -62,6 +62,7 @@ function MyCtrl($scope, $timeout) {
 	</style>
 <body data-spy="scroll" data-target="#my-navbar">
 <form action="hookahknights" method="POST" name="mainForm" >
+<input type="hidden" name="from" value="${pageContext.request.requestURI}">
 <input type="hidden" name="action1" value="" />
 <input type="hidden" name="selected_item" value="" />
 <input type="hidden" name="prod_1" id="prod_id_1" value="orderId_1" />

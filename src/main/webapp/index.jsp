@@ -18,6 +18,7 @@
 
   <body>
     <div class="logmod" style="margin-top: -37px;">
+<%@include file="/login.jsp" %>
   <div class="logmod__wrapper">
     <span class="logmod__close" onclick="closeLoginPage();" style="  margin-right: -299px;margin-top: 47px;z-index: 10;">Close</span>
     <div class="logmod__container">
@@ -158,12 +159,17 @@ function closeLoginPage(){
 	$('.logmod')[0].style.display='none';
 	if($('.modal-backdrop').length!=0){
 	$('.modal-backdrop')[0].style.display='none';
-	$('#DemoModal2')[0].style.display='none';
-	//$('#SIN').click();
+	//$('#DemoModal2')[0].style.display='none';
+	$('#DemoModal2').click();
 	}
 }
 function openLoginPage() {
 	$('.logmod')[0].style.display='block';
+	if($('.modal-backdrop').length!=0){
+		$('.modal-backdrop')[0].style.display='block';
+		$('#DemoModal2')[0].style.display='block';
+		//$('#SIN').click();
+		}
 //	$('#DemoModal2')[0].style.display='block';
 }
 </script>

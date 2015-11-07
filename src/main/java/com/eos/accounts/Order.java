@@ -1,8 +1,11 @@
 package main.java.com.eos.accounts;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,9 +16,7 @@ import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.datastore.Query.Filter;
-import com.google.appengine.api.datastore.Query.FilterOperator;
-import com.google.appengine.api.datastore.Query.FilterPredicate;
+import com.google.appengine.api.datastore.Text;
 import com.google.gson.Gson;
 
 import main.java.com.eos.cart.ShoppingCart;
@@ -208,7 +209,9 @@ public class Order {
 		return STATUS_ABORTED;
 	}
 
-	public static void storeOrderInDB() {
+	public static void storeOrderInDB(HttpServletRequest request) {
+		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		sdf.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		Entity e = new Entity("Orders");
 		e.setProperty("reference_id", m_referenceId);
@@ -216,7 +219,8 @@ public class Order {
 		e.setProperty("user_id", m_loggedUserId);
 		e.setProperty("status", m_status);
 		e.setProperty("amountToCharge", m_amountChargedToBuyer);
-		e.setProperty("order_details", m_orderDetails);
+		e.setProperty("generation_time", sdf.format(new Date()));
+		e.setProperty("order_details", new Text(SessionManager.getShoppingCartJSON(request)));
 		e.setProperty("delivery_details", getSerializedDeliveryDetails());
 		ds.put(e);
 	}
@@ -283,9 +287,9 @@ public class Order {
 		Query q = new Query("Inventory");
 		PreparedQuery pq = ds.prepare(q);
 		for (Entity result : pq.asIterable()) {
-			int smallHookahValue = Integer.parseInt((String)result.getProperty("SHvalue"));
-			int mediumHookahValue = Integer.parseInt((String)result.getProperty("MHvalue"));
-			int largeHookahValue =Integer.parseInt((String)result.getProperty("LHvalue"));
+			int smallHookahValue = Integer.parseInt((String) result.getProperty("SHvalue"));
+			int mediumHookahValue = Integer.parseInt((String) result.getProperty("MHvalue"));
+			int largeHookahValue = Integer.parseInt((String) result.getProperty("LHvalue"));
 			updateInventory((smallHookahValue - numOfSmallHokkahToBlock) + "",
 					(mediumHookahValue - numOfMedHokkahToBlock) + "",
 					(largeHookahValue - numOfLargeHokkahToBlock) + "");

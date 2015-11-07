@@ -147,9 +147,7 @@ int largeHookahLeft=Integer.parseInt(inventorDetails[2]);
 				<div>
 					<div id="status"
 						style="float: right; margin-top: -36px; margin-right: 176px; font-size: smaller; color: white;"></div>
-					<span><img id="user_profile_pic" src="" height="25"
-						width="25"
-						style="display: none; border-radius: 10px; float: right; margin-top: -36px; margin-right: 138px;"></span>
+					<span><img id="user_profile_pic" src="" height="25"width="25"style="display: none; border-radius: 10px; float: right; margin-top: -36px; margin-right: 138px;"></span>
 				</div>
 			</div>
 			<!-- End Container-->

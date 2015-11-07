@@ -16,5 +16,12 @@
 	<classpathentry kind="lib" path="/Users/abid/Documents/HookahKnights_New/HookahKnights/target/hknights-1/WEB-INF/lib/jdo2-api-2.3-eb.jar"/>
 	<classpathentry kind="lib" path="/Users/abid/Documents/HookahKnights_New/HookahKnights/target/hknights-1/WEB-INF/lib/json-20090211.jar"/>
 	<classpathentry kind="lib" path="/Users/abid/Documents/HookahKnights_New/HookahKnights/target/hknights-1/WEB-INF/lib/jsr107cache-1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/aman/Documents/test/HookahKnights/target/hknights-1/WEB-INF/lib/json-20090211.jar"/>
+	<classpathentry kind="lib" path="/Users/aman/Documents/test/HookahKnights/target/hknights-1/WEB-INF/lib/gson-2.2.4.jar"/>
+	<classpathentry kind="lib" path="/Users/aman/Documents/test/HookahKnights/target/hknights-1/WEB-INF/lib/mail-1.4.7.jar"/>
+	<classpathentry kind="lib" path="/Users/aman/Documents/test/HookahKnights/target/hknights-1/WEB-INF/lib/javax.mail-api-1.5.2.jar"/>
+	<classpathentry kind="lib" path="/Users/aman/Documents/test/HookahKnights/target/hknights-1/WEB-INF/lib/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/aman/Documents/test/HookahKnights/target/hknights-1/WEB-INF/lib/appengine-api-1.0-sdk-1.9.26.jar"/>
+	<classpathentry kind="lib" path="/Users/aman/Documents/test/HookahKnights/target/hknights-1/WEB-INF/lib/jstl-1.2.jar"/>
 	<classpathentry kind="output" path="target/hknights-1/WEB-INF/classes"/>
 </classpath>
