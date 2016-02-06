@@ -233,6 +233,7 @@ public class User implements Serializable {
 				HookahData hookahData = new HookahData();
 				hookahData.setBase1(((JsonObject) jsonObject.get("hookahData")).get("base1").getAsString());
 				hookahData.setProdId(((JsonObject) jsonObject.get("hookahData")).get("prodId").getAsInt());
+				hookahData.setItemId(((JsonObject) jsonObject.get("hookahData")).get("itemId").getAsInt());
 				hookahData.setCoal(((JsonObject) jsonObject.get("hookahData")).get("coal").getAsInt());
 				hookahData.setProdName(((JsonObject) jsonObject.get("hookahData")).get("prodName").getAsString());
 				hookahData.setProdSize(((JsonObject) jsonObject.get("hookahData")).get("prodSize").getAsString());
