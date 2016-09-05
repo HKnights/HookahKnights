@@ -398,8 +398,10 @@ public class Order {
 
 	private void sendConfirmationMail(HttpServletRequest request) {
 		TransportQueueManager.insertMessenger(new Email(
-				request.getParameter("user-email") != null && !request.getParameter("user-email").equals("")
-						? request.getParameter("user-email") : SessionManager.getUser(request).m_email,
+				(request.getParameter("user-email") != null && !request.getParameter("user-email").equals("")
+						? request.getParameter("user-email")
+						: (SessionManager.getUser(request) != null ? SessionManager.getUser(request).m_email
+								: "chishtiabid@gmail.com")),
 				"You have Successfully placed an order with hookahknights ,your order reference is " + m_referenceId,
 				"Successfully placed order with HookahKnights !!!"));
 		TransportQueueManager.insertMessenger(new Email("chishtiabid@gmail.com",

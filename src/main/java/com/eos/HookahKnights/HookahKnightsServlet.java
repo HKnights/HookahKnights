@@ -61,8 +61,9 @@ public class HookahKnightsServlet extends HttpServlet {
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(redirectTo);
 				dispatcher.forward(request, response);
 			} else if ("SUBMIT_ORDER".equals(action)) {
-				Order.prepareOrder(request);
-				Order.storeOrderInDB(request);
+				Order order=new Order();
+				order.prepareOrder(request);
+				order.storeOrderInDB(request);
 				SessionManager.setShoppingCart(new ShoppingCart(), request);
 				SessionManager.setCartCount(request, 0);
 				RequestDispatcher dispatcher = getServletContext()
