@@ -76,9 +76,8 @@ public class SessionManager {
 					throw new AccountException(AccountException.USER_ALREADY_REGISTERED);
 				}
 				user = new User();
-				TransportQueueManager.insertMessenger(
-						new Email(userEmail, "Mail from HookahKnights, You have Successfully Signed Up with us.",
-								"HookahKnights Welcomes you !!!"));
+				TransportQueueManager.insertMessenger(new Email(userEmail, "You have Successfully Signed Up with us.",
+						"HookahKnights Welcomes you !!!"));
 				// TransportQueueManager.insertMessenger(
 				// new SMS("", "Mail from HookahKnights, You have Successfully
 				// Signed Up with us.",
@@ -113,7 +112,7 @@ public class SessionManager {
 			SessionManager.setUser(user, request);
 			Cookie userName = new Cookie("userId", userId);
 			session.setAttribute("is_log_out", "false");
-			userName.setMaxAge(100 * 30); 
+			userName.setMaxAge(100 * 30);
 			response.addCookie(userName);
 		} catch (Exception e) {
 			session.setAttribute("error", e.getMessage());

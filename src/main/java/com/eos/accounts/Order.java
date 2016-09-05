@@ -13,6 +13,7 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
@@ -22,7 +23,9 @@ import com.google.gson.Gson;
 import main.java.com.eos.cart.ShoppingCart;
 import main.java.com.eos.model.HookahData;
 import main.java.com.eos.product.Product;
+import main.java.com.eos.utils.Email;
 import main.java.com.eos.utils.SessionManager;
+import main.java.com.eos.utils.TransportQueueManager;
 
 public class Order {
 
@@ -32,125 +35,125 @@ public class Order {
 	public static final String STATUS_DELIVERED = "D";
 	public static final String STATUS_ABORTED = "A";
 
-	public static int m_orderId = -1;
-	public static int m_leadId = -1;
-	public static String m_userId;
-	public static String m_status = STATUS_NEW;
-	public static String m_status_history = "";
-	public static char m_mode;
-	public static String m_orderDetails = "";
+	public int m_orderId = -1;
+	public int m_leadId = -1;
+	public String m_userId;
+	public String m_status = STATUS_NEW;
+	public String m_status_history = "";
+	public char m_mode;
+	public String m_orderDetails = "";
 	/*
 	 * the reference number to track an order.
 	 */
-	public static String m_referenceId = null;
+	public String m_referenceId = null;
 	/**
 	 * Cart reference Id to which this order belongs
 	 */
-	private static String m_cartReferenceId = null;
-	private static double m_amountChargedToBuyer = 0.0;
-	public static String m_loggedUserId = "-1";
+	private String m_cartReferenceId = null;
+	private double m_amountChargedToBuyer = 0.0;
+	public String m_loggedUserId = "-1";
 	public Calendar m_generationTime;
-	public static DeliveryDetails m_deliveryDetails;
-	public static String m_comments = "";
+	public DeliveryDetails m_deliveryDetails;
+	public String m_comments = "";
 	// public List<BaseOrderItem> m_orderItems = new ArrayList<BaseOrderItem>();
 	// public List<Order> m_childOrders = null;
 	public int m_noChildOrders = 0;
 	public String m_topOrderReferenceId = null;
 
-	public static String getS_referencePrepend() {
+	public String getS_referencePrepend() {
 		return s_referencePrepend;
 	}
 
-	public static void setS_referencePrepend(String s_referencePrepend) {
-		Order.s_referencePrepend = s_referencePrepend;
+	public void setS_referencePrepend(String s_referencePrepend) {
+		s_referencePrepend = s_referencePrepend;
 	}
 
-	public static int getM_orderId() {
+	public int getM_orderId() {
 		return m_orderId;
 	}
 
-	public static void setM_orderId(int m_orderId) {
-		Order.m_orderId = m_orderId;
+	public void setM_orderId(int m_orderId) {
+		m_orderId = m_orderId;
 	}
 
-	public static int getM_leadId() {
+	public int getM_leadId() {
 		return m_leadId;
 	}
 
-	public static void setM_leadId(int m_leadId) {
-		Order.m_leadId = m_leadId;
+	public void setM_leadId(int m_leadId) {
+		m_leadId = m_leadId;
 	}
 
-	public static String getM_userId() {
+	public String getM_userId() {
 		return m_userId;
 	}
 
-	public static void setM_userId(String m_userId) {
-		Order.m_userId = m_userId;
+	public void setM_userId(String m_userId) {
+		m_userId = m_userId;
 	}
 
-	public static String getM_status() {
+	public String getM_status() {
 		return m_status;
 	}
 
-	public static void setM_status(String m_status) {
-		Order.m_status = m_status;
+	public void setM_status(String m_status) {
+		m_status = m_status;
 	}
 
-	public static String getM_status_history() {
+	public String getM_status_history() {
 		return m_status_history;
 	}
 
-	public static void setM_status_history(String m_status_history) {
-		Order.m_status_history = m_status_history;
+	public void setM_status_history(String m_status_history) {
+		m_status_history = m_status_history;
 	}
 
-	public static char getM_mode() {
+	public char getM_mode() {
 		return m_mode;
 	}
 
-	public static void setM_mode(char m_mode) {
-		Order.m_mode = m_mode;
+	public void setM_mode(char m_mode) {
+		m_mode = m_mode;
 	}
 
-	public static String getM_orderDetails() {
+	public String getM_orderDetails() {
 		return m_orderDetails;
 	}
 
-	public static void setM_orderDetails(String m_orderDetails) {
-		Order.m_orderDetails = m_orderDetails;
+	public void setM_orderDetails(String m_orderDetails) {
+		m_orderDetails = m_orderDetails;
 	}
 
-	public static String getM_referenceId() {
+	public String getM_referenceId() {
 		return m_referenceId;
 	}
 
-	public static void setM_referenceId(String m_referenceId) {
-		Order.m_referenceId = m_referenceId;
+	public void setM_referenceId(String m_referenceId) {
+		m_referenceId = m_referenceId;
 	}
 
-	public static String getM_cartReferenceId() {
+	public String getM_cartReferenceId() {
 		return m_cartReferenceId;
 	}
 
-	public static void setM_cartReferenceId(String m_cartReferenceId) {
-		Order.m_cartReferenceId = m_cartReferenceId;
+	public void setM_cartReferenceId(String m_cartReferenceId) {
+		m_cartReferenceId = m_cartReferenceId;
 	}
 
-	public static double getM_amountChargedToBuyer() {
+	public double getM_amountChargedToBuyer() {
 		return m_amountChargedToBuyer;
 	}
 
-	public static void setM_amountChargedToBuyer(double m_amountChargedToBuyer) {
-		Order.m_amountChargedToBuyer = m_amountChargedToBuyer;
+	public void setM_amountChargedToBuyer(double m_amountChargedToBuyer) {
+		m_amountChargedToBuyer = m_amountChargedToBuyer;
 	}
 
-	public static String getM_loggedUserId() {
+	public String getM_loggedUserId() {
 		return m_loggedUserId;
 	}
 
-	public static void setM_loggedUserId(String m_loggedUserId) {
-		Order.m_loggedUserId = m_loggedUserId;
+	public void setM_loggedUserId(String m_loggedUserId) {
+		m_loggedUserId = m_loggedUserId;
 	}
 
 	public Calendar getM_generationTime() {
@@ -161,20 +164,20 @@ public class Order {
 		this.m_generationTime = m_generationTime;
 	}
 
-	public static DeliveryDetails getM_deliveryDetails() {
+	public DeliveryDetails getM_deliveryDetails() {
 		return m_deliveryDetails;
 	}
 
-	public static void setM_deliveryDetails(DeliveryDetails m_deliveryDetails) {
-		Order.m_deliveryDetails = m_deliveryDetails;
+	public void setM_deliveryDetails(DeliveryDetails m_deliveryDetails) {
+		m_deliveryDetails = m_deliveryDetails;
 	}
 
-	public static String getM_comments() {
+	public String getM_comments() {
 		return m_comments;
 	}
 
-	public static void setM_comments(String m_comments) {
-		Order.m_comments = m_comments;
+	public void setM_comments(String m_comments) {
+		m_comments = m_comments;
 	}
 
 	public int getM_noChildOrders() {
@@ -209,8 +212,8 @@ public class Order {
 		return STATUS_ABORTED;
 	}
 
-	public static void storeOrderInDB(HttpServletRequest request) {
-		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy hh:mm");
+	public void storeOrderInDB(HttpServletRequest request) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 		sdf.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		Entity e = new Entity("Orders");
@@ -223,6 +226,7 @@ public class Order {
 		e.setProperty("order_details", new Text(SessionManager.getShoppingCartJSON(request)));
 		e.setProperty("delivery_details", getSerializedDeliveryDetails());
 		ds.put(e);
+		sendConfirmationMail(request);
 	}
 
 	public static void updateInventory(String SHvalue, String MHvalue, String LHvalue) {
@@ -278,6 +282,14 @@ public class Order {
 			String largeHookahValue = (String) result.getProperty("LHvalue");
 			return smallHookahValue + "_" + mediumHookahValue + "_" + largeHookahValue;
 		}
+
+		// Key bobKey = KeyFactory.createKey("Inventory",
+		// "id=5119667588825088");
+		// Entity bob = new Entity(bobKey);
+		// bob.setProperty("LHvalue", "10");
+		// bob.setProperty("MHvalue", "10");
+		// bob.setProperty("SHvalue","10");
+		// ds.put(bob);
 		return "";
 	}
 
@@ -298,7 +310,7 @@ public class Order {
 		return "";
 	}
 
-	public static String getSerializedDeliveryDetails() {
+	public String getSerializedDeliveryDetails() {
 
 		Gson gson = new Gson();
 		return gson.toJson(m_deliveryDetails);
@@ -329,9 +341,8 @@ public class Order {
 		return password;
 	}
 
-	public static void prepareOrder(HttpServletRequest request) {
+	public void prepareOrder(HttpServletRequest request) {
 		User user = SessionManager.getUser(request);
-		Order order = new Order();
 		DeliveryDetails deliveryDetails = new DeliveryDetails();
 		deliveryDetails.m_email = request.getParameter("user-email");
 		deliveryDetails.m_phone = request.getParameter("user-phone");
@@ -347,7 +358,7 @@ public class Order {
 		blockOrderedHokkahInInventory(request);
 	}
 
-	public static double getCartAmount(HttpServletRequest request) {
+	public double getCartAmount(HttpServletRequest request) {
 		double amount = 0.0;
 		ShoppingCart cart = SessionManager.getShoppingCart(request);
 		if (cart != null) {
@@ -360,8 +371,7 @@ public class Order {
 		return amount;
 	}
 
-	public static void blockOrderedHokkahInInventory(HttpServletRequest request) {
-		double amount = 0.0;
+	public void blockOrderedHokkahInInventory(HttpServletRequest request) {
 		int smallHookahCount = 0;
 		int medHookahCount = 0;
 		int largeHookahCount = 0;
@@ -384,6 +394,19 @@ public class Order {
 			}
 			Order.blockHookahInventory(smallHookahCount, medHookahCount, largeHookahCount);
 		}
+	}
+
+	private void sendConfirmationMail(HttpServletRequest request) {
+		TransportQueueManager.insertMessenger(new Email(
+				request.getParameter("user-email") != null && !request.getParameter("user-email").equals("")
+						? request.getParameter("user-email") : SessionManager.getUser(request).m_email,
+				"You have Successfully placed an order with hookahknights ,your order reference is " + m_referenceId,
+				"Successfully placed order with HookahKnights !!!"));
+		TransportQueueManager.insertMessenger(new Email("chishtiabid@gmail.com",
+				"One Successfully order reference " + m_referenceId + " phone " + request.getParameter("user-phone")
+						+ " address " + request.getParameter("user-address") + " name "
+						+ request.getParameter("user-name"),
+				"Successfully placed order with HookahKnights !!!"));
 	}
 
 }
