@@ -317,28 +317,15 @@ public class Order {
 	}
 
 	public static String generateRandomString() {
+		String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"; // 36 letter.
+		int totalLength = 7;
+		StringBuilder sb = new StringBuilder();
+		sb.append("HK");
 		Random random = new Random();
-		String password = "HK";
-		while (password.length() < 8) {
-			int nextRand = Math.abs(random.nextInt());
-			int r = random.nextInt() % 3;
-			char nextChar;
-			switch (r) {
-			case 0:
-				nextChar = (char) ((nextRand % 26) + 'Z');
-				break;
-			case 1:
-				nextChar = (char) ((nextRand % 26) + 'A');
-				break;
-			case 2:
-				nextChar = (char) ((nextRand % 10) + '0');
-				break;
-			default:
-				nextChar = (char) ((nextRand % 10) + '0');
-			}
-			password += nextChar;
+		for (int i = 0; i < totalLength; i++) {
+			sb.append(chars.charAt(random.nextInt(chars.length())));
 		}
-		return password;
+		return sb.toString();
 	}
 
 	public void prepareOrder(HttpServletRequest request) {
