@@ -370,7 +370,7 @@ img {
 					<label for="user-url" class="col-lg-2 control-label">Address</label>
 						
 					<div class="col-lg-10">
-						<textarea name="user-message" id="user-address" name="user-address"
+						<textarea name="user-address" id="user-address" name="user-address"
 							class="form-control" cols="20" rows="10"
 							placeholder="Enter your Message"></textarea>
 					</div>
