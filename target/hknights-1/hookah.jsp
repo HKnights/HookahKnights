@@ -83,7 +83,6 @@ function MyCtrl($scope, $timeout) {
         <div class="collapse navbar-collapse" id="navbar-collapse">
         <%@include file="/common_header.jsp" %>
           <ul class="nav navbar-nav">
-            <li><a href="#home">Home</a> 
             <li><a href="#gallery">Gallery</a> 
             <li><a href="#faq">Faq</a> 
             <li><a href="#contact">ContactUs</a> 
@@ -181,12 +180,12 @@ function MyCtrl($scope, $timeout) {
             <div class="panel-heading">
               <div class="panel-title">
                 <a href="#collapse-1" data-toggle="collapse" data-parent="#accordion">
-                  Question one?
+                  Why do you need hookah?
                 </a>
               </div><!-- End panel title -->
               <div id="collapse-1" class="panel-collapse collapse in">
                 <div class="panel-body">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas non urna in fringilla. Praesent consequat est at feugiat faucibus
+                 It gives you reason to shout at your friend to pass the hookah as its been 10 mins.
                 </div>
               </div><!-- End Panel collapse -->
             </div>
@@ -195,39 +194,39 @@ function MyCtrl($scope, $timeout) {
             <div class="panel-heading">
               <div class="panel-title">
                 <a href="#collapse-2" data-toggle="collapse" data-parent="#accordion">
-                  Question Two?
+                 Where to keep hookah?
                 </a>
               </div><!-- End panel title -->
               <div id="collapse-2" class="panel-collapse collapse">
                 <div class="panel-body">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas non urna in fringilla. Praesent consequat est at feugiat faucibus
+                 Buy a 20 meter hose and keep your hookah at a distance precisely 20 meters, as your docter has asked you to keep hookah away.
                 </div>
               </div><!-- End Panel collapse -->
             </div>
           </div>
-          <div class="panel panel-default">
+        <!--   <div class="panel panel-default">
             <div class="panel-heading">
               <div class="panel-title">
                 <a href="#collapse-3" data-toggle="collapse" data-parent="#accordion">
                   Question Three?
                 </a>
-              </div><!-- End panel title -->
+              </div>End panel title
               <div id="collapse-3" class="panel-collapse collapse">
                 <div class="panel-body">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas non urna in fringilla. Praesent consequat est at feugiat faucibus
                 </div>
-              </div><!-- End Panel collapse -->
+              </div>End Panel collapse
             </div>
-          </div>
+          </div> -->
         </div><!-- End panel group -->
       </section>
     </div><!-- End container -->
 <!-- Contact -->
-  <div class="container">
+ <!--  <div class="container">
     <section>
       <div class="page-header" id="contact">
           <h2>Contact Us.<small> Contact us for more.</small></h2>
-        </div><!-- End Page Header -->
+        </div>End Page Header
         <div class="row">
           <div class="col-lg-4">
             <p>Send us a message, or contact us from the address below</p>
@@ -238,9 +237,9 @@ function MyCtrl($scope, $timeout) {
               New delhi - 110017</br>
               P: +91 9999999999
             </address>
-          </div>
+          </div> -->
           
-          <div class="col-lg-8">
+        <%--   <div class="col-lg-8">
               <div class="form-group">
                 <label for="user-name" class="col-lg-2 control-label">Name</label>
                 <div class="col-lg-10">
@@ -282,7 +281,7 @@ function MyCtrl($scope, $timeout) {
           </div>
         </div><!-- End the row -->
     </section>
-  </div>
+  </div> --%>
   </form>
 <!-- Footer -->
     <footer>
@@ -291,7 +290,7 @@ function MyCtrl($scope, $timeout) {
         <hr>
         <ul class="list-inline">
           </ul>
-        <p>&copy; Copyright @ 2014</p>
+        <p>&copy; Copyright @ 2016</p>
       </div><!-- end Container-->
       
     </footer>

@@ -12,10 +12,10 @@
 </head>
 <title>Shopping Cart</title>
 <script  src="/js/jquery-3.1.0.min.js"></script>
+<%@include file="/progree.jsp" %>
 <meta name="	"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/css/custom.css" />
 
@@ -206,23 +206,17 @@ function populateDetails(){
 										+ ++countItem
 										+ '</span><span class="itemName">'
 										+ itemDetails[1]
-										+ ' Hookah</span><span class="popbtn"><span id='
-										+ cartItem
-										+ ' onclick="removeItem('
-										+ cartItem
-										+ ')" style="margin-top: -30px;margin-left: 34px;" class="glyphicon glyphicon-remove"></span></span><span class="price">'
+										+ ' Hookah</span><span class="popbtn"></span><span class="price">'
 										+ itemDetails[2]/itemDetails[0] +
 										'</span><div style="float: right;margin-top: 30px;margin-right: -82px;" class="arrow"><div id="popover'+countItem+'" style="display: none"><table style="font-weight: bolder;"><tr><td>Coal</td><td>'
 										+itemDetails[3]+
 										'</td></tr><tr><td>Flavour 1</td><td>'
 										+itemDetails[4]+
-										'</td></tr> <tr><td>Flavour 2</td><td>'
-										+itemDetails[5]+
 										'</td></tr> <tr><td>Liquid Base</td><td>'
 										+itemDetails[6]+
 										'</td></tr> <tr><td>Security</td><td>'
 										+itemDetails[7]+
-										'</td>/tr></table></div></div></li>');
+										'</td>/tr></table></div></div><div style="cursor: pointer;float: right;margin-top: 29px;margin-right: -138px;"><span id='+ cartItem +' onclick="removeItem('+ cartItem +')" style="margin-top: -30px;margin-left: 34px;" class="glyphicon glyphicon-remove"></span></div></li>');
 			}
 		}
 		}
@@ -287,15 +281,12 @@ img {
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a href="" class="navbar-brand">HookahKnights</a>
+					<a href="/hookahknights" class="navbar-brand">HookahKnights</a>
 				</div>
 				<!-- Navbar Header-->
 				<div class="collapse navbar-collapse" id="navbar-collapse">
 					<%@include file="/common_header.jsp"%>
 					<ul class="nav navbar-nav">
-						<li><a href="#home">Home</a>
-						<li><a href="#gallery">Gallery</a>
-						<li><a href="#faq">Faq</a>
 						<li><a href="#contact">ContactUs</a>
 					</ul>
 				</div>
@@ -333,7 +324,8 @@ img {
 
 
 		<!-- JavaScript includes -->
-
+<script  src="/js/jquery-3.1.0.min.js"></script>
+	<script  src="/js/jquery-ui.js"></script>
 		<script src="/js/customjs.js?v=1234121212"></script>
 
 		<div id="DemoModal2" class="modal fade">

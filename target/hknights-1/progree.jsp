@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <title>Insert title here</title>
 
-        <script type="text/javascript" src="jquery.transit.js"></script>
+		<script type="text/javascript" src="jquery.transit.js"></script>
         <script  type="text/javascript" src="ytLoad.jquery.js"></script>
-        <link href="ytLoad.jquery.css" rel="stylesheet" type="text/css">
-        <script  type="text/json" src="ytLoad.jquery.json"></script>
+ 		<link href="ytLoad.jquery.css" rel="stylesheet" type="text/css">
+ 		<script  type="text/json" src="ytLoad.jquery.json"></script>
 
         <script type="text/javascript">
         var examples = {
@@ -27,7 +27,7 @@
                 },
 
                 customDurations: function() {
-                      $.ytLoad({
+                	  $.ytLoad({
                           registerAjaxHandlers: false,
                           startPercentage: 50,
                           startDuration: 2000,
