@@ -3,38 +3,30 @@
 <head>
 <meta charset="utf-8">
 <title>Hookah Knights</title>
-<meta name="description" content="Wiredwiki App">
+<script  src="/js/jquery-3.1.0.min.js"></script>
+	<script  src="/js/jquery-ui.js"></script>
 <%@include file="/progree.jsp" %>
-<!-- Latest compiled and minified CSS -->
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
-	<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-	
+
+
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css" />
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.min.css" />
+
+
+<script  src="/js/sweetalert-dev.js"></script>
+<script  src="/js/sweetalert-dev.min.js"></script>
+<script  src="/js/sweetalert.min.js"></script>
+
 
 <!-- Optional theme -->
 </head>
 <title>Shopping Cart</title>
 <meta name="	"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans'
-	rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+
 <link rel="stylesheet" type="text/css" href="/css/custom.css" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-	<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
-	<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.min.js"></script>
-	<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-	
+
 <style type="text/css">
 .popover-content {
 	border: solid 1px grey;
@@ -394,7 +386,8 @@ img {
 			</div>
 
 		</div>
-		
+		<script  src="/js/jquery-3.1.0.min.js"></script>
+	<script  src="/js/jquery-ui.js"></script>
 		<script src="/js/customjs.js?v=1234121212"></script>
 
 		<div id="DemoModal2" class="modal fade">
@@ -425,7 +418,7 @@ img {
 
 	</footer>
 	<!-- Latest compiled and minified JavaScript -->
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+
 </body>
 </html>

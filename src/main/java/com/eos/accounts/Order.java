@@ -274,6 +274,13 @@ public class Order {
 
 	public static String getInventory() {
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+		Key bobKey = KeyFactory.createKey("Inventory",
+				 "id=5119667588825088");
+				 Entity bob = new Entity(bobKey);
+				 bob.setProperty("LHvalue", "10");
+				 bob.setProperty("MHvalue", "10");
+				 bob.setProperty("SHvalue","10");
+				 ds.put(bob);
 		Query q = new Query("Inventory");
 		PreparedQuery pq = ds.prepare(q);
 		for (Entity result : pq.asIterable()) {
@@ -283,13 +290,7 @@ public class Order {
 			return smallHookahValue + "_" + mediumHookahValue + "_" + largeHookahValue;
 		}
 
-		// Key bobKey = KeyFactory.createKey("Inventory",
-		// "id=5119667588825088");
-		// Entity bob = new Entity(bobKey);
-		// bob.setProperty("LHvalue", "10");
-		// bob.setProperty("MHvalue", "10");
-		// bob.setProperty("SHvalue","10");
-		// ds.put(bob);
+			 
 		return "";
 	}
 

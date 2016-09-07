@@ -5,12 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <title>Insert title here</title>
- <link href="ytLoad.jquery.css" rel="stylesheet" type="text/css">
 
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        <script type="text/javascript" src="jquery.transit.js"></script>
+		<script type="text/javascript" src="jquery.transit.js"></script>
+        <script  type="text/javascript" src="ytLoad.jquery.js"></script>
+ 		<link href="ytLoad.jquery.css" rel="stylesheet" type="text/css">
+ 		<script  type="text/json" src="ytLoad.jquery.json"></script>
 
-        <script type="text/javascript" src="ytLoad.jquery.js"></script>
         <script type="text/javascript">
         var examples = {
                 basic: function() {

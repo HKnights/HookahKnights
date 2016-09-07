@@ -4,17 +4,16 @@
 	<meta charset="utf-8">
 	<title>Hookah Knights </title>
 	<meta name="description" content="Wiredwiki App">
-	<!-- Latest compiled and minified CSS -->
-	 <!-- Latest compiled and minified CSS -->
-	 <!-- <link rel="stylesheet" href="/js/bootstrap3_2_0.css" type="text/css" media="screen"> -->
-	 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	 		 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+
+	 	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
 	<!-- Optional theme -->
 </head>
 
-<script  src="/js/codejquery_min.js"></script>
-<script  src="/js/bootstrap3_2_0.min.js"></script>
+<script  src="/js/jquery-3.1.0.min.js"></script>
+<script   src="/js/bootstrap3_2_0.min.js"></script>
 
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
   <%@include file="/progree.jsp" %>
     <script type="text/javascript">
 
@@ -123,7 +122,7 @@ function MyCtrl($scope, $timeout) {
   				<div class="col-md-4">
   					<blockquote>
   						<div class="item active">
-  						<img src="hookah2.jpg" alt="Text of the image" style=" width: 360px; margin-left: -8px; height: 233px;">
+  						<img src="hookah2_small.jpg" alt="Text of the image" style=" width: 360px; margin-left: -8px; height: 233px;">
   					</div>
   					</blockquote>
   				</div>
@@ -145,7 +144,7 @@ function MyCtrl($scope, $timeout) {
 			<div class="page-header" id="gallery">
   				<h2>Gallery.<small> Check out the Awesome Gallery</small></h2>
   			</div>
-  			<div class="carousel slide" id="screenshot-carousel" data-ride="carousel">
+  			<div class="carousel slide" style="width: 96%;margin-left: 2%;" id="screenshot-carousel" data-ride="carousel">
   				<ol class="carousel-indicators">
   					<li data-target="#screenshot-carousel" data-slide-to="0" class="active"></li>
   					<li data-target="#screenshot-carousel" data-slide-to="1"></li>
@@ -276,6 +275,7 @@ function MyCtrl($scope, $timeout) {
               
 				<div id="DemoModal2" class="modal fade"> <!-- class modal and fade -->
 		            <div class="modal-body"> <!-- modal body -->
+		            <script  src="/js/jquery-3.1.0.min.js"></script>
 		              <%@include file="/index.jsp" %>
 		            </div>
 	  			</div>

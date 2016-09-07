@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<servlet>
+		<servlet-name>HookahKnights</servlet-name>
+		<servlet-class>main.java.com.eos.HookahKnights.HookahKnightsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HookahKnights</servlet-name>
+		<url-pattern>/hookahknights</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>hookah.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>longtimeworkingprocesshandler</servlet-name>
+		<servlet-class>main.java.com.eos.utils.TransportQueueManager</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>longtimeworkingprocesshandler</servlet-name>
+		<url-pattern>/cron/mycronjob</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>StartupServlet</servlet-name>
+		<servlet-class>main.java.com.eos.utils.FilterHKnightsRequest</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StartupServlet</servlet-name>
+		<url-pattern>/Startup</url-pattern>
+	</servlet-mapping>
+	
+	<filter>  
+<filter-name>f1</filter-name>  
+<filter-class>main.java.com.eos.utils.XssFilter</filter-class>  
+</filter>  
+<filter-mapping>  
+<filter-name>f1</filter-name>  
+<url-pattern>/hookahknights</url-pattern>  
+</filter-mapping>  
+
+</web-app>
