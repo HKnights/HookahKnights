@@ -1,5 +1,6 @@
 main/java/com/eos/demo/HookahDataMain.class
 main/java/com/eos/model/Hookah.class
+main/java/com/eos/accounts/User$ProductListCustomDeserializer.class
 main/java/com/eos/HookahKnights/Serializer.class
 main/java/com/eos/RequestHandler/HookahRequestHandler.class
 main/java/com/eos/utils/TransportQueueManager$TransportMessage.class
@@ -13,6 +14,8 @@ main/java/com/eos/accounts/Order.class
 main/java/com/eos/HookahKnights/HookahKnightsServlet.class
 main/java/com/eos/HookahKnights/HookahNavigationConstantBean.class
 main/java/com/eos/utils/FilterHKnightsRequest.class
+main/java/com/eos/pojo/ProductList.class
+main/java/com/eos/accounts/User$ShoppingCartCustomDeserializer.class
 main/java/com/eos/utils/XssFilter$FilteredRequest.class
 main/java/com/eos/utils/SessionManager.class
 main/java/com/eos/cart/ShoppingCart.class

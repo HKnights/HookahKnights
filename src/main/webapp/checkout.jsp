@@ -570,7 +570,7 @@ img {
 
 
 	<!-- Footer -->
-	<footer>
+<!-- 	<footer>
 		<hr>
 		<div class="container text-center" style="margin-top: 115px;">
 			<hr>
@@ -581,9 +581,9 @@ img {
 			</ul>
 			<p>&copy; Copyright @ 2014</p>
 		</div>
-		<!-- end Container-->
+		end Container
 
-	</footer>
+	</footer> -->
 	<!-- Latest compiled and minified JavaScript -->
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 

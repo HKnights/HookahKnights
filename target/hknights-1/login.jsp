@@ -220,7 +220,7 @@ function logout(){
     }
     function toggleGmLgBtn(){
    	 $('#LGO').toggle();
-        $('#SIN').toggle();
+     $('#SIN').toggle();
         
    }
     

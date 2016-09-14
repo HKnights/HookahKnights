@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -25,6 +26,7 @@ import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Text;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -34,6 +36,7 @@ import com.google.gson.JsonParseException;
 import main.java.com.eos.cart.ShoppingCart;
 import main.java.com.eos.model.Hookah;
 import main.java.com.eos.model.HookahData;
+import main.java.com.eos.pojo.ProductList;
 import main.java.com.eos.product.Product;
 import main.java.com.eos.utils.SessionManager;
 
@@ -177,7 +180,7 @@ public class User implements Serializable {
 	public static void populateUserOrders(String userId, HttpServletRequest request) {
 		try {
 			JSONObject jsonObj;
-			String time="";
+			String time = "";
 			JSONObject orderJson = new JSONObject();
 			int count = 0;
 			DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
@@ -192,7 +195,7 @@ public class User implements Serializable {
 				try {
 					cart = new ShoppingCart();
 					jsonObj = new JSONObject((Text) result.getProperty("order_details"));
-					 time=result.getProperty("generation_time").toString();
+					time = result.getProperty("generation_time").toString();
 					JSONArray jsonArray = (new JSONObject((String) jsonObj.opt("value"))).optJSONArray("items");
 					for (int i = 0; i < jsonArray.length(); i++) {
 						Product product = new Hookah();
@@ -201,7 +204,7 @@ public class User implements Serializable {
 						cart.addToProductList(product);
 					}
 					orderJson.put(++count + "", cart);
-					orderJson.put("generation_time"+count, time);
+					orderJson.put("generation_time" + count, time);
 				} catch (Exception e) {
 				}
 			}
@@ -238,12 +241,88 @@ public class User implements Serializable {
 				hookahData.setProdName(((JsonObject) jsonObject.get("hookahData")).get("prodName").getAsString());
 				hookahData.setProdSize(((JsonObject) jsonObject.get("hookahData")).get("prodSize").getAsString());
 				hookahData.setPrice(((JsonObject) jsonObject.get("hookahData")).get("price").getAsDouble());
-				hookahData.setFlavourFirst(((JsonObject) jsonObject.get("hookahData")).get("flavourFirst").getAsString());
+				hookahData
+						.setFlavourFirst(((JsonObject) jsonObject.get("hookahData")).get("flavourFirst").getAsString());
 				hookahData.setSecurity(((JsonObject) jsonObject.get("hookahData")).get("security").getAsDouble());
 				product.setHookahData(hookahData);
 				items.add(product);
 				cart.setItems(items);
 				return product;
+			}
+		}
+
+	}
+
+	public static class ShoppingCartCustomDeserializer implements JsonDeserializer<ShoppingCart> {
+
+		public ShoppingCart deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+				throws JsonParseException {
+			if (json == null)
+				return null;
+			else {
+				ShoppingCart cart = new ShoppingCart();
+				List<Product> items = new ArrayList<Product>();
+
+				JsonObject jsonObject = json.getAsJsonObject();
+				JsonArray jsonArray = jsonObject.getAsJsonArray("items");
+				for (int i = 0; i < jsonArray.size(); i++) {
+					Product product = new Hookah();
+					JsonObject prod = ((JsonObject) jsonArray.get(i)).getAsJsonObject("hookahData");
+					HookahData hookahData = new HookahData();
+					hookahData.setBase1(prod.get("base1").getAsString());
+					hookahData.setProdId(prod.get("prodId").getAsInt());
+					hookahData.setItemId(prod.get("itemId").getAsInt());
+					hookahData.setCoal(prod.get("coal").getAsInt());
+					hookahData.setProdName(prod.get("prodName").getAsString());
+					hookahData.setProdSize(prod.get("prodSize").getAsString());
+					hookahData.setPrice(prod.get("price").getAsDouble());
+					hookahData.setFlavourFirst(prod.get("flavourFirst").getAsString());
+					hookahData.setSecurity(prod.get("security").getAsDouble());
+					product.setHookahData(hookahData);
+					items.add(product);
+				}
+
+				cart.setItems(items);
+				return cart;
+			}
+		}
+	}
+
+	public static class ProductListCustomDeserializer implements JsonDeserializer<ProductList> {
+
+		public ProductList deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+				throws JsonParseException {
+			ProductList list=new ProductList();
+			if (json == null)
+				return null;
+			else {
+				List<List<Product>> itemsList = new LinkedList<>();
+
+				JsonArray jsonObject = json.getAsJsonArray();
+				for (int j = 0; j < jsonObject.size(); j++) {
+					List<Product> prodList = new LinkedList<>();
+					JsonArray productJsonArray = jsonObject.get(j).getAsJsonArray();
+					for (int i = 0; i < productJsonArray.size(); i++) {
+						Product product = new Hookah();
+						JsonObject prod = ((JsonObject) productJsonArray.get(i).getAsJsonObject())
+								.getAsJsonObject("hookahData");
+						HookahData hookahData = new HookahData();
+						hookahData.setBase1(prod.get("base1").getAsString());
+						hookahData.setProdId(prod.get("prodId").getAsInt());
+						hookahData.setItemId(prod.get("itemId").getAsInt());
+						hookahData.setCoal(prod.get("coal").getAsInt());
+						hookahData.setProdName(prod.get("prodName").getAsString());
+						hookahData.setProdSize(prod.get("prodSize").getAsString());
+						hookahData.setPrice(prod.get("price").getAsDouble());
+						hookahData.setFlavourFirst(prod.get("flavourFirst").getAsString());
+						hookahData.setSecurity(prod.get("security").getAsDouble());
+						product.setHookahData(hookahData);
+						prodList.add(product);
+					}
+					itemsList.add(prodList);
+				}
+				list.setProductList(itemsList);
+				return list;
 			}
 		}
 

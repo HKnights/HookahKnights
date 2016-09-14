@@ -8,7 +8,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>HookahKnights</servlet-name>
-		<url-pattern>/hookahknights</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>hookah.jsp</welcome-file>

@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@page import="main.java.com.eos.cart.ShoppingCart"%>
+<%@page import="com.google.gson.Gson"%>
+<%@page import="java.util.Arrays"%>
+<%@page import="main.java.com.eos.product.Product"%>
+<%@page import="java.util.List"%>
 <%@page import="main.java.com.eos.accounts.Order"%>
 <html lang="en">
 
@@ -80,11 +85,15 @@ blur { 0% {
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -95,8 +104,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -109,11 +122,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -124,8 +141,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -138,11 +159,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -153,8 +178,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -167,11 +196,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -182,8 +215,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -196,11 +233,15 @@ filter
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -211,8 +252,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -239,11 +284,15 @@ blur { 0% {
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -254,8 +303,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -268,11 +321,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -283,8 +340,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -297,11 +358,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -312,8 +377,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -326,11 +395,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -341,8 +414,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -355,11 +432,15 @@ filter
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -370,8 +451,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -398,11 +483,15 @@ blur { 0% {
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -413,8 +502,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -427,11 +520,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -442,8 +539,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -456,11 +557,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -471,8 +576,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -485,11 +594,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -500,8 +613,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -514,11 +631,15 @@ filter
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -529,8 +650,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -557,11 +682,15 @@ blur { 0% {
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -572,8 +701,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -586,11 +719,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -601,8 +738,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -615,11 +756,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -630,8 +775,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -644,11 +793,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -659,8 +812,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -673,11 +830,15 @@ filter
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -688,8 +849,12 @@ blur
 
 
 
+
+
 (4
 px
+
+
 
 
 
@@ -716,11 +881,15 @@ blur-out { 0% {
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -731,8 +900,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -745,11 +918,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -760,8 +937,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -774,11 +955,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -789,8 +974,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -803,11 +992,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -818,8 +1011,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -832,11 +1029,15 @@ filter
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -847,8 +1048,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -875,11 +1080,15 @@ blur-out { 0% {
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -890,8 +1099,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -904,11 +1117,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -919,8 +1136,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -933,11 +1154,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -948,8 +1173,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -962,11 +1191,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -977,8 +1210,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -991,11 +1228,15 @@ filter
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -1006,8 +1247,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -1034,11 +1279,15 @@ blur-out { 0% {
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -1049,8 +1298,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -1063,11 +1316,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -1078,8 +1335,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -1092,11 +1353,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -1107,8 +1372,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -1121,11 +1390,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -1136,8 +1409,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -1150,11 +1427,15 @@ filter
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -1165,8 +1446,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -1193,11 +1478,15 @@ blur-out { 0% {
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -1208,8 +1497,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -1222,11 +1515,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -1237,8 +1534,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -1251,11 +1552,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -1266,8 +1571,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -1280,11 +1589,15 @@ px
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -1295,8 +1608,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -1309,11 +1626,15 @@ filter
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -1324,8 +1645,12 @@ blur
 
 
 
+
+
 (0
 px
+
+
 
 
 
@@ -1344,8 +1669,8 @@ span {
 }
 
 .pop-up {
-    position: absolute;
-/* 	margin: 5% auto;
+	position: absolute;
+	/* 	margin: 5% auto;
 	margin-top: -51px;
  	left: 0;
 	right: 0;*/
@@ -1447,6 +1772,50 @@ cart {
 	position: relative;
 	overflow: hidden;
 }
+
+nav {
+	border-radius: 4px;
+	box-shadow: 0px 0px 2px #303030;
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	height: 40px;
+	margin: 2px 10px;
+}
+
+ul>li {
+	list-style: none;
+}
+
+ul>li a {
+	color: #9c9696;;
+	font-weight: bold;
+	line-height: 40px;
+	height: 40px;
+	display: block;
+	padding: 0px 10px;
+}
+
+nav ul li ul {
+	background: #333333;
+	border-radius: 4px;
+	box-shadow: 0px 0px 2px #303030;
+	display: none;
+	position: relative;
+	z-index: 100;
+}
+
+nav ul li ul li {
+	float: none;
+	line-height: 40px;
+	width: 150px;
+}
+li table {
+display: none;
+}
+.menu-trigger {
+	display: none;
+}
 </style>
 <%
 	String[] inventorDetails = (Order.getInventory()).split("_");
@@ -1455,9 +1824,47 @@ cart {
 	int largeHookahLeft = Integer.parseInt(inventorDetails[2]);
 %>
 <%@include file="/progree.jsp"%>
+<%List<List<Product>> prevOrders=(List<List<Product>>)request.getAttribute("prev_order"); 
 
+if(!prevOrders.isEmpty()){%>
+<nav>
+	<button class="menu-trigger">
+		<span class="burger"></span> <span class="burger"></span> <span
+			class="burger"></span>
+	</button>
+<ul class="menu">	
+<li class="dropdown-trigger"><a href="#" style="margin-top: 14px;">Go with your usuals<span class="caret"></span></a>
+<%int itemCount=0;
+int showCount=1;
+for(List<Product> prevOrder:prevOrders) {
+%>
+			<ul>
+				<li><a style="padding: 21px;" onclick="displayOrders(<%=showCount%>)">View Order <%=showCount%></a>
+				<table style="    width: 1000px;" id="Order<%=showCount%>">
+				<%for (Product prod:prevOrder) {%>
+				<tr><td style="color: aliceblue;    padding-left: 21px;padding-top: 7px;"> <%=prod.getHookahData().getProdSize()%> <%=prod.getHookahData().getProdName()%></td>
+				<td style="color: aliceblue;    padding-left: 21px;padding-top: 7px;">Flavour: <%=prod.getHookahData().getFlavourFirst()%></td>
+				<td style="color: aliceblue;    padding-left: 21px;padding-top: 7px;">Base: <%=prod.getHookahData().getBase1()%></td>
+				</tr>
+				<%} %></table>
+
+				<div><button id=<%=itemCount %> 	style=" color: #ffffff;    margin-left: 950px;
+				width: 117px; background-color: #46b29d; height: 34px; border-radius: 4px;
+				 position: relative; overflow: hidden; -webkit-font-smoothing: antialiased;
+				  -moz-osx-font-smoothing: grayscale; font-weight: 900;     margin-bottom: 10px;
+				  text-transform: uppercase; line-height: 30px; border: none;" onclick="expressChecout(<%=itemCount %>)" type="button">Checkout</button></div>
+				
+				</li>
+			</ul><%
+			itemCount++;
+			showCount++;} %></li>
+
+	</ul>
+</nav>
+<%} %>
 <body data-spy="scroll" data-target="#my-navbar">
 	<form action="hookahknights" method="POST" name="mainForm">
+	<input type="hidden" name="express_checkout" value=""> 
 		<input type="hidden" name="from"
 			value="${pageContext.request.requestURI}"> <input
 			type="hidden" name="action1" value="" /> <input type="hidden"
@@ -1548,11 +1955,10 @@ cart {
 							<td style="text-align: center"><h
 									style="font-weight:bold;margin-right: 122px;">Price</h></td>
 
-							<td style="text-align: center"><h
-									style="font-weight:bold;">Delivery Details</h></td>
+							<td style="text-align: center"><h style="font-weight:bold;">Delivery
+								Details</h></td>
 
-							<td style="text-align: center"><h
-									style="font-weight:bold;"></h></td>
+							<td style="text-align: center"><h style="font-weight:bold;"></h></td>
 						</tr>
 
 						<tr>
@@ -1998,12 +2404,40 @@ cart {
 	<!-- <script
 		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script> -->
 	<script>
+	function displayOrders(id){
+		 $($('table[id=Order'+id+']')[0]).toggle();
+	}
 		$(function() {
 			startFromHalf();
+
 		});
+		
 		function submitPage() {
 			document.mainForm.action1.value = "CHECKOUT_ACTION";
 			document.mainForm.submit();
+		}
+		function expressChecout(id){
+			expressCheckoutAdd(id);
+		}
+		function expressCheckoutAdd(value) {
+			$.ajax({
+				url : "/hookahknights?action1=EXPRESSCHECKOUT",
+				data : {
+					prod : '<%=new Gson().toJson(prevOrders)%>',
+					item : value,
+				},
+				async : true,
+				contentType : 'application/json; charset=utf-8',
+				type : "GET",
+				success : function(response) {
+					submitPage();
+				},
+				error : function(xhr) {
+
+				}
+
+			});
+
 		}
 		function ajaxAddToCart(value) {
 			var id = value;
@@ -2184,6 +2618,21 @@ cart {
 	</footer> -->
 
 	<!-- Latest compiled and minified JavaScript -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".menu-trigger").click(function() {
+				$(".menu").slideToggle(400, function() {
+					$(this).toggleClass("nav-expanded").css('display', '');
+				});
+			});
+		});
+		/*JS for the dropdown in the menu*/
+		$(document).ready(function() {
+			$("li").click(function() {
+				$('li > ul').not($(this).children("ul").slideToggle()).hide();
+			});
+		});
+	</script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<!-- <script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->

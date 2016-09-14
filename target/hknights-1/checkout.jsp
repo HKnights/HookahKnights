@@ -51,7 +51,7 @@ function submitPage(){
 		swal(
 				{
 					title : 'Oops!!! ',
-					text : "You have not filled up details yet!",
+					text : "You have not filled up all details yet!",
 					type : "warning",
 					showCancelButton : false,
 					confirmButtonColor : "#DD6B55",
@@ -570,7 +570,7 @@ img {
 
 
 	<!-- Footer -->
-	<footer>
+<!-- 	<footer>
 		<hr>
 		<div class="container text-center" style="margin-top: 115px;">
 			<hr>
@@ -581,9 +581,9 @@ img {
 			</ul>
 			<p>&copy; Copyright @ 2014</p>
 		</div>
-		<!-- end Container-->
+		end Container
 
-	</footer>
+	</footer> -->
 	<!-- Latest compiled and minified JavaScript -->
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 

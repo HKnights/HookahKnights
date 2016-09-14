@@ -1,10 +1,19 @@
 package main.java.com.eos.cart;
 
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+
 import main.java.com.eos.HookahKnights.Serializer;
+import main.java.com.eos.model.Hookah;
+import main.java.com.eos.model.HookahData;
 import main.java.com.eos.product.Product;
 
 public class ShoppingCart implements Serializable {
@@ -55,8 +64,8 @@ public class ShoppingCart implements Serializable {
 		items.add(product);
 	}
 
-	public void getProductList(Product product) {
-		items.add(product);
+	public List<Product> getProductList() {
+		return items;
 	}
 
 	public static byte[] createDummyShoppingCart() {
@@ -68,5 +77,5 @@ public class ShoppingCart implements Serializable {
 		return Serializer.serialize(uc);
 
 	}
-
+	
 }

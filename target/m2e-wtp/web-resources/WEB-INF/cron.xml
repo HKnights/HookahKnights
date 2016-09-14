@@ -1,0 +1,6 @@
+<cronentries>
+<cron>
+    <url>/cron/mycronjob</url>
+    <schedule>every 1 minutes</schedule>
+</cron>
+</cronentries>

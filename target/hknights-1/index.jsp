@@ -97,6 +97,7 @@
                 <span >Sign in with <strong>Facebook</strong></span>
               </div>
             </a>
+            <%if(request.getAttribute("showGoogle")!=null?true:false){ %>
             <a href="#" class="connect googleplus" onclick="gSignIn();">
               <div class="connect__icon">
                 <i class="fa fa-google-plus" ></i>
@@ -104,7 +105,9 @@
               <div class="connect__context" >
                 <span onclick="gSignIn();">Sign in with <strong>Google</strong></span>
               </div>
+              
             </a>
+            <% }%>
           </div>
         </div>
     </div>
@@ -153,7 +156,7 @@ function validateEmail(email) {
     return re.test(email);
 }
 function gSignIn(){
-	document.getElementsByTagName('button')[2].click();
+	 document.getElementsByTagName('button')[2].click(); 
 }
 function closeLoginPage(){
 	$('.logmod')[0].style.display='none';

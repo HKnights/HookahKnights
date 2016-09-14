@@ -1,6 +1,7 @@
 package main.java.com.eos.accounts;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -19,7 +20,9 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Text;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import main.java.com.eos.accounts.User.ShoppingCartCustomDeserializer;
 import main.java.com.eos.cart.ShoppingCart;
 import main.java.com.eos.model.HookahData;
 import main.java.com.eos.product.Product;
@@ -264,7 +267,7 @@ public class Order {
 		PreparedQuery pq = ds.prepare(q);
 		for (Entity entity : pq.asIterable()) {
 			try {
-				return entity.getKey().getId() + "";
+				return "1";// entity.getKey().getId() + "";
 			} catch (Exception e1) {
 
 			}
@@ -274,13 +277,12 @@ public class Order {
 
 	public static String getInventory() {
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-		Key bobKey = KeyFactory.createKey("Inventory",
-				 "id=5119667588825088");
-				 Entity bob = new Entity(bobKey);
-				 bob.setProperty("LHvalue", "10");
-				 bob.setProperty("MHvalue", "10");
-				 bob.setProperty("SHvalue","10");
-				 ds.put(bob);
+		Key bobKey = KeyFactory.createKey("Inventory", "id=5119667588825088");
+		Entity bob = new Entity(bobKey);
+		bob.setProperty("LHvalue", "10");
+		bob.setProperty("MHvalue", "10");
+		bob.setProperty("SHvalue", "10");
+		ds.put(bob);
 		Query q = new Query("Inventory");
 		PreparedQuery pq = ds.prepare(q);
 		for (Entity result : pq.asIterable()) {
@@ -290,7 +292,6 @@ public class Order {
 			return smallHookahValue + "_" + mediumHookahValue + "_" + largeHookahValue;
 		}
 
-			 
 		return "";
 	}
 
@@ -309,6 +310,35 @@ public class Order {
 			return smallHookahValue + "_" + mediumHookahValue + "_" + largeHookahValue;
 		}
 		return "";
+	}
+
+	@SuppressWarnings("deprecation")
+	public static List<List<Product>> getUserOrders(HttpServletRequest request) {
+		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+		List<List<Product>> orderList = new ArrayList<>();
+		try {
+
+			Query q = new Query("Orders");
+			q.addFilter("user_id", Query.FilterOperator.EQUAL, SessionManager.getUser(request).m_userId);
+			PreparedQuery pq = ds.prepare(q);
+			for (Entity result : pq.asIterable()) {
+				String cartString = ((Text) result.getProperty("order_details")).getValue();
+				 GsonBuilder gsonBuilder = new GsonBuilder();
+				    gsonBuilder.registerTypeAdapter(ShoppingCart.class, new ShoppingCartCustomDeserializer());
+				    Gson gson = gsonBuilder.create();
+				   
+				ShoppingCart cart=gson.fromJson(cartString, ShoppingCart.class);
+				
+				List<Product> productList = cart.getProductList();
+				orderList.add(productList);
+
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return orderList;
+
 	}
 
 	public String getSerializedDeliveryDetails() {

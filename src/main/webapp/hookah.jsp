@@ -13,7 +13,7 @@
 <script  src="/js/jquery-3.1.0.min.js"></script>
 <script   src="/js/bootstrap3_2_0.min.js"></script>
 
-
+<%boolean showGoogle=true; %>
   <%@include file="/progree.jsp" %>
     <script type="text/javascript">
 
@@ -271,17 +271,17 @@ function MyCtrl($scope, $timeout) {
                 </div>
               </div>
               
-              
+         --%>
+         <div style="display:none" class="col-lg-10 col-lg-offset-2">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>     
         <div id="DemoModal2" class="modal fade"> <!-- class modal and fade -->
                 <div class="modal-body"> <!-- modal body -->
                 <script  src="/js/jquery-3.1.0.min.js"></script>
                   <%@include file="/index.jsp" %>
                 </div>
           </div>
-          </div>
-        </div><!-- End the row -->
-    </section>
-  </div> --%>
+        
   </form>
 <!-- Footer -->
     <footer>
